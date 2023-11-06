@@ -5,7 +5,7 @@ CREATE DATABASE [DummyMedi];
 ```
 #### Next, we must group our tables together in a schema
 A schema is just a way to group tables into names. For example, ```doctor.credentials and doctor.schedule``` Where ```doctor``` is the schema.
-``` 
+```sql 
 USE DummyMedi;
 CREATE SCHEMA admin;
 CREATE SCHEMA doctor;
@@ -18,7 +18,7 @@ The creation of the tables must be in order to avoid errors for CONSTRAINTS and 
 <br/>
 ### admin.credentials TABLE
 This table will contain the information of the admin of the system.
-```
+```sql
 USE [dbNAME];
 CREATE TABLE admin.credentials
 (
@@ -32,7 +32,7 @@ CREATE TABLE admin.credentials
 );
 ```
 #### To INSERT DUMMY DATA 
-```
+```sql
 USE DummyMedi;
 INSERT INTO admin.credentials(username, password, fName, lname, contactNum, email)
 VALUES (
@@ -46,7 +46,7 @@ VALUES (
 ```
 ### doctor.credentials TABLE
 This table will contain the information of the doctors of the system.
-```
+```sql
 USE DummyMedi;
 CREATE TABLE doctor.credentials
 (
@@ -61,7 +61,7 @@ CREATE TABLE doctor.credentials
 );
 ```
 #### To INSERT DUMMY DATA 
-```
+```sql
 INSERT INTO [doctor].[credentials]
            ([email]
            ,[password]
@@ -79,10 +79,10 @@ INSERT INTO [doctor].[credentials]
 	'09567052824',
 	'Opthalmology',
 	'MD-123123'
-	);
+);
 ```
 ### doctor.schedule TABLE
-```
+```sql
 USE DummyMedi;
 CREATE TABLE doctor.schedule
 (
@@ -94,7 +94,7 @@ CREATE TABLE doctor.schedule
 );
 ```
 #### To INSERT DUMMY DATA
-```
+```sql
 INSERT INTO doctor.schedule(
 	scheduleDate,
 	scheduleInfo,
@@ -104,10 +104,10 @@ VALUES(
 	'Monday',
 	'5:00 AM - 7:00 AM',
 	1
-	);
+);
 ```
 ### patient.credentials TABLE
-```
+```sql
 USE DummyMedi;
 CREATE TABLE patient.credentials
 (
@@ -129,7 +129,7 @@ CREATE TABLE patient.credentials
 );
 ```
 #### To INSERT DUMMY DATA
-```
+```sql
 USE DummyMedi;
 	INSERT INTO patient.credentials(patientRef, fName, lName, address, region, city, gender, birthdate, birthplace, contactNum, occupation, religion, emergencyName, emergencyNum)
 	VALUES('P-0000000000001',
@@ -150,7 +150,7 @@ USE DummyMedi;
 ```
 
 ### RECORD.type TABLE
-```
+```sql
 USE DummyMedi;
 CREATE TABLE record.type
 (
@@ -159,14 +159,14 @@ CREATE TABLE record.type
 );
 ```
 #### To INSERT DUMMY DATA 
-```
+```sql
 USE DummyMedi;
 INSERT INTO record.type(recordType)
 VALUES('Medical History Form');
 ```
 
 ### record.medhistory TABLE
-```
+```sql
 USE DummyMedi;
 CREATE TABLE record.medhistory(
 	medhistoryId int PRIMARY KEY IDENTITY(1,1),
@@ -186,7 +186,7 @@ CREATE TABLE record.medhistory(
 ```
 
 ### record.diagnosis TABLE
-```
+```sql
 	USE DummyMedi;
 	CREATE TABLE record.diagnosis(
 	diagnosisId int PRIMARY KEY IDENTITY(1,1),
@@ -200,7 +200,7 @@ CREATE TABLE record.medhistory(
 	FOREIGN KEY (patientId) REFERENCES patient.credentials(patientId),
 );
 ```
-
+<details>
 RECORD.MEDHISTORY
 - Past Medical History
 	- GENERAL CONDITION
@@ -225,3 +225,4 @@ https://www.tutorialsteacher.com/mvc/implement-validation-in-asp.net-mvc
 SELECT * FROM doctor.credentials c
 INNER JOIN doctor.schedule s
 ON c.doctorId = s.doctorId;
+</details>
