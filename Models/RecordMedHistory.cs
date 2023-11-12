@@ -1,7 +1,12 @@
-﻿namespace MediSynthFinals.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace MediSynthFinals.Models
 {
+    [Table("medhistory", Schema = "record")]
     public class RecordMedHistory
     {
+        [Key]
         public int medhistoryId { get; set; }
         public string pastMedHistory { get; set; }
         public string pastHospitalization { get; set; }
@@ -10,7 +15,7 @@
         public string foodAllergy { get; set; }
         public string drugAllergy { get; set; }
         public string attendingDoctor { get; set; }
-        public DateOnly visitDate { get; set; }
+        public DateTime visitDate { get; set; }
 
         // FOREIGN KEYS
         public int rtypeId { get; set; }

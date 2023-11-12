@@ -1,4 +1,7 @@
-﻿namespace MediSynthFinals.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace MediSynthFinals.Models
 {
     public enum Gender
     {
@@ -36,8 +39,10 @@
         Pasig
     }
 
+    [Table("credentials", Schema = "patient")]
     public class PatientCredentials
     {
+        [Key]
         public int patientId { get; set; }
         public string patientRef { get; set; }
         public string fName { get; set; }
@@ -46,7 +51,7 @@
         public string region { get; set; }
         public string city { get; set; }
         public string gender { get; set; }
-        public DateOnly birthdate { get; set; }
+        public DateTime birthdate { get; set; }
         public string birthplace { get; set; }
         public string contactNum { get; set; }
         public string occupation { get; set; }

@@ -1,0 +1,34 @@
+﻿@model dynamic;
+
+<table class="table">
+
+    <tr>
+        <th colspan="7">Doctor</th>
+    </tr>
+
+    <tr>
+        <td>Full Name</td>
+        <td>Email</td>
+        <td>Contact Number</td>
+        <td>Department</td>
+        <td>Medical License</td>
+        <td>Schedule</td>
+@*         <td>Delete</td> *@
+
+    </tr>
+    @foreach (DoctorCredentials doc in Model.DoctorCredentials)
+    {
+        <tr>
+            <td>@doc.fName @doc.lName</td>
+            <td>@doc.email</td>
+            <td>@doc.contactNum</td>
+            <td>@doc.department</td>
+            <td>@doc.medLicense</td>
+            <td><a asp-action="Doctor" asp-route-id="@doc.doctorId" class="btn btn-primary">View Schedule</a></td>
+@*             <td><a asp-action="ShowDetail" asp-route-id="@instructor.Id" class="btn btn-primary">Show Details</a></td>
+            <td><a asp-action="Update" asp-route-id="@instructor.Id" class="btn btn-primary">Update Details</a></td>
+            <td><a asp-action="Delete" asp-route-id="@instructor.Id" class="btn btn-danger">Delete</a></td> *@
+
+        </tr>
+    }
+</table>

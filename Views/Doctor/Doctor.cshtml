@@ -1,0 +1,57 @@
+﻿@model dynamic;
+<table class="table">
+
+    <tr>
+        <th colspan="7">Doctor Details</th>
+    </tr>
+
+    <tr>
+        <td>Full Name</td>
+        <td>Email</td>
+        <td>Contact Number</td>
+        <td>Department</td>
+        <td>Medical License</td>
+
+    </tr>
+        <tr>
+         @foreach(DoctorCredentials doc in Model.DoctorCredentials)
+        {
+            var id = ViewBag.DoctorId;
+            if(id == doc.doctorId)
+            {
+                <td>@doc.fName @doc.lName</td>
+                <td>@doc.email</td>
+                <td>@doc.contactNum</td>
+                <td>@doc.department</td>
+                <td>@doc.medLicense</td>
+            }
+        }
+    </tr>
+        
+</table>
+
+<table class="table">
+
+    <tr>
+        <th colspan="3">Schedule</th>
+    </tr>
+
+    <tr>
+        <td>Day</td>
+        <td>Time</td>
+
+    </tr>
+
+        @foreach (DoctorSchedule sched in Model.DoctorSchedule)
+        {
+            var id = ViewBag.DoctorId;
+            if (id == sched.doctorId)
+            {
+            <tr>
+                <td>@sched.scheduleDate</td>
+                <td>@sched.scheduleInfo</td>
+            </tr>
+            }
+        
+        }
+</table>
