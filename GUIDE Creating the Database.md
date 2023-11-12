@@ -87,8 +87,8 @@ USE DummyMedi;
 CREATE TABLE doctor.schedule
 (
 	scheduleId int PRIMARY KEY IDENTITY(1,1),
-	scheduleDate varchar(20),
-	scheduleInfo varchar(255),
+	scheduleDate varchar(20) NOT NULL,
+	scheduleInfo varchar(255) NOT NULL,
 	doctorId int,
 	FOREIGN KEY (doctorId) REFERENCES doctor.credentials(doctorId)
 );
@@ -112,7 +112,7 @@ USE DummyMedi;
 CREATE TABLE patient.credentials
 (
 	patientId int PRIMARY KEY IDENTITY(1,1),
-    patientRef varchar(16) UNIQUE,
+    patientRef varchar(16) NOT NULL UNIQUE,
     fName varchar(255) NOT NULL,
     lName varchar(255) NOT NULL,
 	address varchar(255) NOT NULL,
@@ -170,14 +170,14 @@ VALUES('Medical History Form');
 USE DummyMedi;
 CREATE TABLE record.medhistory(
 	medhistoryId int PRIMARY KEY IDENTITY(1,1),
-	pastMedHistory varchar(255) NOT NULL,
+	pastMedHistory varchar(255),
 	pastHospitalization varchar(255),
 	pastSurgicalOperation varchar(255),
 	medConcern varchar(255),
 	foodAllergy varchar(255),
 	drugAllergy varchar(255),
-	attendingDoctor varchar(255),
-	visitDate datetime,
+	attendingDoctor varchar(255) NOT NULL,
+	visitDate datetime NOT NULL,
 	rtypeId int,
 	FOREIGN KEY (rtypeId) REFERENCES record.type(rtypeId),
 	patientId int,
@@ -192,8 +192,8 @@ CREATE TABLE record.medhistory(
 	diagnosisId int PRIMARY KEY IDENTITY(1,1),
 	diagnosisText varchar(500),
 	additionalNote varchar(500),
-	attendingDoctor varchar(255),
-	visitDate date,
+	attendingDoctor varchar(255) NOT NULL,
+	visitDate date NOT NULL,
 	rtypeId int,
 	FOREIGN KEY (rtypeId) REFERENCES record.type(rtypeId),
 	patientId int,
