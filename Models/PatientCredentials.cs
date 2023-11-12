@@ -56,7 +56,7 @@ namespace MediSynthFinals.Models
         public string contactNum { get; set; }
         public string occupation { get; set; }
         public string religion { get; set; }
-        public string? rmergencyName { get; set; }
-        public int? emergencyNum { get; set; }
+        public string? emergencyName { get; set; }
+        public string? emergencyNum { get; set; }
     }
 }
