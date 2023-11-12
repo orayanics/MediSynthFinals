@@ -1,0 +1,39 @@
+﻿@model IEnumerable<PatientCredentials>;
+
+<table class="table">
+    <p>INSERT SEARCH BAR HERE</p>
+
+
+    <tr>
+        <th colspan="8">Patient</th>
+    </tr>
+
+    <tr>
+        <td>Reference Number</td>
+        <td>Name</td>
+        <td>Address</td>
+        <td>Region</td>
+        <td>City</td>
+        <td>Gender</td>
+        <td>Birthdate</td>
+        <td>Contact Number</td>
+
+    </tr>
+    @foreach (PatientCredentials pa in Model)
+    {
+        <tr>
+            <td>
+                <a class="nav-link text-dark" asp-area="" asp-route-id="@pa.patientId" asp-controller="Patient" asp-action="Details">@pa.patientRef</a>
+             
+            </td>
+            <td>@pa.fName @pa.lName</td>
+            <td>@pa.address</td>
+            <td>@pa.region</td>
+            <td>@pa.city</td>
+            <td>@pa.gender</td>
+            <td>@pa.birthdate</td>
+            <td>@pa.contactNum</td>
+
+        </tr>
+    }
+</table>
