@@ -1,26 +1,21 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-
+﻿@model AdminCredentials;
    <head>
     <link rel="stylesheet" type="text/css" href="../css/form.css">
     </head>
 
 
     <body>
-    <form class="form">
+    <form class="form" method="post" asp-action="Login">
         <p class="form-title"><img alt="MediSynth" src="../imgs/outlined_logo.png" width="180" height="50"></p>
-        <label>Email</label>
+        <label>Username</label>
         <div class="input-container">
-            <input type="email" placeholder="Enter email">
+            <input asp-for="username" class="form-control">
             <span>
             </span>
         </div>
         <label>Password</label>
         <div class="input-container">
-            <input type="password" placeholder="Enter password">
+            <input asp-for="password" type="password" class="form-control">
         </div>
         <br />
         <center>

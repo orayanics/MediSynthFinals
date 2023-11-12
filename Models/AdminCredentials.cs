@@ -8,7 +8,7 @@ namespace MediSynthFinals.Models
     public class AdminCredentials
     {
         [Key]
-        public int admindId { get; set; }
+        public int adminId { get; set; }
 
         public string username { get; set; }
         public string password { get; set; }

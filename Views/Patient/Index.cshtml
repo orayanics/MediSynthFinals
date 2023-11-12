@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<PatientCredentials>;
 
+<p>INSERT SEARCH BAR HERE</p>
 <table class="table">
-    <p>INSERT SEARCH BAR HERE</p>
 
 
     <tr>
@@ -23,8 +23,7 @@
     {
         <tr>
             <td>
-                <a class="nav-link text-dark" asp-area="" asp-route-id="@pa.patientId" asp-controller="Patient" asp-action="Details">@pa.patientRef</a>
-             
+                <a class="nav-link" asp-area="" asp-route-id="@pa.patientId" asp-controller="Patient" asp-action="Details">@pa.patientRef</a>
             </td>
             <td>@pa.fName @pa.lName</td>
             <td>@pa.address</td>
