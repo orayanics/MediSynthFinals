@@ -21,7 +21,7 @@ namespace MediSynthFinals.Controllers
             return View(_dbContext.DoctorCredentials);
         }
 
-        public IActionResult Doctor(int id) {
+        public IActionResult Details(int id) {
             DoctorCredentials? doc = _dbContext.DoctorCredentials.FirstOrDefault(x => x.doctorId == id);
             
             if (doc != null)

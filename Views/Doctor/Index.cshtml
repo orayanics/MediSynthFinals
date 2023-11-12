@@ -1,4 +1,4 @@
-﻿@model dynamic;
+﻿@model IEnumerable<DoctorCredentials>;
 
 <table class="table">
 
@@ -16,7 +16,7 @@
 @*         <td>Delete</td> *@
 
     </tr>
-    @foreach (DoctorCredentials doc in Model.DoctorCredentials)
+    @foreach (DoctorCredentials doc in Model)
     {
         <tr>
             <td>@doc.fName @doc.lName</td>
