@@ -8,8 +8,6 @@ A schema is just a way to group tables into names. For example, ```doctor.creden
 ```sql 
 USE DummyMedi;
 CREATE SCHEMA users;
-CREATE SCHEMA admin;
-CREATE SCHEMA doctor;
 CREATE SCHEMA patient;
 CREATE SCHEMA record;
 ```
@@ -48,94 +46,25 @@ VALUES (
 'Staff'
 );
 
-### admin.credentials TABLE
-This table will contain the information of the admin of the system.
-```sql
-USE [dbNAME];
-CREATE TABLE admin.credentials
-(
-	adminId int PRIMARY KEY IDENTITY(1,1),
-	username varchar(255) NOT NULL UNIQUE,
-	password varchar(255) NOT NULL,
-	fName varchar(255) NOT NULL,
-	lname varchar(255) NOT NULL,
-	contactNum char(11) NOT NULL,
-	email varchar(255) NOT NULL UNIQUE,
-);
-```
-#### To INSERT DUMMY DATA 
+### users.schedule TABLE
 ```sql
 USE DummyMedi;
-INSERT INTO admin.credentials(username, password, fName, lname, contactNum, email)
-VALUES (
-	'orayanics',
-	'admin123',
-	'Nicole',
-	'Oraya',
-	'09567052824',
-	'oraya@gmail.com'
-);
-```
-### doctor.credentials TABLE
-This table will contain the information of the doctors of the system.
-```sql
-USE DummyMedi;
-CREATE TABLE doctor.credentials
-(
-	doctorId int PRIMARY KEY IDENTITY(1,1),
-	email varchar(255) NOT NULL UNIQUE,
-	password varchar(255) NOT NULL,
-	fName varchar(255) NOT NULL,
-	lname varchar(255) NOT NULL,
-	contactNum char(11) NOT NULL,
-	department varchar(255) NOT NULL,
-	medLicense varchar (255) NOT NULL,
-);
-```
-#### To INSERT DUMMY DATA 
-```sql
-INSERT INTO [doctor].[credentials]
-           ([email]
-           ,[password]
-           ,[fName]
-           ,[lname]
-           ,[contactNum]
-           ,[department]
-           ,[medLicense])
-     VALUES
-           (
-	'oraya@gmail.com',
-	'admin123',
-	'Nicole',
-	'Oraya',
-	'09567052824',
-	'Opthalmology',
-	'MD-123123'
-);
-```
-### doctor.schedule TABLE
-```sql
-USE DummyMedi;
-CREATE TABLE doctor.schedule
+CREATE TABLE users.schedule
 (
 	scheduleId int PRIMARY KEY IDENTITY(1,1),
 	scheduleDate varchar(20) NOT NULL,
 	scheduleInfo varchar(255) NOT NULL,
-	doctorId int,
-	FOREIGN KEY (doctorId) REFERENCES doctor.credentials(doctorId)
+	userId int,
+	FOREIGN KEY (userId) REFERENCES users.credentials(userId)
 );
 ```
 #### To INSERT DUMMY DATA
 ```sql
-INSERT INTO doctor.schedule(
-	scheduleDate,
-	scheduleInfo,
-	doctorId
-)
-VALUES(
-	'Monday',
-	'5:00 AM - 7:00 AM',
-	1
+INSERT INTO users.credentials(scheduleDate, scheduleInfo, userId)
+VALUES (
+'Monday',
+'7:00 AM - 2:00 PM',
+1
 );
 ```
 ### patient.credentials TABLE
@@ -143,21 +72,21 @@ VALUES(
 USE DummyMedi;
 CREATE TABLE patient.credentials
 (
-	patientId int PRIMARY KEY IDENTITY(1,1),
-    patientRef varchar(16) NOT NULL UNIQUE,
-    fName varchar(255) NOT NULL,
-    lName varchar(255) NOT NULL,
-	address varchar(255) NOT NULL,
-    region varchar(100) NOT NULL,
-    city varchar(100) NOT NULL,
-	gender varchar(255) NOT NULL,
-	birthdate date NOT NULL,
-	birthplace varchar(255) NOT NULL,
-	contactNum varchar (255) NOT NULL,
-	occupation varchar(255) NOT NULL,
-	religion varchar(255) NOT NULL,
-	emergencyName varchar(255) NOT NULL,
-	emergencyNum varchar(255) NOT NULL
+patientId int PRIMARY KEY IDENTITY(1,1),
+patientRef varchar(16) NOT NULL UNIQUE,
+fName varchar(255) NOT NULL,
+lName varchar(255) NOT NULL,
+address varchar(255) NOT NULL,
+region varchar(100) NOT NULL,
+city varchar(100) NOT NULL,
+gender varchar(255) NOT NULL,
+birthdate date NOT NULL,
+birthplace varchar(255) NOT NULL,
+contactNum varchar (255) NOT NULL,
+occupation varchar(255) NOT NULL,
+religion varchar(255) NOT NULL,
+emergencyName varchar(255) NOT NULL,
+emergencyNum varchar(255) NOT NULL
 );
 ```
 #### To INSERT DUMMY DATA
