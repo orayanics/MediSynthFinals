@@ -18,16 +18,17 @@ namespace MediSynthFinals.Controllers
 
         public IActionResult Index()
         {
-            return View(_dbContext.DoctorCredentials);
+            return View(_dbContext.UserCredentials.Where(x => x.userRole == "Staff"));
         }
 
         public IActionResult Details(int id) {
-            DoctorCredentials? doc = _dbContext.DoctorCredentials.FirstOrDefault(x => x.doctorId == id);
+            UserCredentials doc = _dbContext.UserCredentials.FirstOrDefault(x => x.userId == id);
+           // DoctorCredentials? doc = _dbContext.DoctorCredentials.FirstOrDefault();
             
             if (doc != null)
             {
                 dynamic model = new ExpandoObject();
-                model.DoctorCredentials = _dbContext.DoctorCredentials;
+                model.UserCredentials = _dbContext.UserCredentials;
                 model.DoctorSchedule = _dbContext.DoctorSchedules;
                 {
                     if (model != null)

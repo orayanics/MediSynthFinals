@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DoctorCredentials>;
+﻿@model IEnumerable<UserCredentials>;
 
 <table class="table">
 
@@ -11,19 +11,17 @@
         <td>Email</td>
         <td>Contact Number</td>
         <td>Department</td>
-        <td>Medical License</td>
         <td>Schedule</td>
 
     </tr>
-    @foreach (DoctorCredentials doc in Model)
+    @foreach (UserCredentials doc in Model)
     {
         <tr>
             <td>@doc.fName @doc.lName</td>
             <td>@doc.email</td>
             <td>@doc.contactNum</td>
             <td>@doc.department</td>
-            <td>@doc.medLicense</td>
-            <td><a asp-action="Details" asp-route-id="@doc.doctorId" class="btn btn-primary">View Schedule</a></td>
+            <td><a asp-action="Details" asp-route-id="@doc.userId" class="btn btn-primary">View Schedule</a></td>
         </tr>
     }
 </table>

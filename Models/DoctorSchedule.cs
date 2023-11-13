@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MediSynthFinals.Models
 {
-    [Table("schedule", Schema = "doctor")]
+    [Table("schedule", Schema = "users")]
     public class DoctorSchedule
     {
         [Key]
@@ -12,6 +12,6 @@ namespace MediSynthFinals.Models
         public string? scheduleInfo { get; set; }
 
         // Foreign Key
-        public int doctorId { get; set; }
+        public int userId { get; set; }
     }
 }

@@ -10,20 +10,18 @@
         <td>Email</td>
         <td>Contact Number</td>
         <td>Department</td>
-        <td>Medical License</td>
 
     </tr>
         <tr>
-         @foreach(DoctorCredentials doc in Model.DoctorCredentials)
+         @foreach(UserCredentials doc in Model.UserCredentials)
         {
             var id = ViewBag.DoctorId;
-            if(id == doc.doctorId)
+            if(id == doc.userId)
             {
                 <td>@doc.fName @doc.lName</td>
                 <td>@doc.email</td>
                 <td>@doc.contactNum</td>
                 <td>@doc.department</td>
-                <td>@doc.medLicense</td>
             }
         }
     </tr>
@@ -45,7 +43,7 @@
         @foreach (DoctorSchedule sched in Model.DoctorSchedule)
         {
             var id = ViewBag.DoctorId;
-            if (id == sched.doctorId)
+            if (id == sched.userId)
             {
             <tr>
                 <td>@sched.scheduleDate</td>

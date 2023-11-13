@@ -7,6 +7,7 @@ CREATE DATABASE [DummyMedi];
 A schema is just a way to group tables into names. For example, ```doctor.credentials and doctor.schedule``` Where ```doctor``` is the schema.
 ```sql 
 USE DummyMedi;
+CREATE SCHEMA users;
 CREATE SCHEMA admin;
 CREATE SCHEMA doctor;
 CREATE SCHEMA patient;
@@ -16,6 +17,37 @@ CREATE SCHEMA record;
 #### Now, we will be creating tables
 The creation of the tables must be in order to avoid errors for CONSTRAINTS and FOREIGN KEYS.
 <br/>
+
+### users.credentials TABLE
+```sql
+USE DummyMedi;
+CREATE TABLE users.credentials
+(
+	userId int PRIMARY KEY IDENTITY(1,1),
+	username varchar(255) NOT NULL UNIQUE,
+	password varchar(255) NOT NULL,
+	fName varchar(255) NOT NULL,
+	lname varchar(255) NOT NULL,
+	email varchar(255) NOT NULL UNIQUE,
+	contactNum char(11) NOT NULL,
+	department char(50) NOT NULL,
+	userRole char(11) NOT NULL,
+);
+```
+
+USE DummyMedi;
+INSERT INTO users.credentials(username,password,fName,lName,email,contactNum,department,userRole)
+VALUES (
+'nikolai',
+'admin123',
+'Nikolai',
+'Oraya',
+'orayanics@gmail.com',
+'09567052826',
+'Opthalmology',
+'Staff'
+);
+
 ### admin.credentials TABLE
 This table will contain the information of the admin of the system.
 ```sql

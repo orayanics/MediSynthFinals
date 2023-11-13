@@ -1,10 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MediSynthFinals.Models
 {
     [Table("credentials", Schema ="doctor")]
-    public class DoctorCredentials
+    public class DoctorCredentials : IdentityUser
     {
         [Key]
         public int doctorId { get; set; }
@@ -14,6 +15,5 @@ namespace MediSynthFinals.Models
         public string lName { get; set; }
         public string contactNum { get; set; }
         public string department { get; set; }
-        public string medLicense { get; set; }
     }
 }

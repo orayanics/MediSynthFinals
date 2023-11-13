@@ -23,22 +23,21 @@ namespace MediSynthFinals.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(AdminCredentials admin)
+        public IActionResult Login(UserCredentials user)
         {
-
-            if (admin != null)
+            var username = user.username;
+            var password = user.password;
+            if (user != null)
             {
-                var username = admin.username;
-                var password = admin.password;
-                var user = _dbContext.AdminCredentials.Where(u => u.username == username && u.password == password).FirstOrDefault();
-                if (user != null)
+                var findUser = _dbContext.UserCredentials.Where(u => u.username == username && u.password == password).FirstOrDefault();
+                if (findUser != null)
                 {
                     Console.WriteLine("user:" + user.username + ":" + user.password);
                     Console.WriteLine("user found");
                     return RedirectToAction("Index", "Doctor");
-
                 }
             }
+            Console.WriteLine(username + ":" +password);
             Console.WriteLine("user not found");
             return RedirectToAction("Index", "Home");
         }
