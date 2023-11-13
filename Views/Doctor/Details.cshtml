@@ -13,7 +13,7 @@
 
     </tr>
         <tr>
-         @foreach(UserCredentials doc in Model.UserCredentials)
+        @foreach (UserCredentials doc in Model.UserCredentials)
         {
             var id = ViewBag.DoctorId;
             if(id == doc.userId)
@@ -40,7 +40,7 @@
 
     </tr>
 
-        @foreach (DoctorSchedule sched in Model.DoctorSchedule)
+        @foreach (UserSchedule sched in Model.DoctorSchedule)
         {
             var id = ViewBag.DoctorId;
             if (id == sched.userId)

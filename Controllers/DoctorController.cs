@@ -23,7 +23,6 @@ namespace MediSynthFinals.Controllers
 
         public IActionResult Details(int id) {
             UserCredentials doc = _dbContext.UserCredentials.FirstOrDefault(x => x.userId == id);
-           // DoctorCredentials? doc = _dbContext.DoctorCredentials.FirstOrDefault();
             
             if (doc != null)
             {

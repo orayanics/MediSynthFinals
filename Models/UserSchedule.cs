@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace MediSynthFinals.Models
 {
     [Table("schedule", Schema = "users")]
-    public class DoctorSchedule
+    public class UserSchedule
     {
         [Key]
         public int scheduleId { get; set; }

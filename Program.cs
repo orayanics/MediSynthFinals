@@ -1,11 +1,13 @@
 using MediSynthFinals.Data;
+using MediSynthFinals.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add DbContext for DB
 // Uses DefaultConnection variable string in appsettings.json
-builder.Services.AddDbContext<MediDbContext>(options => options.UseSqlServer
+builder.Services.AddDbContext<MediDbContext>(
+    options => options.UseSqlServer
     (builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Add services to the container.
