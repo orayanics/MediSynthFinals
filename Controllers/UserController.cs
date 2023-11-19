@@ -2,24 +2,26 @@
 using Microsoft.AspNetCore.Mvc;
 using MediSynthFinals.Models;
 using MediSynthFinals.ViewModel;
-using Microsoft.AspNetCore.Authentication;
-
+using MediSynthFinals.Data;
 
 namespace MediSynthFinals.Controllers
 {
     public class UserController : Controller
     {
+        private MediDbContext _dbContext;
         private readonly SignInManager<UserCredentials> _signInManager;
         private readonly UserManager<UserCredentials> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
 
 
         public UserController(
+            MediDbContext dbContext,
             SignInManager<UserCredentials> signInManager,
             UserManager<UserCredentials> userManager,
             RoleManager<IdentityRole> roleManager
             )
         {
+            _dbContext = dbContext;
             _signInManager = signInManager;
             _userManager = userManager;
             _roleManager = roleManager;
@@ -49,15 +51,21 @@ namespace MediSynthFinals.Controllers
         [HttpGet]
         public IActionResult Admin()
         {
-            return View();
+            return View("Admin");
         }
 
-        // Admin
+        // Register Admin
         [HttpPost]
-        public async Task<IActionResult> Admin(AdminViewModel userEnteredData)
+        public async Task<IActionResult> Admin(
+            AdminViewModel userEnteredData,
+            UserInformation userInfo
+            )
         {
             if (ModelState.IsValid)
             {
+                // For DATABASE
+                _dbContext.UserInformation.Add(userInfo);
+                // For IDENTITY USER
                 UserCredentials user = new UserCredentials();
                 user.UserName = userEnteredData.username;
                 user.fName = userEnteredData.fName;
@@ -97,12 +105,16 @@ namespace MediSynthFinals.Controllers
             return View();
         }
 
-        // Doctor
+        // Register Doctor
         [HttpPost]
-        public async Task<IActionResult> Doctor(DoctorRegistrationVM userEnteredData)
+        public async Task<IActionResult> Doctor(DoctorRegistrationVM userEnteredData, UserInformation userInfo)
         {
             if (ModelState.IsValid)
             {
+                // For DATABASE
+                _dbContext.UserInformation.Add(userInfo);
+
+                // Identity User
                 UserCredentials user = new UserCredentials();
                 user.UserName = userEnteredData.username;
                 user.fName = userEnteredData.fName;

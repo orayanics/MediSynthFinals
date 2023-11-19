@@ -15,7 +15,6 @@ namespace MediSynthFinals.Data
         public DbSet<PatientCredentials> PatientCredentials { get; set; }
         public DbSet<RecordDiagnosis> RecordDiagnosis { get; set; }
         public DbSet<RecordMedHistory> RecordMedHistory { get; set; }
-
-        //public DbSet<UserCredentials> UserCredentials { get; set; }
+        public DbSet<UserInformation> UserInformation { get; set; }
     }
 }

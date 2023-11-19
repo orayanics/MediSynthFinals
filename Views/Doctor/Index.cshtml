@@ -1,4 +1,4 @@
-﻿@model IEnumerable<UserCredentials>;
+﻿@model IEnumerable<UserInformation>;
 
 <table class="table">
 
@@ -14,14 +14,19 @@
         <td>Schedule</td>
 
     </tr>
-    @foreach (UserCredentials doc in Model)
+    @foreach (UserInformation doc in Model)
     {
-        <tr>
-            <td>@doc.fName @doc.lName</td>
-            <td>@doc.email</td>
-            <td>@doc.contactNum</td>
-            <td>@doc.department</td>
-            <td><a asp-action="Details" asp-route-id="@doc.userId" class="btn btn-primary">View Schedule</a></td>
-        </tr>
+        // Filters to show only doctors no admins
+        if(!doc.department.Equals("ADMIN"))
+        {
+            <tr>
+                <td>@doc.fName @doc.lName</td>
+                <td>@doc.email</td>
+                <td>@doc.contactNum</td>
+                <td>@doc.department</td>
+                <td><a asp-action="Details" asp-route-id="@doc.userId" class="btn btn-primary">View Schedule</a></td>
+            </tr>
+        }
+
     }
 </table>

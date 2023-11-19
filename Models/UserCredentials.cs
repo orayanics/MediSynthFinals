@@ -32,16 +32,9 @@ namespace MediSynthFinals.Models
 
     public class UserCredentials : IdentityUser
     {
-        // DATA TO BE APPENDED TO ASPNET USERS
-
-        //[Key]
-        //public int userId { get; set; }
-        //public string? username { get; set; }
-        // string? password { get; set; }
+        // FOR TABLE 
         public string? fName { get; set; }
         public string? lName { get; set; }
-        //public string? email { get; set; }
-        //public string? contactNum { get; set; }
         public string? department {  get; set; }
         public string? userRole { get; set; }
     }
