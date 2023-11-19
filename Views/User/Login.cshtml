@@ -1,4 +1,4 @@
-﻿@* @model UserCredentials;
+﻿@model MediSynthFinals.ViewModel.LoginViewModel;
    <head>
     <link rel="stylesheet" type="text/css" href="../css/form.css">
     </head>
@@ -9,7 +9,7 @@
         <p class="form-title"><img alt="MediSynth" src="../imgs/outlined_logo.png" width="180" height="50"></p>
         <label>Username</label>
         <div class="input-container">
-            <input asp-for="username" class="form-control">
+            <input asp-for="Username" class="form-control">
             <span>
             </span>
         </div>
@@ -18,6 +18,10 @@
             <input asp-for="password" type="password" class="form-control">
         </div>
         <br />
+        <div class="form-group">
+            <label asp-for="RememberMe"></label>
+            <input asp-for="RememberMe">
+        </div>
         <center>
             <button type="submit" class="submit">
                 Login
@@ -36,4 +40,3 @@
     </body>
 
 
- *@

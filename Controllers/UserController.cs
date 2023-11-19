@@ -25,6 +25,26 @@ namespace MediSynthFinals.Controllers
             _roleManager = roleManager;
         }
 
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View("Login");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel logInfo)
+        {
+            var result = await _signInManager.PasswordSignInAsync(logInfo.Username, logInfo.password, logInfo.RememberMe, false);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Failed to login");
+            }
+            return View(logInfo);
+        }
 
         [HttpGet]
         public IActionResult Admin()
@@ -90,7 +110,6 @@ namespace MediSynthFinals.Controllers
                 user.Email = userEnteredData.email;
                 user.PhoneNumber = userEnteredData.contactNum;
                 user.department = userEnteredData.department;
-                await _userManager.AddToRoleAsync(user, "USER");
                 user.userRole = "DOCTOR";
 
                 var result = await _userManager.CreateAsync(user, userEnteredData.password);

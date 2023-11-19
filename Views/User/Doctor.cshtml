@@ -1,88 +1,76 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-    <head>
+﻿@model MediSynthFinals.ViewModel.DoctorRegistrationVM
+<head>
     <link rel="stylesheet" type="text/css" href="../css/form.css">
-    </head>
+</head>
 
-    <body>
-         <p class="signup-link" style="margin-top: 5%;">
+<body>
+    <p class="signup-link" style="margin-top: 5%;">
         Already Registered?
         <a href="">Click here</a>
     </p>
-    <form class="form">
+    <div class="form-group" asp-validation-summary="All"></div>
+
+    <form class="form" asp-action="Doctor">
         <p class="form-title"><img alt="MediSynth" src="../imgs/outlined_logo.png" width="180" height="50"></p>
-        <p class="form-title">Doctor Registration</p>
-        <label>Email</label>
-        <div class="input-container">
-            <input type="email" placeholder="Enter email">
-            <span>
-            </span>
-        </div>
+        <p class="form-title">Doctor</p>
 
-        <label>First Name</label>
+        <label>Username</label>
         <div class="input-container">
-            <input type="email" placeholder="Enter First Name">
-            <span>
-            </span>
-        </div>
-
-        <label>Last Name</label>
-        <div class="input-container">
-            <input type="email" placeholder="Enter Last Name">
-            <span>
-            </span>
-        </div>
-
-        <label>Contact No.</label>
-        <div class="input-container">
-            <input type="email" placeholder="Phone/Telephone no.">
-            <span>
-            </span>
-        </div>
-
-        <label>Last Name</label>
-        <div class="input-container">
-            <input type="email" placeholder="Enter Last Name">
-            <span>
-            </span>
-        </div>
-
-        <label>Department</label>
-         <div class="input-container">
-        <select>
-            <option value="" selected disabled>Select Department</option>
-            <option value="department1">Department 1</option>
-            <option value="department2">Department 2</option>
-            <!-- Add more options as needed -->
-        </select>
-        </div> 
-
-         <label>Medical License</label>
-        <div class="input-container">
-            <input type="email" placeholder="Medical License Code">
+            <input asp-for="username" type="text" placeholder="Enter username">
             <span>
             </span>
         </div>
 
         <label>Password</label>
         <div class="input-container">
-            <input type="password" placeholder="Enter password">
+            <input asp-for="password" type="password" placeholder="Enter password">
+            <span>
+            </span>
         </div>
-        <label>Confirm Password</label>
+
+        <label>First Name</label>
         <div class="input-container">
-            <input type="password" placeholder="Re-Enter password">
+            <input asp-for="fName" type="text" placeholder="Enter First Name">
+            <span>
+            </span>
         </div>
-        <br />
+
+        <label>Last Name</label>
+        <div class="input-container">
+            <input asp-for="lName" type="text" placeholder="Enter Last Name">
+            <span>
+            </span>
+        </div>
+
+        <label>Email</label>
+        <div class="input-container">
+            <input asp-for="email" type="email" placeholder="Enter Email">
+            <span>
+            </span>
+        </div>
+
+        <label>Contact Number</label>
+        <div class="input-container">
+            <input asp-for="contactNum" type="text" placeholder="Enter Valid Phone Number">
+            <span>
+            </span>
+        </div>
+
+        <label>Department</label>
+        <div class="input-container">
+@*             <select asp-for="department">
+                <option value="ADMIN" selected>System Admin</option>
+            </select> *@
+            <select class="form-select-sm" asp-for="department" asp-items="Html.GetEnumSelectList(typeof(Department))"></select>
+        </div>
+
         <center>
             <button type="submit" class="submit">
-                Login
+                Register
             </button>
         </center>
     </form>
     <br />
     <br />
-   
-    </body>
+
+</body>
