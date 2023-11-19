@@ -33,8 +33,7 @@ namespace MediSynthFinals.Controllers
                 model.RecordMedHistory = _dbContext.RecordMedHistory;
                 {
                     if (model != null)
-                    {
-                        ViewBag.PatientId = id;
+                    {        
                         return View(model);
                     }
                 }
