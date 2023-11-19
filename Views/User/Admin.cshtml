@@ -1,4 +1,4 @@
-﻿
+﻿@model MediSynthFinals.ViewModel.AdminViewModel
 <head>
     <link rel="stylesheet" type="text/css" href="../css/form.css">
     </head>
@@ -8,67 +8,64 @@
         Already Registered?
         <a href="">Click here</a>
     </p>
-    <form class="form">
+    <div class="form-group" asp-validation-summary="All"></div>
+
+    <form class="form" asp-action="Admin">
         <p class="form-title"><img alt="MediSynth" src="../imgs/outlined_logo.png" width="180" height="50"></p>
-        <p class="form-title">Admin Registration</p>
-        <label>Email</label>
+        <p class="form-title">Admin</p>
+
+        <label>Username</label>
         <div class="input-container">
-            <input type="email" placeholder="Enter email">
+            <input asp-for="username" type="text" placeholder="Enter username">
+            <span>
+            </span>
+        </div>
+
+        <label>Password</label>
+        <div class="input-container">
+            <input asp-for="password" type="password" placeholder="Enter password">
             <span>
             </span>
         </div>
 
         <label>First Name</label>
         <div class="input-container">
-            <input type="email" placeholder="Enter First Name">
+            <input asp-for="fName" type="text" placeholder="Enter First Name">
             <span>
             </span>
         </div>
 
         <label>Last Name</label>
         <div class="input-container">
-            <input type="email" placeholder="Enter Last Name">
+            <input asp-for="lName" type="text" placeholder="Enter Last Name">
             <span>
             </span>
         </div>
 
-        <label>Contact No.</label>
+        <label>Email</label>
         <div class="input-container">
-            <input type="email" placeholder="Phone/Telephone no.">
+            <input asp-for="email" type="email" placeholder="Enter Email">
             <span>
             </span>
         </div>
 
-        <label>Last Name</label>
+        <label>Contact Number</label>
         <div class="input-container">
-            <input type="email" placeholder="Enter Last Name">
+            <input asp-for="contactNum" type="text" placeholder="Enter Valid Phone Number">
             <span>
             </span>
         </div>
 
         <label>Department</label>
          <div class="input-container">
-        <select>
-            <option value="" selected disabled>Select Department</option>
-            <option value="department1">Department 1</option>
-            <option value="department2">Department 2</option>
-            <!-- Add more options as needed -->
+            <select asp-for="department">
+                <option  value="ADMIN" selected>System Admin</option>
         </select>
         </div> 
 
-
-        <label>Password</label>
-        <div class="input-container">
-            <input type="password" placeholder="Enter password">
-        </div>
-        <label>Confirm Password</label>
-        <div class="input-container">
-            <input type="password" placeholder="Re-Enter password">
-        </div>
-        <br />
         <center>
             <button type="submit" class="submit">
-                Login
+                Register
             </button>
         </center>
     </form>

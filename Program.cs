@@ -1,6 +1,7 @@
 using MediSynthFinals.Data;
 using MediSynthFinals.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,20 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<MediDbContext>(
     options => options.UseSqlServer
     (builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Service for Identity Login
+builder.Services.AddDefaultIdentity<UserCredentials>
+    (options =>
+    {
+        options.SignIn.RequireConfirmedAccount = false;
+        options.User.RequireUniqueEmail = false; // Ensure unique email addresses
+        options.Password.RequireDigit = false;
+        options.Password.RequiredLength = 6;
+        options.Password.RequireNonAlphanumeric = false;
+        options.Password.RequireUppercase = false;
+        options.Password.RequireLowercase = false;
+    })
+    .AddEntityFrameworkStores<MediDbContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -31,6 +46,8 @@ context.Database.EnsureCreated();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
