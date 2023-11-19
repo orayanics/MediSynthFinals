@@ -1,0 +1,64 @@
+﻿/* Example custom CSS to align navbar items to the left */
+.welcome-text {
+    margin-top: 10px;
+    margin-bottom: 70px;
+    color: #FEC000;
+    font-size: 40px;
+    text-align: center;
+}
+
+.rounded-container {
+    width: 320px;
+    height: 150px;
+    background-color: #D9D9D9;
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    margin: 12px;
+}
+
+.rounded-containercopy {
+    width: 150px;
+    height: 150px;
+    background-color: #D9D9D9;
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    margin: 12px;
+}
+
+.level {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rounded-text {
+    text-align: center;
+    margin-top: 10px; /* Adjust the margin as needed */
+    font-weight: bold;
+    color: #333; /* Change the color as needed */
+}
+
+.rounded-text {
+    text-align: center;
+    margin-top: 10px; /* Adjust the margin as needed */
+    font-weight: bold;
+    color: #333; /* Change the color as needed */
+}
+.rounded-container,
+.rounded-containercopy {
+    text-align: center;
+    margin: 10px; /* Added for spacing between containers */
+}
+
+    .rounded-container a,
+    .rounded-containercopy a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .rounded-container:hover,
+    .rounded-containercopy:hover {
+        cursor: pointer;
+    }

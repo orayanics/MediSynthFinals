@@ -1,0 +1,19 @@
+﻿body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+main {
+    flex: 1; /* Fill remaining vertical space */
+    padding: 20px;
+    margin-bottom: 120px; /* Add margin at the bottom of the content */
+}
+
+footer {
+    margin-top: auto; /* Pushes the footer to the bottom */
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 30px;

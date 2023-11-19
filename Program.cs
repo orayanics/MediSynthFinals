@@ -41,7 +41,8 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 var context = app.Services.CreateScope().ServiceProvider.GetRequiredService<MediDbContext>();
-context.Database.EnsureCreated();
+//context.Database.EnsureCreated();
+context.Database.EnsureDeleted();
 
 app.UseStaticFiles();
 
