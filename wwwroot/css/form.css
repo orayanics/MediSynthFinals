@@ -107,3 +107,62 @@
 label {
     margin-left: 7%;
 }
+
+.patient-info {
+    text-align: center;
+    color: #000;
+    margin-bottom: 5px; /* Increase the margin-bottom to create more space between the divs */
+}
+
+.patient-ID {
+    background-color: #fff;
+    text-align: center;
+    padding: 0.5rem; /* Adjust padding to change the height */
+    font-size: 0.875rem;
+    line-height: 1.5rem; /* Adjust line-height for text height */
+    display: inline-block;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 5px 5px;
+    height: auto; /* Height set to auto, adjusts based on content */
+}
+
+
+.center {
+    width: fit-content; /* Adjust width to fit content */
+    margin: auto;
+    text-align: center; /* Center the content */
+}
+
+.input-container textarea {
+    background-color: #fff;
+    padding: 1rem;
+    padding-right: 3rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    width: 85%;
+    border-radius: 15px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    border: 1px solid #e5e7eb;
+    margin: 8px 0;
+    /* Adjusting positioning */
+    margin-left: auto; /* Set left margin to auto */
+    margin-right: 0; /* Set right margin to 0 */
+}
+
+
+.divider-yellow {
+    text-align: center;
+    background-color: #FEC000;
+    line-height: 1.5;
+    margin: 10px 0 20px;
+    border-radius: 10px;
+}
+
+.divider-blue {
+    text-align: center;
+    background-color: #04A1E3;
+    line-height: 1.5;
+    margin: 10px 0 20px;
+    border-radius: 10px;
+}
