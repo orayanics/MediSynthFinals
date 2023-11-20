@@ -1,21 +1,27 @@
 ﻿using MediSynthFinals.Data;
 using MediSynthFinals.Models;
+using MediSynthFinals.Utils;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Dynamic;
 
 namespace MediSynthFinals.Controllers
 {
+    [Authorize(Roles = "ADMIN")]
     public class DoctorController : Controller
     {
         // Db Context
         private readonly MediDbContext _dbContext;
+        private readonly UserManager<UserCredentials> _userManager;
 
         public DoctorController(
-            MediDbContext dbContext
+            MediDbContext dbContext,
+            UserManager<UserCredentials> userManager
             )
         {
             _dbContext = dbContext;
+            _userManager = userManager;
         }
 
         public IActionResult Index()

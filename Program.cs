@@ -2,6 +2,7 @@ using MediSynthFinals.Data;
 using MediSynthFinals.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,7 +26,21 @@ builder.Services.AddDefaultIdentity<UserCredentials>
     })
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<MediDbContext>();
-    
+
+// Redirect Cookie
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+    options.Cookie.Name = "YourAppCookieName";
+    options.Cookie.HttpOnly = true;
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+    options.LoginPath = "/User/Login";
+    // ReturnUrlParameter requires 
+    //using Microsoft.AspNetCore.Authentication.Cookies;
+    options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
+    options.SlidingExpiration = true;
+});
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

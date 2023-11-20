@@ -1,4 +1,5 @@
-﻿﻿@using Microsoft.AspNetCore.Identity
+﻿@using MediSynthFinals.Models;
+@using Microsoft.AspNetCore.Identity
 
 @inject SignInManager<UserCredentials> SignInManager
 @inject UserManager<UserCredentials> UserManager
@@ -21,7 +22,10 @@
             <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Login">Login</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Register">Admin</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Admin">Admin</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Doctor">Doctor</a>
         </li>
     }
 </ul>
