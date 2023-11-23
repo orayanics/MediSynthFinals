@@ -1,0 +1,71 @@
+﻿body {
+    height: 100vh;
+    margin: 0;
+}
+
+.welcome-text {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FEC000;
+}
+
+.level {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stacked-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stacked-item {
+    margin-bottom: 20px;
+}
+
+.side-by-side-container {
+    display: flex;
+    align-items: center;
+}
+
+.rounded-container,
+.rounded-containercopy {
+    position: relative;
+    width: 240px;
+    height: 240px;
+    background-color: #ffffff;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 12px;
+    box-shadow: 0 10px 105px -9px rgba(0, 0, 0, 0.1), 0 8px 40px -2px rgba(0, 0, 0, 0.05);
+}
+
+    .rounded-container .rounded-text,
+    .rounded-containercopy .rounded-text {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-weight: bold;
+        color: #333;
+    }
+
+    .rounded-container a,
+    .rounded-containercopy a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .rounded-container:hover,
+    .rounded-containercopy:hover {
+        cursor: pointer;
+    }
