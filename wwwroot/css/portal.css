@@ -69,3 +69,28 @@
     .rounded-containercopy:hover {
         cursor: pointer;
     }
+
+.patient-info {
+    text-align: center;
+    color: #000;
+    margin-bottom: 5px; /* Increase the margin-bottom to create more space between the divs */
+}
+
+.patient-ID {
+    background-color: #fff;
+    text-align: center;
+    padding: 0.5rem; /* Adjust padding to change the height */
+    font-size: 0.875rem;
+    line-height: 1.5rem; /* Adjust line-height for text height */
+    display: inline-block;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 5px 5px;
+    height: auto; /* Height set to auto, adjusts based on content */
+}
+
+
+.center {
+    width: fit-content; /* Adjust width to fit content */
+    margin: auto;
+}

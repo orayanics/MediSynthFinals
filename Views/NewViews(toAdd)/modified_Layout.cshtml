@@ -20,17 +20,41 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav" style="padding-left: 83%;">
+                    <div class="navbar-nav mx-auto">
+                        <!-- Using mx-auto to center align content -->
+                        <!-- Profile Picture -->
+                        <img src="../imgs/pfp.jpg" alt="Profile Picture" class="nav-item rounded-circle" style="width: 40px; height: 40px;">
+
+                        <!-- Name Provision -->
+                        <a class="nav-link" href="#" style="font-weight: bold; font-size: 20px;">Dr. -----</a>
+
+                        <!-- My Patients Dropdown -->
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-weight: bold; font-size: 20px;">
+                                My Patients
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">Patient 1</a></li>
+                                <li><a class="dropdown-item" href="#">Patient 2</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">All Patients</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <ul class="navbar-nav" style="padding-right: 5%;">
+                        <!-- Adjusting right padding -->
                         <li class="nav-item">
                             <a class="nav-link" href="#" style="font-weight: bold; font-size: 20px;">HOME</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"style="font-weight: bold; font-size: 20px;">LOGIN</a>
+                            <a class="nav-link" href="#" style="font-weight: bold; font-size: 20px;">LOGIN</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
+
+
 
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
@@ -48,24 +72,45 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Patient" asp-action="Index">Patients</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
-                        </li>
-                         <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Register" asp-action="Register">Register</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Landing" asp-action="Landing">Landing</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="AdminRegister" asp-action="AdminRegister">Admin Register</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Register" asp-action="Register">Register</a>
+                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Portal" asp-action="Portal">Portal</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Search" asp-action="Search">Search</a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Landing" asp-action="Landing">Landing</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Landing" asp-action="RegPatient">PatientReg</a>
                         </li>
-                        
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Landing" asp-action="MedicalHistory">History</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Landing" asp-action="Diagnosis">Diagnosis</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Landing" asp-action="Medform">Medform</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Landing" asp-action="ViewDiagnosis">
+                                View Diagnosis
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Landing" asp-action="PatientOptions">
+                                Patient Options
+                            </a>
+                        </li>
+
                     </ul>
                 </div>
             </div>
@@ -82,7 +127,7 @@
         <p class="text1">Hospital Name</p>
         <p class="text1">Contact Support</p>
         <p class="text1">&copy;Group5-3ITE</p>
-        <h6 class="name">Karl Beltran-Yna Del Rosario-Draico Gallardo-Jakob Palomo-Nicole</h6>
+        <h6 class="name">Karl Barce-Yna Del Rosario-Draico Gallardo-Jakob Palomo-Nicole Oraya</h6>
 
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
