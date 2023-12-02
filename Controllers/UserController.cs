@@ -128,7 +128,7 @@ namespace MediSynthFinals.Controllers
 
                 if (result.Succeeded)
                 {
-                    var defaultrole = _roleManager.FindByNameAsync("USER").Result;
+                    var defaultrole = _roleManager.FindByNameAsync("DOCTOR").Result;
 
                     if (defaultrole != null)
                     {
