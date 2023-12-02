@@ -4,35 +4,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MediSynthFinals.ViewModel
 {
-    public class DoctorRegistrationVM
+    public class PatientViewModel
     {
-        public enum Department
-        {
-            Anesthesiology,
-            Cardiology,
-            Dermatology,
-            [Description("General Surgery")] GS,
-            Geriatrics,
-            Gynaecology,
-            Hematology,
-            [Description("Internel Medicine")] IM,
-            [Description("Intensive Care Medicine")] ICM,
-            Medicine,
-            Nephrology,
-            Neurology,
-            Obstetrics,
-            Ophthalmology,
-            Orthopedics,
-            Otohinolaryngology,
-            Pathology,
-            Pediatrics,
-            [Description("Plastic Surgery")] PS,
-            Radiology,
-            Rheumatology,
-            Surgery,
-            Urology
-        }
-
         [Required(ErrorMessage = "Username is required")]
         [Display(Name = "Username")]
         public string? username { get; set; }
@@ -49,7 +22,6 @@ namespace MediSynthFinals.ViewModel
         [Display(Name = "LastName")]
         public string? lName { get; set; }
 
-        [Required(ErrorMessage = "Email is required")]
         [Display(Name = "Email")]
         public string? email { get; set; }
 

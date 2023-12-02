@@ -4,9 +4,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MediSynthFinals.ViewModel
 {
-    public class AdminViewModel
+    public class RegisterViewModel
     {
-
         [Required(ErrorMessage = "Username is required")]
         [Display(Name = "Username")]
         public string? username { get; set; }

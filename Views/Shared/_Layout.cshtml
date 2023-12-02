@@ -1,57 +1,4 @@
-﻿@* <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - MediSynthFinals</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/MediSynthFinals.styles.css" asp-append-version="true" />
-</head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MediSynthFinals</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Doctor" asp-action="Index">Doctors</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Patient" asp-action="Index">Patients</a>
-                        </li>
-                        <partial name="_LoginPartial" />
-                       
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - MediSynthFinals - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
-</html>
- *@
-
-@using MediSynthFinals.Models;
+﻿@using MediSynthFinals.Models;
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<UserCredentials> SignInManager
 @inject UserManager<UserCredentials> UserManager
@@ -85,7 +32,11 @@
                         {
                     <div class="navbar-nav mx-auto">
                         <img src="../imgs/pfp.jpg" alt="Profile Picture" class="nav-item rounded-circle" style="width: 40px; height: 40px;">
-
+                                            <li class="nav-item">
+                        <a asp-controller="User" asp-action="Logout">
+                            <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                           </a> 
+                    </li>
                             @if(User.IsInRole("DOCTOR"))
                             {
                                                             <!-- Name Provision -->
@@ -102,6 +53,7 @@
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="#">All Patients</a></li>
                             </ul>
+
                         </div>
                             }
 
@@ -111,7 +63,10 @@
                     <ul class="navbar-nav" style="padding-right: 5%;">
                         <!-- Adjusting right padding -->
                         <li class="nav-item">
-                            <a class="nav-link" href="#" style="font-weight: bold; font-size: 20px;">LOGIN</a>
+                            <a class="nav-link" style="font-weight: bold; font-size: 20px;" asp-controller="User" asp-action="Login">LOGIN</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" style="font-weight: bold; font-size: 20px;" asp-controller="User" asp-action="Patient">REGISTER</a>
                         </li>
                     </ul>
                         }

@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using MediSynthFinals.Models;
 using MediSynthFinals.ViewModel;
 using MediSynthFinals.Data;
+using System.Drawing;
+using System.Net;
 
 namespace MediSynthFinals.Controllers
 {
@@ -57,7 +59,7 @@ namespace MediSynthFinals.Controllers
         // Register Admin
         [HttpPost]
         public async Task<IActionResult> Admin(
-            AdminViewModel userEnteredData,
+            RegisterViewModel userEnteredData,
             UserInformation userInfo
             )
         {
@@ -107,7 +109,7 @@ namespace MediSynthFinals.Controllers
 
         // Register Doctor
         [HttpPost]
-        public async Task<IActionResult> Doctor(DoctorRegistrationVM userEnteredData, UserInformation userInfo)
+        public async Task<IActionResult> Doctor(RegisterViewModel userEnteredData, UserInformation userInfo)
         {
             if (ModelState.IsValid)
             {
@@ -132,7 +134,75 @@ namespace MediSynthFinals.Controllers
 
                     if (defaultrole != null)
                     {
-                        IdentityResult roleresult = await _userManager.AddToRoleAsync(user, defaultrole.Name);
+                        Microsoft.AspNetCore.Identity.IdentityResult roleresult = await _userManager.AddToRoleAsync(user, defaultrole.Name);
+                    }
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError("", error.Description);
+                    }
+                }
+
+            }
+            return View(userEnteredData);
+        }
+
+        // Register Patient
+        [HttpGet]
+        public IActionResult Patient()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Patient(RegisterViewModel userEnteredData, UserInformation userInfo)
+        {
+            if (ModelState.IsValid)
+            {
+                // For DATABASE
+                _dbContext.UserInformation.Add(userInfo);
+
+                PatientCredentials patient = new PatientCredentials();
+
+                patient.patientRef = Guid.NewGuid().ToString();
+                patient.fName = userEnteredData.fName;
+                patient.lName = userEnteredData.lName;
+                patient.contactNum = userEnteredData.contactNum;
+                patient.address = "";
+                patient.region = "";
+                patient.city = "";
+                patient.gender = "";
+                patient.birthdate = DateTime.Now;
+                patient.birthplace = "";
+                patient.occupation = "";
+                patient.religion = "";
+                patient.emergencyName = "";
+                patient.emergencyNum = "";
+
+                _dbContext.PatientCredentials.Add(patient);
+
+                // Identity User
+                UserCredentials user = new UserCredentials();
+                user.UserName = userEnteredData.username;
+                user.fName = userEnteredData.fName;
+                user.lName = userEnteredData.lName;
+                user.Email = userEnteredData.email;
+                user.PhoneNumber = userEnteredData.contactNum;
+                user.department = userEnteredData.department;
+                user.userRole = "PATIENT";
+
+                var result = await _userManager.CreateAsync(user, userEnteredData.password);
+
+                if (result.Succeeded)
+                {
+                    var defaultrole = _roleManager.FindByNameAsync("PATIENT").Result;
+
+                    if (defaultrole != null)
+                    {
+                        Microsoft.AspNetCore.Identity.IdentityResult roleresult = await _userManager.AddToRoleAsync(user, defaultrole.Name);
                     }
                     return RedirectToAction("Index", "Home");
                 }

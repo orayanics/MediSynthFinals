@@ -41,5 +41,6 @@ namespace MediSynthFinals.Controllers
 
             return NotFound();
         }
+
     }
 }

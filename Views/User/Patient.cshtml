@@ -1,18 +1,18 @@
-﻿@model MediSynthFinals.ViewModel.PatientViewModel
+﻿@model MediSynthFinals.ViewModel.RegisterViewModel
 <head>
     <link rel="stylesheet" type="text/css" href="../css/form.css">
-</head>
+    </head>
 
-<body>
-    <p class="signup-link" style="margin-top: 5%;">
+    <body>
+         <p class="signup-link" style="margin-top: 5%;">
         Already Registered?
         <a href="">Click here</a>
     </p>
     <div class="form-group" asp-validation-summary="All"></div>
 
-    <form class="form" asp-action="Doctor">
+    <form class="form" asp-action="Patient">
         <p class="form-title"><img alt="MediSynth" src="../imgs/outlined_logo.png" width="180" height="50"></p>
-        <p class="form-title">Doctor</p>
+        <p class="form-title">Patient</p>
 
         <label>Username</label>
         <div class="input-container">
@@ -56,13 +56,11 @@
             </span>
         </div>
 
-        <label>Department</label>
-        <div class="input-container">
-@*             <select asp-for="department">
-                <option value="ADMIN" selected>System Admin</option>
-            </select> *@
-            <select class="form-select-sm" asp-for="department" asp-items="Html.GetEnumSelectList(typeof(Department))"></select>
-        </div>
+         <div hidden class="input-container">
+            <select asp-for="department">
+                <option  value="PATIENT" selected>PATIENT</option>
+        </select>
+        </div> 
 
         <center>
             <button type="submit" class="submit">
@@ -72,5 +70,5 @@
     </form>
     <br />
     <br />
-
-</body>
+   
+    </body>
