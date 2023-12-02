@@ -30,6 +30,7 @@ namespace MediSynthFinals.Controllers
             return View(doctors);
         }
 
+//comment
         //[HttpGet]
         //public IActionResult Edit(int Id)
         //{
