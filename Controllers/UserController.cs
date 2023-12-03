@@ -162,12 +162,23 @@ namespace MediSynthFinals.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                // Identity User
+                UserCredentials user = new UserCredentials();
+                user.UserName = userEnteredData.username;
+                user.fName = userEnteredData.fName;
+                user.lName = userEnteredData.lName;
+                user.Email = userEnteredData.email;
+                user.PhoneNumber = userEnteredData.contactNum;
+                user.department = userEnteredData.department;
+                user.userRole = "PATIENT";
+
                 // For DATABASE
                 _dbContext.UserInformation.Add(userInfo);
 
                 PatientCredentials patient = new PatientCredentials();
 
-                patient.patientRef = Guid.NewGuid().ToString();
+                patient.patientRef = user.Id;
                 patient.fName = userEnteredData.fName;
                 patient.lName = userEnteredData.lName;
                 patient.contactNum = userEnteredData.contactNum;
@@ -184,16 +195,6 @@ namespace MediSynthFinals.Controllers
 
                 _dbContext.PatientCredentials.Add(patient);
 
-                // Identity User
-                UserCredentials user = new UserCredentials();
-                user.UserName = userEnteredData.username;
-                user.fName = userEnteredData.fName;
-                user.lName = userEnteredData.lName;
-                user.Email = userEnteredData.email;
-                user.PhoneNumber = userEnteredData.contactNum;
-                user.department = userEnteredData.department;
-                user.userRole = "PATIENT";
-
                 var result = await _userManager.CreateAsync(user, userEnteredData.password);
 
                 if (result.Succeeded)
@@ -204,6 +205,7 @@ namespace MediSynthFinals.Controllers
                     {
                         Microsoft.AspNetCore.Identity.IdentityResult roleresult = await _userManager.AddToRoleAsync(user, defaultrole.Name);
                     }
+
                     return RedirectToAction("Index", "Home");
                 }
                 else

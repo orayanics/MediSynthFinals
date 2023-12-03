@@ -1,8 +1,8 @@
-﻿@model dynamic;
+﻿@model MediSynthFinals.Models.PatientCredentials;
 <table class="table">
 
     <tr>
-        <th colspan="7">Doctor Details</th>
+        <th colspan="7">Patient Details</th>
     </tr>
 
     <tr>
@@ -11,7 +11,7 @@
 
     </tr>
     <tr>
-        @foreach (PatientCredentials patient in Model.PatientCredentials)
+@*         @foreach (PatientCredentials patient in Model.PatientCredentials)
         {
             var id = ViewBag.PatientId;
             if (id == patient.patientId)
@@ -19,7 +19,9 @@
                 <td>@patient.patientRef</td>
                 <td>@patient.fName @patient.lName</td>
             }
-        }
+        } *@
+        <td>@Model.patientRef</td>
+        <td>@Model.fName @Model.lName</td>
     </tr>
 
 </table>
@@ -35,7 +37,7 @@
         <td>Visit Date</td>
     </tr>
 
-    @foreach (RecordMedHistory medhis in Model.RecordMedHistory)
+@*     @foreach (RecordMedHistory medhis in Model.RecordMedHistory)
     {
         var id = ViewBag.PatientId;
         if (id == medhis.patientId)
@@ -47,7 +49,7 @@
             </tr>
         }
 
-    }
+    } *@
 </table>
 
 <table class="table">
@@ -60,7 +62,7 @@
         <td>Diagnosis</td>
         <td>Visit Date</td>
     </tr>
-
+@* 
     @foreach (RecordDiagnosis diag in Model.RecordDiagnosis)
     {
         var id = ViewBag.PatientId;
@@ -73,5 +75,5 @@
             </tr>
         }
 
-    }
+    } *@
 </table>

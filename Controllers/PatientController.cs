@@ -1,5 +1,8 @@
 ﻿using MediSynthFinals.Data;
 using MediSynthFinals.Models;
+//using Microsoft.AspNet.Identity;
+//using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Dynamic;
 
@@ -9,11 +12,12 @@ namespace MediSynthFinals.Controllers
     {
         // Db Context
         private readonly MediDbContext _dbContext;
+        private readonly UserManager<UserCredentials> _userManager;
 
-        public PatientController(MediDbContext dbContext)
+        public PatientController(MediDbContext dbContext, UserManager<UserCredentials> userManager)
         {
             _dbContext = dbContext;
-
+            _userManager = userManager;
         }
 
         public IActionResult Index()
@@ -37,6 +41,25 @@ namespace MediSynthFinals.Controllers
                         return View(model);
                     }
                 }
+            }
+
+            return NotFound();
+        }
+
+        public IActionResult Profile()
+        {
+
+            //PatientCredentials patient = _dbContext.PatientCredentials.FirstOrDefault(x => x.patientId == id);
+            //Console.WriteLine(id.ToString());
+            var identityID = _userManager.GetUserId(User); // get user Id
+            Console.WriteLine("USER ID" + identityID);
+
+            PatientCredentials refNum = _dbContext.PatientCredentials.FirstOrDefault(r => r.patientRef == identityID);
+
+            if(refNum != null)
+            {
+                return View(refNum);
+
             }
 
             return NotFound();
