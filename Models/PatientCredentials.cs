@@ -45,18 +45,43 @@ namespace MediSynthFinals.Models
         [Key]
         public int patientId { get; set; }
         public string patientRef { get; set; }
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string fName { get; set; }
+
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string lName { get; set; }
+
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string address { get; set; }
+
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string region { get; set; }
+
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string city { get; set; }
+
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string gender { get; set; }
+
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public DateTime birthdate { get; set; }
+
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string birthplace { get; set; }
+
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string contactNum { get; set; }
+
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string occupation { get; set; }
+
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string religion { get; set; }
+
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string? emergencyName { get; set; }
+
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string? emergencyNum { get; set; }
     }
 }

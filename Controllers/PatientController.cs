@@ -4,6 +4,7 @@ using MediSynthFinals.Models;
 //using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using System.Dynamic;
 
 namespace MediSynthFinals.Controllers
@@ -86,7 +87,7 @@ namespace MediSynthFinals.Controllers
             Console.WriteLine("USER ID" + identityID);
 
             PatientCredentials refNum = _dbContext.PatientCredentials.FirstOrDefault(r => r.patientRef == identityID);
-
+            
             if (refNum != null)
             {
                 refNum.fName = edit.fName;
@@ -105,7 +106,6 @@ namespace MediSynthFinals.Controllers
                 _dbContext.PatientCredentials.Update(refNum);
                 _dbContext.SaveChanges();
                 return View(refNum);
-
             }
 
             return NotFound();
