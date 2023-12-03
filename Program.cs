@@ -17,7 +17,7 @@ builder.Services.AddDefaultIdentity<UserCredentials>
     (options =>
     {
         options.SignIn.RequireConfirmedAccount = false;
-        options.User.RequireUniqueEmail = false; // Ensure unique email addresses
+        options.User.RequireUniqueEmail = true; // Ensure unique email addresses
         options.Password.RequireDigit = false;
         options.Password.RequiredLength = 6;
         options.Password.RequireNonAlphanumeric = false;

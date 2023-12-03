@@ -14,19 +14,54 @@
         <td>Schedule</td>
 
     </tr>
-    @foreach (UserInformation doc in Model)
+    @{
+        string[] department = {
+    "Anesthesiology",
+    "Cardiology",
+    "Dermatology",
+    "General Surgery",
+    "Geriatrics",
+    "Gynaecology",
+    "Hematology",
+    "Internel Medicine",
+    "Intensive Care Medicine",
+    "Medicine",
+    "Nephrology",
+    "Neurology",
+    "Obstetrics",
+    "Ophthalmology",
+    "Orthopedics",
+    "Otohinolaryngology",
+    "Pathology",
+    "Pediatrics",
+    "Plastic Surgery",
+    "Radiology",
+    "Rheumatology",
+    "Surgery",
+    "Urology"
+        };
+   
+    foreach (UserInformation doc in Model)
     {
         // Filters to show only doctors no admins
-        if(!doc.department.Equals("ADMIN"))
+        if(!(doc.department.ToString() == "PATIENT"))
         {
             <tr>
                 <td>@doc.fName @doc.lName</td>
                 <td>@doc.email</td>
                 <td>@doc.contactNum</td>
-                <td>@doc.department</td>
+                <td>
+                        @{
+                            var index = doc.department;
+                            var fromArray = department.ElementAt(int.Parse(index));
+                            @fromArray
+                        }
+                    
+                </td>
                 <td><a asp-action="Details" asp-route-id="@doc.userId" class="btn btn-primary">View Schedule</a></td>
             </tr>
         }
 
     }
+}
 </table>

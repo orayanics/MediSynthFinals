@@ -73,6 +73,9 @@ namespace MediSynthFinals.Models
         public string contactNum { get; set; }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
+        public string email { get; set; }
+
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string occupation { get; set; }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]

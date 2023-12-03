@@ -1,0 +1,78 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@model IEnumerable<UserInformation>;
+@inject UserManager<UserCredentials> UserManager;
+
+<table class="table">
+
+    <tr>
+        <th colspan="7">Doctor</th>
+    </tr>
+    <tr>
+        <th colspan="7"><a asp-controller="User" asp-action="Doctor">Register Doctor</a></th>
+    </tr>
+
+    <tr>
+        <td>ID</td>
+        <td>Full Name</td>
+        <td>Email</td>
+        <td>Contact Number</td>
+        <td>Department</td>
+        <td>Delete</td>
+    </tr>
+    @{
+        string[] department = {
+    "Anesthesiology",
+    "Cardiology",
+    "Dermatology",
+    "General Surgery",
+    "Geriatrics",
+    "Gynaecology",
+    "Hematology",
+    "Internel Medicine",
+    "Intensive Care Medicine",
+    "Medicine",
+    "Nephrology",
+    "Neurology",
+    "Obstetrics",
+    "Ophthalmology",
+    "Orthopedics",
+    "Otohinolaryngology",
+    "Pathology",
+    "Pediatrics",
+    "Plastic Surgery",
+    "Radiology",
+    "Rheumatology",
+    "Surgery",
+    "Urology"
+    };
+
+        foreach (UserInformation doc in Model)
+        {
+            <tr>
+                    @{
+                        var uppercase = doc.email.ToUpper();
+                    }
+                    
+                    <td>@doc.fName @doc.lName</td>
+                    <td>@doc.email</td>
+                    <td>@doc.contactNum</td>
+                    <td>
+                        @{
+                            var index = doc.department;
+                            var fromArray = department.ElementAt(int.Parse(index));
+                            @fromArray
+                        }
+
+                    </td>
+                <td>
+                <form asp-action="RemoveDoctor" asp-route-email="@uppercase" method="post">
+                        <a asp-controller="Admin" 
+                        asp-action="ConfirmDoc" asp-route-email="@doc.email" class="btn btn-primary">
+                        Remove
+                        </a>
+                </form>
+                </td>
+                </tr>
+        }
+    }
+</table>

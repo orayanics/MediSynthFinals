@@ -16,18 +16,6 @@
                        </a> 
                 </li>
     }
-    else
-    {
-                <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Login">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Admin">Admin</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Doctor">Doctor</a>
-                </li>
-    }
 </ul>
 
 <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
@@ -70,13 +58,10 @@
                 @if (User.IsInRole("ADMIN"))
                 {
                      <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Doctor" asp-action="Index">Doctors</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Doctors">Doctors</a>
                      </li>
                       <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Doctor" asp-action="Index">Patients</a>
-                     </li>
-                                           <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Doctor" asp-action="Index">Profile</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Patients">Patients</a>
                      </li>
                 }
             </ul>

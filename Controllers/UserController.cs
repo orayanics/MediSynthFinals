@@ -51,57 +51,6 @@ namespace MediSynthFinals.Controllers
         }
 
         [HttpGet]
-        public IActionResult Admin()
-        {
-            return View("Admin");
-        }
-
-        // Register Admin
-        [HttpPost]
-        public async Task<IActionResult> Admin(
-            RegisterViewModel userEnteredData,
-            UserInformation userInfo
-            )
-        {
-            if (ModelState.IsValid)
-            {
-                // For DATABASE
-                _dbContext.UserInformation.Add(userInfo);
-                // For IDENTITY USER
-                UserCredentials user = new UserCredentials();
-                user.UserName = userEnteredData.username;
-                user.fName = userEnteredData.fName;
-                user.lName = userEnteredData.lName;
-                user.Email = userEnteredData.email;
-                user.PhoneNumber = userEnteredData.contactNum;
-                user.department = userEnteredData.department;
-                user.userRole = "ADMIN";
-
-                var result = await _userManager.CreateAsync(user, userEnteredData.password);
-
-                if (result.Succeeded)
-                {
-                    var defaultrole = _roleManager.FindByNameAsync("ADMIN").Result;
-
-                    if (defaultrole != null)
-                    {
-                        IdentityResult roleresult = await _userManager.AddToRoleAsync(user, defaultrole.Name);
-                    }
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    foreach (var error in result.Errors)
-                    {
-                        ModelState.AddModelError("", error.Description);
-                    }
-                }
-
-            }
-            return View(userEnteredData);
-        }
-
-        [HttpGet]
         public IActionResult Doctor()
         {
             return View();
@@ -187,6 +136,7 @@ namespace MediSynthFinals.Controllers
                 patient.city = "";
                 patient.gender = "";
                 patient.birthdate = DateTime.Now;
+                patient.email = userEnteredData.email;
                 patient.birthplace = "";
                 patient.occupation = "";
                 patient.religion = "";

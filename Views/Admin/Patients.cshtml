@@ -1,0 +1,48 @@
+﻿@model IEnumerable<PatientCredentials>;
+
+<p>INSERT SEARCH BAR HERE</p>
+<table class="table">
+
+
+    <tr>
+        <th colspan="8">Patient</th>
+    </tr>
+
+    <tr>
+        <td>Name</td>
+        <td>Address</td>
+        <td>Region</td>
+        <td>City</td>
+        <td>Gender</td>
+        <td>Birthdate</td>
+        <td>Contact Number</td>
+        <td>Delete</td>
+
+    </tr>
+    @foreach (PatientCredentials pa in Model)
+    {
+        <tr>
+            @{
+                var uppercase = pa.patientRef.ToUpper();
+            }
+            <td>
+                <a class="nav-link" asp-area="" asp-route-id="@pa.patientId" asp-controller="Patient" asp-action="Details">@pa.patientRef</a>
+            </td>
+            <td>@pa.fName @pa.lName</td>
+            <td>@pa.address</td>
+            <td>@pa.region</td>
+            <td>@pa.city</td>
+            <td>@pa.gender</td>
+            <td>@pa.birthdate</td>
+            <td>@pa.contactNum</td>
+            <td>
+                    <a asp-controller="Admin"
+                   asp-action="ConfirmPatient" asp-route-id="@pa.patientId" class="btn btn-primary">
+                        Remove
+                    </a>
+            </td>
+
+
+        </tr>
+    }
+</table>

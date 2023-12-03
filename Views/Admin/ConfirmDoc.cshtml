@@ -1,0 +1,31 @@
+﻿@model UserInformation;
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Doctor</h4>
+    <hr />
+    <div class="mb-3">
+        @Html.DisplayNameFor(model => model.fName)
+        <input asp-for="fName" class="form-control" disabled>
+    </div>
+
+    <div class="mb-3">
+        @Html.DisplayNameFor(model => model.lName)
+        <input asp-for="lName" class="form-control" disabled>
+
+    </div>
+
+        <div class="mb-3">
+        @Html.DisplayNameFor(model => model.department)
+        <input asp-for="department" class="form-control" disabled>
+        </div>
+
+    <div class="mb-3">
+        @Html.DisplayNameFor(model => model.email)
+        <input asp-for="email" class="form-control" disabled>
+    </div>
+    <form asp-action="RemoveDoctor" asp-controller="Admin" asp-route-email="@Model.email">
+
+        <button type="submit" value="Delete" class="btn btn-danger">Delete</button>
+    </form>
+</div>
