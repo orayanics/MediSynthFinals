@@ -1,0 +1,56 @@
+﻿@model MediSynthFinals.Models.RecordMedHistory
+<head>
+    <link rel="stylesheet" type="text/css" href="../css/form.css">
+</head>
+
+<body>
+    <form method="post" asp-action="AddHistory">
+        @*     <div class="mb-3">
+        <label asp-for="Id" class="form-label">Id</label>
+        <input asp-for="Id" class="form-control" value="@ViewBag.increment" placeholder="@ViewBag.increment">
+        </div> *@
+
+        <div class="mb-3">
+            <label asp-for="pastMedHistory" class="form-label"></label>
+            <input asp-for="pastMedHistory" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="pastHospitalization" class="form-label"></label>
+            <input asp-for="pastHospitalization" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="pastSurgicalOperation" class="form-label"></label>
+            <input asp-for="pastSurgicalOperation" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="medConcern" class="form-label"></label>
+            <input asp-for="medConcern" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="foodAllergy" class="form-label"></label>
+            <input asp-for="foodAllergy" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="drugAllergy" class="form-label"></label>
+            <input asp-for="drugAllergy" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="visitDate" class="form-label"></label>
+            <input asp-for="visitDate" type="date" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="attendingDoctor" class="form-label"></label>
+            <input asp-for="attendingDoctor" class="form-control">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+</body>

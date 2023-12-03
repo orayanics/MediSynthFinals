@@ -4,6 +4,7 @@ using MediSynthFinals.Models;
 //using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.Differencing;
 using Microsoft.IdentityModel.Tokens;
 using System.Dynamic;
 
@@ -54,9 +55,31 @@ namespace MediSynthFinals.Controllers
 
             PatientCredentials refNum = _dbContext.PatientCredentials.FirstOrDefault(r => r.patientRef == identityID);
 
-            if(refNum != null)
+            //    if (doc != null)
+            //    {
+            //        dynamic model = new ExpandoObject();
+            //        model.UserCredentials = _dbContext.UserCredentials;
+            //        model.DoctorSchedule = _dbContext.DoctorSchedules;
+            //        {
+            //            if (model != null)
+            //            {
+            //                ViewBag.DoctorId = id;
+            //                return View(model);
+            //            }
+            //        }
+            //    }
+
+            if (refNum != null)
             {
-                return View(refNum);
+                dynamic model = new ExpandoObject();
+                model.PatientCredentials = _dbContext.PatientCredentials;
+                model.RecordMedHistory = _dbContext.RecordMedHistory;
+                {
+                    if (model != null)
+                    {
+                        return View(model);
+                    }
+                }
 
             }
 
@@ -110,6 +133,47 @@ namespace MediSynthFinals.Controllers
 
             return NotFound();
         }
+
+        // Add Medical History
+        [HttpGet]
+        public IActionResult AddHistory()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddHistory(RecordMedHistory edit)
+        {
+            var identityID = _userManager.GetUserId(User); // get user Id
+            Console.WriteLine("USER ID" + identityID);
+
+            PatientCredentials refNum = _dbContext.PatientCredentials.FirstOrDefault(r => r.patientRef == identityID);
+
+            if (refNum != null)
+            {
+                // For DATABASE
+                RecordMedHistory patient = new RecordMedHistory();
+                patient.pastHospitalization = edit.pastHospitalization;
+                patient.pastMedHistory = edit.pastMedHistory;
+                patient.pastSurgicalOperation = edit.pastSurgicalOperation;
+                patient.medConcern = edit.medConcern;
+                patient.drugAllergy = edit.drugAllergy;
+                patient.foodAllergy = edit.foodAllergy;
+                patient.attendingDoctor = edit.attendingDoctor;
+                patient.visitDate = edit.visitDate;
+                patient.rtypeId = "MedicalHistory";
+                patient.patientId = identityID.ToString();
+
+                _dbContext.RecordMedHistory.Add(patient);
+                _dbContext.SaveChanges();
+                return RedirectToAction("Profile", "Patient");
+
+            }
+
+            return NotFound();
+        }
+
+
 
     }
 }

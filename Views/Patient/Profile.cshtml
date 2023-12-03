@@ -1,4 +1,7 @@
-﻿@model MediSynthFinals.Models.PatientCredentials;
+﻿@using Microsoft.AspNetCore.Identity;
+@model dynamic;
+@inject UserManager<UserCredentials> UserManager;
+
 <table class="table">
 
     <tr>
@@ -24,27 +27,26 @@
         <td>Emergency Number</td>
     </tr>
     <tr>
-@*         @foreach (PatientCredentials patient in Model.PatientCredentials)
+        @foreach (PatientCredentials Model in Model.PatientCredentials)
         {
-            var id = ViewBag.PatientId;
-            if (id == patient.patientId)
+            var id = UserManager.GetUserId(User);
+            if (id == Model.patientRef)
             {
-                <td>@patient.patientRef</td>
-                <td>@patient.fName @patient.lName</td>
+                <td>@Model.patientRef</td>
+                <td>@Model.fName @Model.lName</td>
+                <td>@Model.address</td>
+                <td>@Model.region</td>
+                <td>@Model.city</td>
+                <td>@Model.birthdate.ToString("MMMM dd, yyyy")</td>
+                <td>@Model.birthplace</td>
+                <td>@Model.contactNum</td>
+                <td>@Model.occupation</td>
+                <td>@Model.religion</td>
+                <td>@Model.emergencyName</td>
+                <td>@Model.emergencyNum</td>
             }
-        } *@
-        <td>@Model.patientRef</td>
-        <td>@Model.fName @Model.lName</td>
-        <td>@Model.address</td>
-        <td>@Model.region</td>
-        <td>@Model.city</td>
-        <td>@Model.birthdate.ToString("MMMM dd, yyyy")</td>
-        <td>@Model.birthplace</td>
-        <td>@Model.contactNum</td>
-        <td>@Model.occupation</td>
-        <td>@Model.religion</td>
-        <td>@Model.emergencyName</td>
-        <td>@Model.emergencyNum</td>
+        }
+
     </tr>
 
 </table>
@@ -60,9 +62,9 @@
         <td>Visit Date</td>
     </tr>
 
-@*     @foreach (RecordMedHistory medhis in Model.RecordMedHistory)
+    @foreach (RecordMedHistory medhis in Model.RecordMedHistory)
     {
-        var id = ViewBag.PatientId;
+        var id = UserManager.GetUserId(User);
         if (id == medhis.patientId)
         {
             <tr>
@@ -72,7 +74,7 @@
             </tr>
         }
 
-    } *@
+    }
 </table>
 
 <table class="table">

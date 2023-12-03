@@ -18,7 +18,7 @@ namespace MediSynthFinals.Models
         public DateTime visitDate { get; set; }
 
         // FOREIGN KEYS
-        public int rtypeId { get; set; }
-        public int patientId { get; set; }
+        public string rtypeId { get; set; }
+        public string patientId { get; set; }
     }
 }
