@@ -1,6 +1,7 @@
 ﻿using MediSynthFinals.Data;
 using MediSynthFinals.Models;
 using MediSynthFinals.Utils;
+using MediSynthFinals.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +9,7 @@ using System.Dynamic;
 
 namespace MediSynthFinals.Controllers
 {
-    [Authorize(Roles = "ADMIN")]
+    [Authorize(Roles = "DOCTOR, ADMIN")]
     public class DoctorController : Controller
     {
         // Db Context
@@ -30,7 +31,77 @@ namespace MediSynthFinals.Controllers
             return View(doctors);
         }
 
-//comment
+        [HttpGet]
+        public ActionResult Profile()
+        {
+            var username = _userManager.GetUserName(User);
+            List<UserInformation> doctor = _dbContext.UserInformation.Where(x => x.username == username).ToList();
+            if (doctor != null)
+            {
+                foreach (var item in doctor)
+                {
+                    if (item.username == username)
+                    {
+                        var docId = item.userId;
+                        var viewModel = new DoctorSchedViewModel
+                        {
+                            UserInformation = _dbContext.UserInformation.Where(x => x.username == username).ToList(),
+                            UserSchedule = _dbContext.UserSchedules.Where(x => x.userId == docId).ToList(),
+                        };
+                        return View(viewModel);
+                    }
+                }
+
+            }
+            return NotFound();
+
+        }
+
+        [HttpGet]
+        public IActionResult Schedule()
+        {
+            //Search for the doctor whose id matches the given id
+            var username = _userManager.GetUserName(User);
+            List<UserInformation> doctors = _dbContext.UserInformation.Where(x => x.username == username).ToList();
+
+            if (doctors != null)
+            {
+                foreach (var item in doctors)
+                {
+                    if(item.username == username)
+                    {
+                        var docId = item.userId;
+                        UserSchedule? docsched = _dbContext.UserSchedules.FirstOrDefault(UserSchedule => UserSchedule.scheduleId == docId);
+                        ViewBag.Id = docId;
+                        return View(docsched);
+                    }
+                }
+
+                
+            }
+            return NotFound();
+
+        }
+
+        [HttpPost]
+        public IActionResult Schedule(UserSchedule input)
+        {
+            UserSchedule sched = new UserSchedule();
+            sched.scheduleDate = input.scheduleDate;
+            sched.scheduleInfo = input.scheduleInfo;
+            sched.userId = input.userId;
+
+            if (sched != null)
+            {
+                _dbContext.UserSchedules.Add(sched);
+                _dbContext.SaveChanges();
+                RedirectToAction("Profile", "Doctor");
+            }
+            return NotFound();
+
+        }
+
+        //comment
         //[HttpGet]
         //public IActionResult Edit(int Id)
         //{
@@ -49,7 +120,7 @@ namespace MediSynthFinals.Controllers
         //public IActionResult Edit(UserInformation ChangeDocCredentials)
         //{
         //    UserCredentials? doctor = _dbContext.UserInformation.FirstOrDefault(UserCredentials => UserCredentials.userId == ChangeDocCredentials.userId);
-                
+
         //        UserCredentials.FirstOrDefault(UserCredentials => UserCredentials.userId == ChangeDocCredentials.userId);
         //    if (doctor != null)
         //    {

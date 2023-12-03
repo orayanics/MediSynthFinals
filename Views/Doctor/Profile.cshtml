@@ -1,0 +1,83 @@
+﻿@model MediSynthFinals.ViewModel.DoctorSchedViewModel;
+<table class="table">
+
+    <tr>
+        <th colspan="7">Doctor Details</th>
+    </tr>
+
+    <tr>
+        <th colspan="7"><button>Add Schedule</button></th>
+    </tr>
+
+     @{
+        string[] department = {
+    "Anesthesiology",
+    "Cardiology",
+    "Dermatology",
+    "General Surgery",
+    "Geriatrics",
+    "Gynaecology",
+    "Hematology",
+    "Internel Medicine",
+    "Intensive Care Medicine",
+    "Medicine",
+    "Nephrology",
+    "Neurology",
+    "Obstetrics",
+    "Ophthalmology",
+    "Orthopedics",
+    "Otohinolaryngology",
+    "Pathology",
+    "Pediatrics",
+    "Plastic Surgery",
+    "Radiology",
+    "Rheumatology",
+    "Surgery",
+    "Urology"
+    };
+
+    <tr>
+        <td>Full Name</td>
+        <td>Email</td>
+        <td>Contact Number</td>
+        <td>Department</td>
+
+    </tr>
+        <tr>
+        @foreach (UserInformation doc in Model.UserInformation)
+        {
+                <td>@doc.fName @doc.lName</td>
+                <td>@doc.email</td>
+                <td>@doc.contactNum</td>
+                <td>
+                    @{
+                        var index = doc.department;
+                        var fromArray = department.ElementAt(int.Parse(index));
+                        @fromArray
+                    }
+                </td>
+        }
+    </tr>
+        
+</table>
+
+<table class="table">
+
+    <tr>
+        <th colspan="3">Schedule</th>
+    </tr>
+
+    <tr>
+        <td>Day</td>
+        <td>Time</td>
+
+    </tr>
+
+        @foreach (UserSchedule sched in Model.UserSchedule)
+        {
+            <tr>
+                <td>@sched.scheduleDate</td>
+                <td>@sched.scheduleInfo</td>
+            </tr>        
+        }
+</table>

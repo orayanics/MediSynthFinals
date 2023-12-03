@@ -57,20 +57,6 @@ namespace MediSynthFinals.Controllers
 
             PatientCredentials refNum = _dbContext.PatientCredentials.FirstOrDefault(r => r.patientRef == identityID);
 
-            //    if (doc != null)
-            //    {
-            //        dynamic model = new ExpandoObject();
-            //        model.UserCredentials = _dbContext.UserCredentials;
-            //        model.DoctorSchedule = _dbContext.DoctorSchedules;
-            //        {
-            //            if (model != null)
-            //            {
-            //                ViewBag.DoctorId = id;
-            //                return View(model);
-            //            }
-            //        }
-            //    }
-
             if (refNum != null)
             {
                 var viewModel = new PatientProfileViewModel
