@@ -81,13 +81,37 @@ app.MapRazorPages();
 using (var scope = app.Services.CreateScope())
 {
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-
-    var roles = new[] { "ADMIN", "PATIENT", "DOCTOR" };
-
+        var roles = new[] { "ADMIN", "PATIENT", "DOCTOR" };
+   
     foreach (var role in roles)
     {
         if (!await roleManager.RoleExistsAsync(role))
             await roleManager.CreateAsync(new IdentityRole(role));
+    }
+}
+
+using (var scope = app.Services.CreateScope())
+{
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<UserCredentials>>();
+
+    // Check if the user with the specified email exists
+    var existingUser = userManager.FindByEmailAsync("test@example.com").Result;
+    if (existingUser == null)
+    {
+        // Create a new user
+        var newUser = new UserCredentials();
+
+        newUser.UserName = "admin";
+        newUser.Email = "test@example.com";
+        newUser.fName = "Group 5";
+        newUser.lName = "3ITE";
+        newUser.PhoneNumber = "09567052824";
+        newUser.department = "ADMIN";
+        newUser.userRole = "ADMIN";
+
+        await userManager.CreateAsync(newUser, "admin123");
+
+        await userManager.AddToRoleAsync(newUser, "ADMIN");
     }
 }
 
