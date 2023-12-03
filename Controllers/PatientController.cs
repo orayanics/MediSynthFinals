@@ -1,5 +1,6 @@
 ﻿using MediSynthFinals.Data;
 using MediSynthFinals.Models;
+using MediSynthFinals.ViewModel;
 //using Microsoft.AspNet.Identity;
 //using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Identity;
@@ -34,11 +35,12 @@ namespace MediSynthFinals.Controllers
             if (patient != null)
             {
                 dynamic model = new ExpandoObject();
-                model.PatientCredentials = _dbContext.PatientCredentials;
                 model.RecordDiagnosis = _dbContext.RecordDiagnosis;
+                model.PatientCredentials = _dbContext.PatientCredentials;
                 model.RecordMedHistory = _dbContext.RecordMedHistory;
+
                 {
-                    if (model != null)
+                    if (model.PatientCredentials != null && model.RecordMedHistory != null && model.RecordDiagnosis != null)
                     {        
                         return View(model);
                     }
@@ -71,15 +73,13 @@ namespace MediSynthFinals.Controllers
 
             if (refNum != null)
             {
-                dynamic model = new ExpandoObject();
-                model.PatientCredentials = _dbContext.PatientCredentials;
-                model.RecordMedHistory = _dbContext.RecordMedHistory;
+                var viewModel = new PatientProfileViewModel
                 {
-                    if (model != null)
-                    {
-                        return View(model);
-                    }
-                }
+                    PatientCredentials = _dbContext.PatientCredentials.ToList(),
+                    RecordMedHistory = _dbContext.RecordMedHistory.ToList(),
+                    RecordDiagnosis = _dbContext.RecordDiagnosis.ToList()
+                };
+                return View(viewModel);
 
             }
 
@@ -173,7 +173,41 @@ namespace MediSynthFinals.Controllers
             return NotFound();
         }
 
+        // Add Diagnosis
+        // TO DO: Transfer to doctor controller
+        [HttpGet]
+        public IActionResult Diagnosis()
+        {
+            return View();
+        }
 
+        [HttpPost]
+        public IActionResult Diagnosis(RecordDiagnosis edit)
+        {
+            var identityID = _userManager.GetUserId(User); // get user Id
+            Console.WriteLine("USER ID" + identityID);
+
+            PatientCredentials refNum = _dbContext.PatientCredentials.FirstOrDefault(r => r.patientRef == identityID);
+
+            if (refNum != null)
+            {
+                // For DATABASE
+                RecordDiagnosis patient = new RecordDiagnosis();
+                patient.diagnosisText = edit.diagnosisText;
+                patient.additionalNote = edit.additionalNote;
+                patient.attendingDoctor = edit.attendingDoctor;
+                patient.visitDate = edit.visitDate;
+                patient.rtypeId = "Diagnosis";
+                patient.patientId = identityID.ToString();
+
+                _dbContext.RecordDiagnosis.Add(patient);
+                _dbContext.SaveChanges();
+                return RedirectToAction("Profile", "Patient");
+
+            }
+
+            return NotFound();
+        }
 
     }
 }

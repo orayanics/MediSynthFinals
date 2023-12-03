@@ -1,18 +1,10 @@
-﻿@using MediSynthFinals.Models;
-@using Microsoft.AspNetCore.Identity;
+﻿@using Microsoft.AspNetCore.Identity;
 @model MediSynthFinals.ViewModel.PatientProfileViewModel
 @inject UserManager<UserCredentials> UserManager;
 
-<table class="table">
-
-    <tr>
-        <th colspan="7">Patient Details</th>
-    </tr>
-
-    <tr>
-        <th colspan="7"><a asp-action="Edit" asp-controller="Patient"><button>Edit Information</button></a></th>
-    </tr>
-
+<h2>Data from Table 1</h2>
+<table>
+    <!-- Display data from Table 1 -->
     <tr>
         <td>Reference</td>
         <td>Full Name</td>
@@ -27,12 +19,11 @@
         <td>Emergency Name</td>
         <td>Emergency Number</td>
     </tr>
-    <tr>
-        @foreach (var item in Model.PatientCredentials)
+    @foreach (var item in Model.PatientCredentials)
+    {
+        var id = UserManager.GetUserId(User);
+        if (id == item.patientRef)
         {
-            var id = UserManager.GetUserId(User);
-            if (id == item.patientRef)
-            {
             <tr>
                 <td>@item.patientRef</td>
                 <td>@item.fName @item.lName</td>
@@ -47,18 +38,14 @@
                 <td>@item.emergencyName</td>
                 <td>@item.emergencyNum</td>
             </tr>
-            }
-
         }
-    </tr>
 
+    }
 </table>
 
-<table class="table">
-    <tr>
-        <th colspan="3">Medical History Record</th>
-    </tr>
-
+<h2>Data from Table 2</h2>
+<table>
+    <!-- Display data from Table 2 -->
     <tr>
         <td>Attending Doctor</td>
         <td>Medical Concern</td>
@@ -79,26 +66,31 @@
     }
 </table>
 
-<table class="table">
-    <tr>
-        <th colspan="3">Diagnosis</th>
-    </tr>
-
+<h2>Data from Table 3</h2>
+<table>
+    <!-- Display data from Table 3 -->
     <tr>
         <td>Attending Doctor</td>
         <td>Diagnosis</td>
         <td>Visit Date</td>
     </tr>
-    @foreach (var item in Model.RecordDiagnosis)
+    @try
     {
-        var id = UserManager.GetUserId(User);
-        if (id == item.patientId)
+        @foreach (var item in Model.RecordDiagnosis)
         {
-            <tr>
-                <td>@item.attendingDoctor</td>
-                <td>@item.diagnosisText</td>
-                <td>@item.visitDate</td>
-            </tr>
+            var id = UserManager.GetUserId(User);
+            if (id == item.patientId)
+            {
+                <tr>
+                    <td>@item.attendingDoctor</td>
+                    <td>@item.diagnosisText</td>
+                    <td>@item.visitDate</td>
+                </tr>
+            }
         }
+    }
+    catch (Exception e)
+    {
+        Console.WriteLine(e.ToString());
     }
 </table>
