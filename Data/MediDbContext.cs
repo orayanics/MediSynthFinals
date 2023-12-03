@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 namespace MediSynthFinals.Data
 {
     public class MediDbContext : IdentityDbContext<UserCredentials>
+
+        //comment
     {
         // Constructor
         public MediDbContext(DbContextOptions<MediDbContext> options) : base(options) { }
