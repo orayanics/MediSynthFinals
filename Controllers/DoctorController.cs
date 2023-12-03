@@ -95,7 +95,7 @@ namespace MediSynthFinals.Controllers
             {
                 _dbContext.UserSchedules.Add(sched);
                 _dbContext.SaveChanges();
-                RedirectToAction("Profile", "Doctor");
+                return RedirectToAction("Profile", "Doctor");
             }
             return NotFound();
 

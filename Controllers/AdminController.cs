@@ -5,16 +5,17 @@ using MediSynthFinals.ViewModel;
 using MediSynthFinals.Data;
 using System.Drawing;
 using System.Net;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MediSynthFinals.Controllers
 {
+    [Authorize(Roles = "DOCTOR, ADMIN")]
     public class AdminController : Controller
     {
         private MediDbContext _dbContext;
         private readonly SignInManager<UserCredentials> _signInManager;
         private readonly UserManager<UserCredentials> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-
 
         public AdminController(
             MediDbContext dbContext,

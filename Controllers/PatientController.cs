@@ -1,6 +1,7 @@
 ﻿using MediSynthFinals.Data;
 using MediSynthFinals.Models;
 using MediSynthFinals.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 //using Microsoft.AspNet.Identity;
 //using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Identity;
@@ -11,6 +12,7 @@ using System.Dynamic;
 
 namespace MediSynthFinals.Controllers
 {
+    [Authorize(Roles = "PATIENT")]
     public class PatientController : Controller
     {
         // Db Context

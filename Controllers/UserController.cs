@@ -5,6 +5,7 @@ using MediSynthFinals.ViewModel;
 using MediSynthFinals.Data;
 using System.Drawing;
 using System.Net;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MediSynthFinals.Controllers
 {
@@ -51,6 +52,7 @@ namespace MediSynthFinals.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "ADMIN")]
         public IActionResult Doctor()
         {
             return View();
@@ -58,6 +60,7 @@ namespace MediSynthFinals.Controllers
 
         // Register Doctor
         [HttpPost]
+        [Authorize(Roles = "ADMIN")]
         public async Task<IActionResult> Doctor(RegisterViewModel userEnteredData, UserInformation userInfo)
         {
             if (ModelState.IsValid)
