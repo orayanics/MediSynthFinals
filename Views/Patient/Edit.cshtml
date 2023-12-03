@@ -1,0 +1,81 @@
+﻿@model MediSynthFinals.Models.PatientCredentials
+<head>
+    <link rel="stylesheet" type="text/css" href="../css/form.css">
+</head>
+
+<body>
+    <form method="post" asp-action="Edit">
+        @*     <div class="mb-3">
+        <label asp-for="Id" class="form-label">Id</label>
+        <input asp-for="Id" class="form-control" value="@ViewBag.increment" placeholder="@ViewBag.increment">
+        </div> *@
+
+        <div class="mb-3">
+            <label asp-for="fName" class="form-label"></label>
+            <input asp-for="fName" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="lName" class="form-label"></label>
+            <input asp-for="lName" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="address" class="form-label"></label>
+            <input asp-for="address" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="region" class="form-label"></label>
+            <input asp-for="region" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="city" class="form-label"></label>
+            <input asp-for="city" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="gender" class="form-label"></label>
+            <input asp-for="gender" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="birthdate" class="form-label"></label>
+            <input asp-for="birthdate" type="date" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="birthplace" class="form-label"></label>
+            <input asp-for="birthplace" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="contactNum" class="form-label"></label>
+            <input asp-for="contactNum" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="occupation" class="form-label"></label>
+            <input asp-for="occupation" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="religion" class="form-label"></label>
+            <input asp-for="religion" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="emergencyName" class="form-label"></label>
+            <input asp-for="emergencyName" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="emergencyNum" class="form-label"></label>
+            <input asp-for="emergencyNum" class="form-control">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+</body>

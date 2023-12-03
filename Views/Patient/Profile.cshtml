@@ -6,9 +6,22 @@
     </tr>
 
     <tr>
+        <th colspan="7"><a asp-action="Edit" asp-controller="Patient"><button>Edit Information</button></a></th>
+    </tr>
+
+    <tr>
         <td>Reference</td>
         <td>Full Name</td>
-
+        <td>Address</td>
+        <td>Region</td>
+        <td>City</td>
+        <td>Birthdate</td>
+        <td>Birthplace</td>
+        <td>Contact Number</td>
+        <td>Occupation</td>
+        <td>Religion</td>
+        <td>Emergency Name</td>
+        <td>Emergency Number</td>
     </tr>
     <tr>
 @*         @foreach (PatientCredentials patient in Model.PatientCredentials)
@@ -22,6 +35,16 @@
         } *@
         <td>@Model.patientRef</td>
         <td>@Model.fName @Model.lName</td>
+        <td>@Model.address</td>
+        <td>@Model.region</td>
+        <td>@Model.city</td>
+        <td>@Model.birthdate.ToString("MMMM dd, yyyy")</td>
+        <td>@Model.birthplace</td>
+        <td>@Model.contactNum</td>
+        <td>@Model.occupation</td>
+        <td>@Model.religion</td>
+        <td>@Model.emergencyName</td>
+        <td>@Model.emergencyNum</td>
     </tr>
 
 </table>

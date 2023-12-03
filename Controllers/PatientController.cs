@@ -48,9 +48,6 @@ namespace MediSynthFinals.Controllers
 
         public IActionResult Profile()
         {
-
-            //PatientCredentials patient = _dbContext.PatientCredentials.FirstOrDefault(x => x.patientId == id);
-            //Console.WriteLine(id.ToString());
             var identityID = _userManager.GetUserId(User); // get user Id
             Console.WriteLine("USER ID" + identityID);
 
@@ -58,6 +55,55 @@ namespace MediSynthFinals.Controllers
 
             if(refNum != null)
             {
+                return View(refNum);
+
+            }
+
+            return NotFound();
+        }
+
+        [HttpGet]
+        public IActionResult Edit()
+        {
+            var identityID = _userManager.GetUserId(User); // get user Id
+            Console.WriteLine("USER ID" + identityID);
+
+            PatientCredentials refNum = _dbContext.PatientCredentials.FirstOrDefault(r => r.patientRef == identityID);
+
+            if (refNum != null)
+            {
+                return View(refNum);
+
+            }
+
+            return NotFound();
+        }
+
+        [HttpPost]
+        public IActionResult Edit(PatientCredentials edit)
+        {
+            var identityID = _userManager.GetUserId(User); // get user Id
+            Console.WriteLine("USER ID" + identityID);
+
+            PatientCredentials refNum = _dbContext.PatientCredentials.FirstOrDefault(r => r.patientRef == identityID);
+
+            if (refNum != null)
+            {
+                refNum.fName = edit.fName;
+                refNum.lName = edit.lName;
+                refNum.contactNum = edit.contactNum;
+                refNum.address = edit.address;
+                refNum.region = edit.region;
+                refNum.city = edit.city;
+                refNum.gender = edit.gender;
+                refNum.birthdate = edit.birthdate;
+                refNum.birthplace = edit.birthplace;
+                refNum.occupation = edit.occupation;
+                refNum.religion = edit.religion;
+                refNum.emergencyName = edit.emergencyName;
+                refNum.emergencyNum =  edit.emergencyNum;
+                _dbContext.PatientCredentials.Update(refNum);
+                _dbContext.SaveChanges();
                 return View(refNum);
 
             }
