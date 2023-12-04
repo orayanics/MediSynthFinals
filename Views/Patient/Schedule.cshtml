@@ -4,12 +4,7 @@
     <tr>
         <th colspan="7">Doctor Details</th>
     </tr>
-
-    <tr>
-        <th colspan="7"><a asp-action="Schedule" asp-controller="Doctor"><button>Add Schedule</button></a></th>
-    </tr>
-
-     @{
+    @{
         string[] department = {
     "Anesthesiology",
     "Cardiology",
@@ -41,23 +36,24 @@
         <td>Email</td>
         <td>Contact Number</td>
         <td>Department</td>
+
     </tr>
-        <tr>
+    <tr>
         @foreach (UserInformation doc in Model.UserInformation)
         {
-                <td>@doc.fName @doc.lName</td>
-                <td>@doc.email</td>
-                <td>@doc.contactNum</td>
-                <td>
-                    @{
-                        var index = doc.department;
-                        var fromArray = department.ElementAt(int.Parse(index));
-                        @fromArray
-                    }
-                </td>
+            <td>@doc.fName @doc.lName</td>
+            <td>@doc.email</td>
+            <td>@doc.contactNum</td>
+            <td>
+                @{
+                    var index = doc.department;
+                    var fromArray = department.ElementAt(int.Parse(index));
+                    @fromArray
+                }
+            </td>
         }
     </tr>
-        
+
 </table>
 
 <table class="table">
@@ -69,16 +65,14 @@
     <tr>
         <td>Day</td>
         <td>Time</td>
-        <td>Delete</td>
 
     </tr>
 
-        @foreach (UserSchedule sched in Model.UserSchedule)
-        {
-            <tr>
-                <td>@sched.scheduleDate</td>
-                <td>@sched.scheduleInfo</td>
-                <td><a asp-controller="Doctor" asp-action="DeleteSched" asp-route-id="@sched.scheduleId" type="submit" class="btn btn-primary">Delete</a></td>
-            </tr>        
-        }
+    @foreach (UserSchedule sched in Model.UserSchedule)
+    {
+        <tr>
+            <td>@sched.scheduleDate</td>
+            <td>@sched.scheduleInfo</td>
+        </tr>
+    }
 </table>

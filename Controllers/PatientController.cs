@@ -30,6 +30,30 @@ namespace MediSynthFinals.Controllers
             return View(_dbContext.PatientCredentials);
         }
 
+
+        public IActionResult Doctors()
+        {
+            return View(_dbContext.UserInformation.Where(x => x.department != "PATIENT"));
+        }
+
+        [HttpGet]
+        public IActionResult Schedule(int id)
+        {
+            var viewModel = new DoctorSchedViewModel
+            {
+                UserInformation = _dbContext.UserInformation.Where(x => x.userId == id).ToList(),
+                UserSchedule = _dbContext.UserSchedules.Where(x => x.userId == id).ToList(),
+            };
+
+            if (viewModel != null)
+            {
+                return View(viewModel);
+
+            }
+
+            return NotFound();
+        }
+
         public IActionResult Details(int id)
         {
             PatientCredentials? patient = _dbContext.PatientCredentials.FirstOrDefault(x => x.patientId == id);

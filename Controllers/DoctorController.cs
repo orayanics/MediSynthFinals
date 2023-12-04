@@ -101,20 +101,33 @@ namespace MediSynthFinals.Controllers
 
         }
 
-        //comment
-        //[HttpGet]
-        //public IActionResult Edit(int Id)
-        //{
-        //    //Search for the doctor whose id matches the given id
-        //    UserCredentials? doc = _dbContext.UserCredentials.FirstOrDefault(UserCredentials => UserCredentials.userId == Id);
+        public IActionResult DeleteSched(int id)
+        {
+            UserSchedule sched = new UserSchedule();
+            sched.scheduleId = id;
 
-        //    if (doc != null)
-        //    {
-        //        return View(doc);
-        //    }
-        //    return NotFound();
+            if (sched != null)
+            {
+                _dbContext.UserSchedules.Remove(sched);
+                _dbContext.SaveChanges();
+                return RedirectToAction("Profile", "Doctor");
+            }
+            return NotFound();
 
-        //}
+        }
+
+        public IActionResult Edit()
+        {
+            var username = _userManager.GetUserName(User);
+            UserInformation info = _dbContext.UserInformation.FirstOrDefault(x => x.username == username);
+
+            if (info != null)
+            {
+                return View(info);
+            }
+            return NotFound();
+
+        }
 
         //[HttpPost]
         //public IActionResult Edit(UserInformation ChangeDocCredentials)
