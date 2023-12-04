@@ -1,8 +1,38 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@using MediSynthFinals.Models;
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<UserCredentials> SignInManager
+@inject UserManager<UserCredentials> UserManager
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/landing.css">
+</head>
+<body>
+    <div class="welcome-text">
+        <h1>Welcome to <img src="../imgs/outlined_logo.png" alt="Medisynth Logo" width="18%" height="18%"></h1>
+
+    </div>
+    @if (!SignInManager.IsSignedIn(User))
+    {
+        
+    <div class="level">
+        <div class="container-button">
+            <p class="text">Already have an account?</p>
+            <a asp-controller="User" asp-action="Login" class="login">Login</a>
+            <p class="text">New to MediSynth?</p>
+            <a asp-controller="User" asp-action="Patient" class="register">Register</a>
+        </div>
+    </div>
+
+    }
+
+
+
+</body>
+</html>
