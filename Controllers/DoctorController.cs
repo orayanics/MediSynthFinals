@@ -25,14 +25,7 @@ namespace MediSynthFinals.Controllers
             _userManager = userManager;
         }
 
-        public IActionResult Index()
-        {
-            var doctors = _dbContext.UserInformation.ToList();
-            return View(doctors);
-        }
-
-        [HttpGet]
-        public ActionResult Profile()
+        public ActionResult Index()
         {
             var username = _userManager.GetUserName(User);
             List<UserInformation> doctor = _dbContext.UserInformation.Where(x => x.username == username).ToList();
@@ -110,7 +103,7 @@ namespace MediSynthFinals.Controllers
             {
                 _dbContext.UserSchedules.Remove(sched);
                 _dbContext.SaveChanges();
-                return RedirectToAction("Profile", "Doctor");
+                return RedirectToAction("Index", "Doctor");
             }
             return NotFound();
 
@@ -172,55 +165,7 @@ namespace MediSynthFinals.Controllers
 
         }
 
-        //[HttpPost]
-        //public IActionResult Edit(UserInformation ChangeDocCredentials)
-        //{
-        //    UserCredentials? doctor = _dbContext.UserInformation.FirstOrDefault(UserCredentials => UserCredentials.userId == ChangeDocCredentials.userId);
-
-        //    UserCredentials.FirstOrDefault(UserCredentials => UserCredentials.userId == ChangeDocCredentials.userId);
-        //    if (doctor != null)
-        //    {
-        //        doctor.userId = ChangeDocCredentials.userId;
-        //        doctor.username = ChangeDocCredentials.username;
-        //        doctor.password = ChangeDocCredentials.password;
-        //        doctor.fName = ChangeDocCredentials.fName;
-        //        doctor.lName = ChangeDocCredentials.lName;
-        //        doctor.email = ChangeDocCredentials.email;
-        //        doctor.contactNum = ChangeDocCredentials.contactNum;
-        //        doctor.department = ChangeDocCredentials.department;
-        //        doctor.userRole = ChangeDocCredentials.userRole;
-
-        //    }
-
-        //    return View("Index", _dbContext.UserCredentials);
-        //}
-
     }
 
 
 }
-
-
-
-
-        //public IActionResult Details(int id)
-        //{
-        //    UserCredentials doc = _dbContext.UserCredentials.FirstOrDefault(x => x.userId == id);
-
-        //    if (doc != null)
-        //    {
-        //        dynamic model = new ExpandoObject();
-        //        model.UserCredentials = _dbContext.UserCredentials;
-        //        model.DoctorSchedule = _dbContext.DoctorSchedules;
-        //        {
-        //            if (model != null)
-        //            {
-        //                ViewBag.DoctorId = id;
-        //                return View(model);
-        //            }
-        //        }
-        //    }
-
-        //    //return View(_dbContext.DoctorCredentials);
-        //    return NotFound();
-        //}
