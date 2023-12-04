@@ -116,6 +116,7 @@ namespace MediSynthFinals.Controllers
 
         }
 
+        [HttpGet]
         public IActionResult Edit()
         {
             var username = _userManager.GetUserName(User);
@@ -123,7 +124,49 @@ namespace MediSynthFinals.Controllers
 
             if (info != null)
             {
-                return View(info);
+                var viewModel = new DoctorEditViewModel()
+                {
+                    userId = info.userId,
+                    username = info.username,
+                    fName = info.fName,
+                    lName = info.lName,
+                    email = info.email,
+                    contactNum = info.contactNum,
+                    department = info.department
+                };
+                return View(viewModel);
+            }
+            return NotFound();
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(DoctorEditViewModel user)
+        {
+            var username = _userManager.GetUserName(User);
+            var email = user.email.ToUpper();
+            UserInformation info = _dbContext.UserInformation.FirstOrDefault(x => x.userId == user.userId);
+
+            if (info != null)
+            {
+                // For Database user.information
+                info.fName = user.fName;
+                info.lName = user.lName;
+                info.email = user.email;
+                info.contactNum = user.contactNum;
+                info.department = user.department;
+                _dbContext.UserInformation.Update(info);
+                _dbContext.SaveChanges();
+
+                // For Identity 
+                var identity = await _userManager.FindByEmailAsync(email);
+                identity.fName = user.fName;
+                identity.lName = user.lName;
+                identity.department = user.department;
+                identity.Email = user.email;
+                await _userManager.ChangePasswordAsync(identity, user.currentpass, user.newpass);
+
+                return RedirectToAction("Profile", "Doctor");
             }
             return NotFound();
 
@@ -134,7 +177,7 @@ namespace MediSynthFinals.Controllers
         //{
         //    UserCredentials? doctor = _dbContext.UserInformation.FirstOrDefault(UserCredentials => UserCredentials.userId == ChangeDocCredentials.userId);
 
-        //        UserCredentials.FirstOrDefault(UserCredentials => UserCredentials.userId == ChangeDocCredentials.userId);
+        //    UserCredentials.FirstOrDefault(UserCredentials => UserCredentials.userId == ChangeDocCredentials.userId);
         //    if (doctor != null)
         //    {
         //        doctor.userId = ChangeDocCredentials.userId;
@@ -150,35 +193,6 @@ namespace MediSynthFinals.Controllers
         //    }
 
         //    return View("Index", _dbContext.UserCredentials);
-        //}
-
-        //[HttpGet]
-        //public IActionResult AddSchedule(int Id)
-        //{
-        //    //Search for the doctor whose id matches the given id
-        //    UserSchedule? docsched = _dbContext.userSchedules.FirstOrDefault(UserSchedule => UserSchedule.scheduleId == Id);
-
-        //    if (docsched != null)
-        //    {
-        //        return View(docsched);
-        //    }
-        //    return NotFound();
-
-        //}
-
-        //[HttpPost]
-        //public IActionResult Addsche(UserSchedule Changesched)
-        //{
-        //    UserSchedule? changdocsched = _dbContext.userSchedules.FirstOrDefault(UserSchedule => UserSchedule.scheduleId == Changesched.scheduleId);
-        //    if (Changesched != null)
-        //    {
-        //        Changesched.scheduleId = Changesched.scheduleId;
-        //        Changesched.scheduleInfo = Changesched.scheduleInfo;
-        //        Changesched.scheduleDate = Changesched.scheduleDate;
-
-        //    }
-
-        //    return View("Index", _dbContext.userSchedules);
         //}
 
     }

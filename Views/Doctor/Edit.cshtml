@@ -1,13 +1,22 @@
-﻿@model MediSynthFinals.Models.UserInformation;
+﻿@model MediSynthFinals.ViewModel.DoctorEditViewModel;
 
 <h1>Edit Details</h1>
 <form asp-action="Edit" method="post">
 
-    <div class="form-group">
-        <label asp-for="username"></label>
-        <input asp-for="username" class="form-control" />
+    <div hidden class="form-group">
+        <label asp-for="userId"></label>
+        <input asp-for="userId" class="form-control" />
     </div>
 
+    <div class="form-group">
+        <label asp-for="currentpass">Current Password</label>
+        <input asp-for="currentpass" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="newpass">New Password</label>
+        <input asp-for="newpass" class="form-control" />
+    </div>
 
     <div class="form-group">
         <label asp-for="fName">First Name</label>
@@ -31,11 +40,11 @@
 
     <div class="form-group">
         <label asp-for="department"></label>
-        <input asp-for="department" class="form-control" />
+        <select class="form-select-sm" asp-for="department" asp-items="Html.GetEnumSelectList(typeof(Department))"></select>
     </div>
 
     <br />
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button  asp-route-id="@Model.userId" type="submit" class="btn btn-primary">Submit</button>
     <button type="button" class="btn btn-secondary" onclick="history.back();">Cancel</button>
 </form>
 
