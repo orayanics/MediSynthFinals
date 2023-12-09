@@ -12,12 +12,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="~/css/landing.css">
+    <link rel="stylesheet" href="~/css/portal.css" />
 </head>
 <body>
     <div class="welcome-text">
         <h1>Welcome to <img src="../imgs/outlined_logo.png" alt="Medisynth Logo" width="18%" height="18%"></h1>
 
     </div>
+    <div class="level">
     @if (!SignInManager.IsSignedIn(User))
     {
 
@@ -31,6 +33,54 @@
         </div>
 
     }
+    @if (User.IsInRole("DOCTOR"))
+    {
+        <div class="side-by-side-container">
+                
+            <div class="rounded-containercopy">
+                <img src="~/imgs/calendar-lines-pen.png" alt="Medisynth Logo" width="120px" height="120px">
+                <div class="rounded-text">Patient Register</div>
+            </div>
+            
+           
+            <div class="rounded-containercopy">
+                <img src="~/imgs/exit.png" alt="Medisynth Logo" width="120px" height="120px">
+                <div class="rounded-text">Mwww</div>
+            </div>
+            
+        </div>
+    }
+    @if (User.IsInRole("PATIENT"))
+    {
+        <div class="side-by-side-container">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Patient" asp-action="Profile">
+            <div class="rounded-containercopy">
+                <img src="~/imgs/search-heart.png" alt="Medisynth Logo" width="120px" height="120px">
+                <div class="rounded-text">History</div>
+            </div>
+            </a>
+             <a class="nav-link text-dark" asp-area="" asp-controller="Patient" asp-action="AddHistory">
+            <div class="rounded-containercopy">
+                        <img src="~/imgs/calendar-lines-pen.png" alt="Medisynth Logo" width="120px" height="120px">
+                <div class="rounded-text">Edit</div>
+            </div>
+             </a>
+        </div>
+    }
+    @if (User.IsInRole("ADMIN"))
+    {
+        <div class="side-by-side-container">
+            <div class="rounded-containercopy">
+                <img src="~/imgs/calendar-lines-pen.png" alt="Medisynth Logo" width="120px" height="120px">
+                <div class="rounded-text">History</div>
+            </div>
+            <div class="rounded-containercopy">
+                <img src="~/imgs/exit.png" alt="Medisynth Logo" width="120px" height="120px">
+                <div class="rounded-text">Profile</div>
+            </div>
+        </div>
+    }
+    </div>
 
 </body>
 </html>

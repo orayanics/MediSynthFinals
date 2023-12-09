@@ -3,6 +3,7 @@
     flex-direction: column;
     min-height: 100vh;
     margin: 0;
+    background-color: #FAF9F6;
 }
 
 main {
@@ -17,4 +18,7 @@ footer {
     color: white;
     text-align: center;
     padding: 20px;
+    line-height: .5; /* Adjust line spacing */
+    font-size: 14px; /* Set a smaller font size */
 }
+

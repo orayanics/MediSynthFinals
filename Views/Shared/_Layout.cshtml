@@ -90,11 +90,11 @@
                         @if (SignInManager.IsSignedIn(User))
                         {
                             <li class="nav-item">
-                                <a id="manage" class="nav-link" title="Manage" style="font-weight: bold; font-size: 20px;">Hello @UserManager.GetUserName(User)!</a>
+                                <a id="manage" class="nav-link" title="Manage" style="font-weight: bold; font-size: 12px;">Hello @UserManager.GetUserName(User)!</a>
                             </li>
                             <li class="nav-item">
                                 <a asp-controller="User" asp-action="Logout">
-                                    <button id="logout" type="submit" class="nav-link" style="font-weight: bold; font-size: 20px;  text-decoration: none;">LOGOUT</button>
+                                    <button id="logout" type="submit" class="nav-link" style="font-weight: bold; font-size: 12px;  text-decoration: none;">LOGOUT</button>
                                 </a>
                             </li>
                         }
@@ -103,15 +103,15 @@
 
                             <!-- Adjusting right padding -->
                             <li class="nav-item">
-                                <a class="nav-link" style="font-weight: bold; font-size: 20px;" asp-controller="User" asp-action="Login"></a>
+                                <a class="nav-link" style="font-weight: bold; font-size: 12px;" asp-controller="User" asp-action="Login"></a>
                             </li>
                             <li class="nav-item">
-                                <a asp-controller="User" asp-action="Login" class="nav-link" class="nav-link" style="font-weight: bold; font-size: 20px;">
+                                <a asp-controller="User" asp-action="Login" class="nav-link" class="nav-link" style="font-weight: bold; font-size: 12px;">
                                     LOGIN
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" style="font-weight: bold; font-size: 20px;" asp-controller="User" asp-action="Patient">REGISTER</a>
+                                <a class="nav-link" style="font-weight: bold; font-size: 12px;" asp-controller="User" asp-action="Patient">REGISTER</a>
                             </li>
 
                         }
@@ -134,7 +134,8 @@
     </div>
 
     <footer>
-        <img src="../imgs/outlined_logo.png" alt="logo" height="40" width="150">
+        <img src="../imgs/outlined_logo.png" alt="logo" height="40" width="150" style="margin-bottom: 48px">
+        
         <p class="text1">Hospital Name</p>
         <p class="text1">Contact Support</p>
         <p class="text1">&copy;Group5-3ITE</p>
