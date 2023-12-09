@@ -78,7 +78,7 @@
         </nav>
         *@
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-black">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #272727;">
             <div class="container-fluid">
                 <a href="#" style="width: 95px;margin-left: 5%;"><img src="../imgs/outlined_logo.png" alt="logo" height="100%" width="100%"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -91,6 +91,13 @@
                         {
                             <li class="nav-item">
                                 <a id="manage" class="nav-link" title="Manage" style="font-weight: bold; font-size: 12px;">Hello @UserManager.GetUserName(User)!</a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-area="" asp-controller="Home" asp-action="Index">
+                                    <button id="logout" type="submit" class="nav-link" style="font-weight: bold; font-size: 12px;  text-decoration: none;">PORTAL
+
+                                    </button>
+                                </a>
                             </li>
                             <li class="nav-item">
                                 <a asp-controller="User" asp-action="Logout">
@@ -121,8 +128,8 @@
             </div>
         </nav>
 
-        <partial name="_LoginPartial" />
-
+  @*       <partial name="_LoginPartial" />
+ *@
 
 
 

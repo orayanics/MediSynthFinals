@@ -36,17 +36,18 @@
     @if (User.IsInRole("DOCTOR"))
     {
         <div class="side-by-side-container">
-                
+                <a class="nav-link text-dark" asp-area="" asp-controller="Doctor" asp-action="Index">
+            <div class="rounded-containercopy">
+                <img src="~/imgs/user-pen.png" alt="Medisynth Logo" width="120px" height="120px">
+                <div class="rounded-text">Profile</div>
+            </div>
+            </a>
+           <a class="nav-link text-dark" asp-area="" asp-controller="Doctor" asp-action="Edit">
             <div class="rounded-containercopy">
                 <img src="~/imgs/calendar-lines-pen.png" alt="Medisynth Logo" width="120px" height="120px">
-                <div class="rounded-text">Patient Register</div>
+                <div class="rounded-text">Edit Schedule</div>
             </div>
-            
-           
-            <div class="rounded-containercopy">
-                <img src="~/imgs/exit.png" alt="Medisynth Logo" width="120px" height="120px">
-                <div class="rounded-text">Mwww</div>
-            </div>
+            </a>
             
         </div>
     }
@@ -70,14 +71,18 @@
     @if (User.IsInRole("ADMIN"))
     {
         <div class="side-by-side-container">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Doctors">
             <div class="rounded-containercopy">
-                <img src="~/imgs/calendar-lines-pen.png" alt="Medisynth Logo" width="120px" height="120px">
-                <div class="rounded-text">History</div>
+                <img src="~/imgs/stethoscope.png" alt="Medisynth Logo" width="120px" height="120px">
+                <div class="rounded-text">Doctors</div>
             </div>
+            </a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Patients">
             <div class="rounded-containercopy">
-                <img src="~/imgs/exit.png" alt="Medisynth Logo" width="120px" height="120px">
-                <div class="rounded-text">Profile</div>
+                <img src="~/imgs/search-heart.png" alt="Medisynth Logo" width="120px" height="120px">
+                <div class="rounded-text">Patients</div>
             </div>
+            </a>
         </div>
     }
     </div>
