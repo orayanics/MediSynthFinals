@@ -11,37 +11,37 @@ namespace MediSynthFinals.Models
 
         [Display(Name = "Past Medical History")]
         [Required(ErrorMessage = "Past Medical History is required")]
-        [DisplayFormat(ConvertEmptyStringToNull = false)]
+        //[DisplayFormat(ConvertEmptyStringToNull = false)]
         public string pastMedHistory { get; set; }
 
         [Display(Name = "Past Hospitalization")]
         [Required(ErrorMessage = "Past Hospitalizatin is required")]
-        [DisplayFormat(ConvertEmptyStringToNull = false)]
+        //[DisplayFormat(ConvertEmptyStringToNull = false)]
         public string pastHospitalization { get; set; }
 
         [Display(Name = "Past Surgical Operaiton")]
         [Required(ErrorMessage = "Past Surgical Operation is required")]
-        [DisplayFormat(ConvertEmptyStringToNull = false)]
+        //[DisplayFormat(ConvertEmptyStringToNull = false)]
         public string pastSurgicalOperation { get; set; }
 
         [Display(Name = "Medical Concern")]
         [Required(ErrorMessage = "Medical Concern is required")]
-        [DisplayFormat(ConvertEmptyStringToNull = false)]
+        //[DisplayFormat(ConvertEmptyStringToNull = false)]
         public string medConcern { get; set; }
 
         [Display(Name = "Food Allergies")]
         [Required(ErrorMessage = "Food Allergy is required")]
-        [DisplayFormat(ConvertEmptyStringToNull = false)]
+        //[DisplayFormat(ConvertEmptyStringToNull = false)]
         public string foodAllergy { get; set; }
 
         [Display(Name = "Drug Allergies")]
         [Required(ErrorMessage = "Drug Allergy is required")]
-        [DisplayFormat(ConvertEmptyStringToNull = false)]
+        //[DisplayFormat(ConvertEmptyStringToNull = false)]
         public string drugAllergy { get; set; }
 
         [Display(Name = "Attending Doctor")]
         [Required(ErrorMessage = "Attending Doctor is required")]
-        [DisplayFormat(ConvertEmptyStringToNull = false)]
+        //[DisplayFormat(ConvertEmptyStringToNull = false)]
         public string attendingDoctor { get; set; }
 
         [Display(Name = "Visit Date")]
