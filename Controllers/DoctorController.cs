@@ -215,8 +215,8 @@ namespace MediSynthFinals.Controllers
                 return RedirectToAction("Index", "Doctor");
             }
             Console.WriteLine("NOTFOUND Patient ID: " + form.patientId);
-
-            return RedirectToAction("Patients", "Doctor");
+            var user = new DoctorDiagnosisViewModel();
+            return View(user);
         }
 
         // Add Medical History
