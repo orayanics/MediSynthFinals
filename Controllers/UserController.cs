@@ -39,6 +39,12 @@ namespace MediSynthFinals.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel logInfo)
         {
+            if (logInfo.Username == null)
+            {
+                ModelState.AddModelError("", "Username cannot be null.");
+                return View(logInfo);
+            }
+
             var result = await _signInManager.PasswordSignInAsync(logInfo.Username, logInfo.password, logInfo.RememberMe, false);
             if (result.Succeeded)
             {
