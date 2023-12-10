@@ -9,6 +9,7 @@ namespace MediSynthFinals.Models
         // FOR DATABASE REFERENCE
         [Key]
         public int userId { get; set; }
+
         [Required(ErrorMessage = "Username is required")]
         [Display(Name = "Username")]
         public string? username { get; set; }

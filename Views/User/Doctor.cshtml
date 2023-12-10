@@ -54,9 +54,6 @@
 
         <label>Department</label>
         <div class="input-container">
-@*             <select asp-for="department">
-                <option value="ADMIN" selected>System Admin</option>
-            </select> *@
             <select class="form-select-sm" asp-for="department" asp-items="Html.GetEnumSelectList(typeof(Department))"></select>
         </div>
 

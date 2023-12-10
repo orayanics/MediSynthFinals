@@ -132,7 +132,9 @@ namespace MediSynthFinals.Controllers
                 user.userRole = "PATIENT";
 
                 // For DATABASE
+                // UserInformation
                 _dbContext.UserInformation.Add(userInfo);
+                _dbContext.SaveChanges();
 
                 PatientCredentials patient = new PatientCredentials();
 
@@ -153,6 +155,7 @@ namespace MediSynthFinals.Controllers
                 patient.emergencyNum = "";
 
                 _dbContext.PatientCredentials.Add(patient);
+                _dbContext.SaveChanges();
 
                 var result = await _userManager.CreateAsync(user, userEnteredData.password);
 
