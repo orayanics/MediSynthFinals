@@ -7,27 +7,31 @@
 
     <p class="form-title"><img alt="MediSynth" src="~/imgs/logo.png" width="180" height="60"></p>
 
-<input hidden asp-for="patientId" value="@Model.patientId"/>
+    <input hidden asp-for="patientId" value="@Model.patientId" />
     <input hidden asp-for="rtypeId" value="Diagnosis" />
 
-     <div class="input-container">
+    <div class="input-container">
         <label asp-for="diagnosisText">Diagnosis</label>
         <input asp-for="diagnosisText" class="form-control" />
+        <span asp-validation-for="diagnosisText" class="text-danger"></span>
     </div>
 
-     <div class="input-container">
+    <div class="input-container">
         <label asp-for="additionalNote">Additional Notes</label>
         <input asp-for="additionalNote" class="form-control" />
+        <span asp-validation-for="additionalNote" class="text-danger"></span>
     </div>
 
-     <div class="input-container">
+    <div class="input-container">
         <label asp-for="attendingDoctor">Attending Doctor</label>
         <input asp-for="attendingDoctor" class="form-control" />
+        <span asp-validation-for="attendingDoctor" class="text-danger"></span>
     </div>
 
-     <div class="input-container">
+    <div class="input-container">
         <label asp-for="visitDate"></label>
         <input asp-for="visitDate" type="date" class="form-control" />
+        <span asp-validation-for="visitDate" class="text-danger"></span>
     </div>
 
     <br />
@@ -36,5 +40,5 @@
         <button type="submit" class="submit">Submit</button>
         <button type="button" class="submit" onclick="history.back();">Cancel</button>
     </center>
-    
+
 </form>
