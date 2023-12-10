@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using System.Dynamic;
 using System.Runtime.Versioning;
+using System.Web.Helpers;
 
 namespace MediSynthFinals.Controllers
 {
@@ -169,25 +170,60 @@ namespace MediSynthFinals.Controllers
 
         }
 
+        // FOR SEARCH
         [HttpPost]
-        public IActionResult AddDiagnosis(string searchString)
+        public IActionResult Diagnosis(string searchString)
         {
-            UserInformation users = _dbContext.UserInformation.FirstOrDefault(p => p.lName != null && p.lName.Contains(searchString));
+            var users = _dbContext.PatientCredentials.Where(r => r.lName == searchString).ToList();
 
-
-            if (!string.IsNullOrEmpty(searchString))
+            if (users != null)
             {
-                return View(users);
+                var viewModel = new DoctorDiagnosisViewModel
+                {
+                    PatientCredentials =  users
+                };
+                return View(viewModel);
             }
 
             return NotFound();
         }
 
-        [HttpGet]
-        public async Task <IActionResult> AddDiagnosis()
+        // FOR DIAGNOSIS SUBMISSION
+        [HttpPost]
+        public IActionResult AddDiagnosis(DoctorDiagnosisViewModel form)
         {
-            UserInformation user = _dbContext.UserInformation.FirstOrDefault(p => p.lName != null);
-            return View();
+            RecordDiagnosis info = _dbContext.RecordDiagnosis.FirstOrDefault(x => x.patientId == form.patientId);
+
+            if (info != null)
+            {
+                // For Database user.information
+                info.diagnosisText = form.diagnosisText;
+                info.additionalNote = form.additionalNote;
+                info.attendingDoctor = form.attendingDoctor;
+                info.visitDate = form.visitDate;
+                info.rtypeId = "Diagnosis";
+                info.patientId = form.patientId;
+                _dbContext.RecordDiagnosis.Add(info);
+                _dbContext.SaveChanges();
+
+                return RedirectToAction("Profile", "Doctor");
+            }
+            return NotFound();
+        }
+
+        [HttpGet]
+        public IActionResult Diagnosis()
+        {
+
+            var viewModel = new DoctorDiagnosisViewModel();
+            viewModel.PatientCredentials = _dbContext.PatientCredentials.ToList();
+            viewModel.visitDate = DateTime.Now;
+            if (viewModel.PatientCredentials != null)
+            {
+                return View(viewModel);
+            }
+
+            return NotFound();
         }
 
 

@@ -1,0 +1,70 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@model MediSynthFinals.ViewModel.DoctorDiagnosisViewModel
+@inject UserManager<UserCredentials> UserManager;
+
+<form asp-action="AddDiagnosis" method="post" class="form">
+    <center><h3>Add Diagnosis</h3></center>
+
+    <p class="form-title"><img alt="MediSynth" src="../imgs/logo.png" width="180" height="60"></p>
+
+@*     PATIENT SEARCH*@    
+
+    <form asp-action="Diagnosis" method="post" class="searchForm">
+        <input type="text" name="searchString" />
+        <input type="submit" value="Search" />
+    </form>
+
+    <div class="search-container">
+        <select class="form-control">
+            @foreach (var user in Model.PatientCredentials)
+            {
+                <option value="@user.lName">@user.patientRef.Substring(0,7) @user.lName @user.fName </option>
+            }
+        </select>
+    </div>
+
+
+    <div hidden class="form-group">
+        <label asp-for="diagnosisId"></label>
+        <input asp-for="diagnosisId" class="form-control" />
+    </div>
+
+     <div class="input-container">
+        <label asp-for="diagnosisText">Diagnosis</label>
+        <input asp-for="diagnosisText" class="form-control" />
+    </div>
+
+     <div class="input-container">
+        <label asp-for="additionalNote">Additional Notes</label>
+        <input asp-for="additionalNote" class="form-control" />
+    </div>
+
+     <div class="input-container">
+        <label asp-for="attendingDoctor">Attending Doctor</label>
+        <input asp-for="attendingDoctor" class="form-control" />
+    </div>
+
+     <div class="input-container">
+        <label asp-for="visitDate"></label>
+        <input asp-for="visitDate" type="date" class="form-control" />
+    </div>
+
+    <br />
+    <center>
+        @foreach (var user in Model.PatientCredentials)
+        {
+            if(user.lName == "")
+            {
+                <button type="submit" class="submit" asp-route-id="@user.patientId">Submit</button>
+
+            }
+            else
+            {
+                <button type="submit" class="submit" asp-route-id="@user.patientId">@user.patientId Submit</button>
+
+            }
+        }
+        <button type="button" class="submit" onclick="history.back();">Cancel</button>
+    </center>
+    
+</form>
