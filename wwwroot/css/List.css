@@ -11,9 +11,9 @@
     align-items: center;
     width: 85%; /* Set a minimum width */
     min-height: 200px; /* Set a minimum height */
-    border-radius: 40px;
+    border-radius: 5px;
     background-color: #D9D9D9;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)    ;
     padding: 20px;
 }
 
@@ -79,22 +79,16 @@ th {
 /* Add styling for the first row */
 table tr:first-child th {
     background-color: #FEC000; /* Background color for the first row */
-    border-radius: 20px; /* Rounded corners */
 }
 
 /* Color every other row and add border radius to cells */
 table tr:nth-child(odd) td {
-    background-color: white; /* Background color for odd rows */
-    border-radius: 30px; /* Rounded corners for odd rows */
-    padding: 10px; /* Padding for odd row cells */
-    border: 10px solid #ddd;
+    
 }
 
 table tr:nth-child(even) td {
     background-color: #FEC000; /* Background color for even rows */
-    border-radius: 30px; /* Rounded corners for even rows */
-    padding: 10px; /* Padding for even row cells */
-    border: 10px solid #ddd;
+   
 }
 
 /* Set the second row to white */

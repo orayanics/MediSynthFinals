@@ -38,7 +38,11 @@
     font-weight: 600;
     text-align: center;
     color: #000;
-    padding-bottom: 5px;
+    margin: 10px 0 5px;
+}
+
+.form-title img{
+    margin-bottom; -8px; 
 }
 
 .input-container {
