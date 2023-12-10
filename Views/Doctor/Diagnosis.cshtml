@@ -5,30 +5,6 @@
 
     <p class="form-title"><img alt="MediSynth" src="../imgs/logo.png" width="180" height="60"></p>
 
-@*     PATIENT SEARCH*@    
-
-   @*  <form asp-action="Diagnosis" method="post" class="searchForm">
-        <input type="text" name="searchString" />
-        <input type="submit" value="Search" />
-    </form>
-
-    <div class="search-container">
-        <select class="form-control">
-            <option>Select Patient</option>
-            @{
-                var num = "";
-                foreach (var user in Model.PatientCredentials)
-                {
-                    num = user.patientId.ToString();
-                    <option value="@user.lName">@user.lName @user.fName @user.patientRef.Substring(0,7)</option>
-                }
-            }
-            
-        </select> *@
-@*         <select asp-for="patientId" asp-items="new SelectList(Model.PatientCredentials, nameof(PatientCredentials.patientId), nameof(PatientCredentials.fName))">
-            <option value="">-- Select Patient --</option>
-        </select> *@
-@*     </div> *@
 <input hidden asp-for="patientId" value="@Model.patientId"/>
     <input hidden asp-for="rtypeId" value="Diagnosis" />
 
@@ -53,8 +29,8 @@
     </div>
 
     <br />
+
     <center>
-@*         <a asp-controller="Doctor" asp-action="Diagnosis" type="submit" class="btn btn-primary">Submit</a> *@
         <button type="submit" class="btn btn-primary">Submit</button>
         <button type="button" class="submit" onclick="history.back();">Cancel</button>
     </center>

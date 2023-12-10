@@ -1,5 +1,9 @@
 ﻿@model IEnumerable<PatientCredentials>;
 
+<form asp-action="Patients" method="post" class="searchForm">
+    <input type="text" name="searchString" />
+    <input type="submit" value="Search" />
+</form>
 <table class="table">
 
     <tr>
@@ -11,7 +15,6 @@
         <td>Full Name</td>
         <td>Diagnosis</td>
         <td>Medical History</td>
-
     </tr>
 
         @foreach (PatientCredentials user in Model)
@@ -19,9 +22,8 @@
                 <tr>
                 <td>@user.patientRef.Substring(0,7)</td>
                 <td>@user.fName @user.lName</td>
-            <td><a asp-action="Diagnosis" asp-route-id="@user.patientRef" class="btn btn-primary">Add Diagnosis</a></td>
-            <td><a asp-action="AddHistory" asp-route-id="@user.patientRef" class="btn btn-primary">Add Medical History</a></td>
+                <td><a asp-action="Diagnosis" asp-route-id="@user.patientRef" class="btn btn-primary">Add Diagnosis</a></td>
+                <td><a asp-action="AddHistory" asp-route-id="@user.patientRef" class="btn btn-primary">Add Medical History</a></td>
                 </tr>
-        
-    }
+        }
 </table>

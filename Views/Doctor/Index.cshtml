@@ -13,6 +13,10 @@
 
     <tr>
         <th colspan="7"><a asp-action="Diagnosis" asp-controller="Doctor"><button>Add Diagnosis</button></a></th>
+    </tr
+
+        <tr>
+        <th colspan="7"><a asp-action="Patients" asp-controller="Doctor"><button>Search Patient</button></a></th>
     </tr>
 
      @{
@@ -81,10 +85,11 @@
 
         @foreach (UserSchedule sched in Model.UserSchedule)
         {
-            <tr>
-                <td>@sched.scheduleDate</td>
-                <td>@sched.scheduleInfo</td>
-                <td><a asp-controller="Doctor" asp-action="DeleteSched" asp-route-id="@sched.scheduleId" type="submit" class="btn btn-primary">Delete</a></td>
-            </tr>        
+           
+                <tr>
+                    <td>@sched.scheduleDate</td>
+                    <td>@sched.scheduleInfo</td>
+                    <td><a asp-controller="Doctor" asp-action="DeleteSched" asp-route-id="@sched.scheduleId" type="submit" class="btn btn-primary">Delete</a></td>
+                </tr>
         }
 </table>

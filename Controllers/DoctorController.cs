@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.IdentityModel.Tokens;
 using System.Dynamic;
 using System.Runtime.Versioning;
 using System.Web.Helpers;
@@ -44,7 +45,9 @@ namespace MediSynthFinals.Controllers
                         var viewModel = new DoctorSchedViewModel
                         {
                             UserInformation = _dbContext.UserInformation.Where(x => x.username == username).ToList(),
-                            UserSchedule = _dbContext.UserSchedules.Where(x => x.userId == docId).ToList(),
+                            UserSchedule = _dbContext.UserSchedules.Where(x => x.userId == docId)
+                            .OrderBy(x => x.scheduleDate)
+                            .ToList(),
                         };
                         return View(viewModel);
                     }
@@ -90,11 +93,11 @@ namespace MediSynthFinals.Controllers
             sched.scheduleInfo = input.scheduleInfo;
             sched.userId = input.userId;
 
-            if (sched != null)
+            if (ModelState.IsValid)
             {
                 _dbContext.UserSchedules.Add(sched);
                 _dbContext.SaveChanges();
-                return RedirectToAction("Profile", "Doctor");
+                return RedirectToAction("Index", "Doctor");
             }
             return NotFound();
 
@@ -171,23 +174,6 @@ namespace MediSynthFinals.Controllers
 
         }
 
-        //// FOR SEARCH
-        //[HttpPost]
-        //public IActionResult Diagnosis(string searchString)
-        //{
-        //    var users = _dbContext.PatientCredentials.Where(r => r.lName == searchString).ToList();
-
-        //    if (users != null)
-        //    {
-        //        var viewModel = new DoctorDiagnosisViewModel
-        //        {
-        //            PatientCredentials =  users
-        //        };
-        //        return View(viewModel);
-        //    }
-
-        //    return NotFound();
-        //}
 
         [HttpGet]
         public IActionResult Diagnosis(string id)
@@ -228,19 +214,6 @@ namespace MediSynthFinals.Controllers
             return NotFound();
         }
 
-        // PATIENT LIST
-        public ActionResult Patients()
-        {
-            List<PatientCredentials> patients = _dbContext.PatientCredentials.ToList();
-            if (patients != null)
-            {
-             return View(patients);
-
-            }
-            return NotFound();
-
-        }
-
         // Add Medical History
         [HttpGet]
         public IActionResult AddHistory(string id)
@@ -274,6 +247,42 @@ namespace MediSynthFinals.Controllers
                 return RedirectToAction("Index", "Doctor");
             }
             Console.WriteLine("NOTFOUND Patient ID: " + edit.patientId);
+
+            return NotFound();
+        }
+
+        // PATIENT LIST
+        [HttpGet]
+        public ActionResult Patients()
+        {
+            List<PatientCredentials> patients = _dbContext.PatientCredentials.ToList();
+            if (patients != null)
+            {
+                return View(patients);
+
+            }
+            return NotFound();
+
+        }
+
+
+        //// FOR SEARCH
+        [HttpPost]
+        public IActionResult Patients(string searchString)
+        {
+            List<PatientCredentials> users = _dbContext.PatientCredentials.Where(r => r.lName == searchString || r.fName == searchString || r.patientRef.Contains(searchString)).ToList();
+            List<PatientCredentials> patients = _dbContext.PatientCredentials.ToList();
+
+            if (users != null)
+            {
+                if (searchString.IsNullOrEmpty())
+                {
+                    return View(patients);
+                }
+                else {
+                    return View(users);
+                }
+            }
 
             return NotFound();
         }
