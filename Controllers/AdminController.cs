@@ -45,7 +45,7 @@ namespace MediSynthFinals.Controllers
             var doctors = _dbContext.UserInformation.ToList().FirstOrDefault(x => x.email == email);
             return View(doctors);
         }
-
+ 
         // REMOVE DOCTOR
         [HttpPost]
         public async Task<IActionResult> RemoveDoctor(string email)
