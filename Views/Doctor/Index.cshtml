@@ -1,19 +1,17 @@
 ﻿@model MediSynthFinals.ViewModel.DoctorSchedViewModel;
+<link rel="stylesheet" href="~/css/List.css">
+<center>
+
+    <button class="submit"><a class="button-link" asp-action="Patients" asp-controller="Doctor">Search Patient</a></button>
+</center>
 
 <table class="table">
-    <link rel="stylesheet" href="~/css/List.css">
+    
 
     <tr>
         <th colspan="7">Doctor Details</th>
     </tr>
 
-    <tr>
-        <th colspan="7"><a asp-action="Schedule" asp-controller="Doctor"><button>Add Schedule</button></a></th>
-    </tr>
-
-        <tr>
-        <th colspan="7"><a asp-action="Patients" asp-controller="Doctor"><button>Search Patient</button></a></th>
-    </tr>
 
      @{
         string[] department = {
@@ -65,6 +63,11 @@
     </tr>
         
 </table>
+
+<center>
+    <button class="submit"><a class="button-link" asp-action="Schedule" asp-controller="Doctor">Add Schedule</a></button>
+
+</center>
 
 <table class="table">
 

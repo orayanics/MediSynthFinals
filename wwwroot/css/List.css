@@ -20,8 +20,10 @@
 .search-container {
     display: flex;
     align-items: center;
+    justify-content: center; /* Horizontally center */
     margin-bottom: 20px; /* Adjust spacing */
 }
+
 
 .level {
     display: flex;
@@ -89,3 +91,30 @@ table a {
     text-decoration: none; /* Remove underline */
     color: inherit; /* Use the default text color */
 }
+
+.submit {
+    margin-top: 8px;
+    display: block;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    background-color: #04A1E3;
+    color: #ffffff;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    width: 30%;
+    border-radius: 150px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adding shadow */
+    border: none; /* Remove outline */
+    text-decoration: none; /* Remove text decoration */
+    outline: none; /* Remove outline on focus */
+}
+
+    .submit .button-link {
+        color: inherit; /* Inherit parent button color */
+        text-decoration: none; /* Remove default link underline */
+    }
+

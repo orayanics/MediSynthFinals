@@ -3,8 +3,13 @@
 <link rel="stylesheet" href="~/css/List.css" />
 
 <form asp-action="Patients" method="post" class="searchForm">
-    <input type="text" name="searchString" />
-    <input type="submit" value="Search" />
+    <div class="search-container">
+        <center>
+            <input type="text" name="searchString" placeholder="Search Patient Database" class="input">
+            <input type="submit" value="Search" />
+           
+        </center>
+    </div>
 </form>
 <table class="table">
 

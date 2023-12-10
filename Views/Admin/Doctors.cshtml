@@ -2,13 +2,16 @@
 @model IEnumerable<UserInformation>;
 @inject UserManager<UserCredentials> UserManager;
 
+
+<link rel="stylesheet" href="~/css/List.css">
+<center>
+    <button class="submit"><a class="button-link" asp-controller="User" asp-action="Doctor">Register Doctor</a></button>
+</center>
+
 <table class="table">
 
     <tr>
         <th colspan="7">Doctor</th>
-    </tr>
-    <tr>
-        <th colspan="7"><a asp-controller="User" asp-action="Doctor">Register Doctor</a></th>
     </tr>
 
     <tr>

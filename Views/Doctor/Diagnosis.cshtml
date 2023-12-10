@@ -1,5 +1,7 @@
 ﻿@model MediSynthFinals.ViewModel.DoctorDiagnosisViewModel
 
+<link rel="stylesheet" href="~/css/form.css">
+
 <form asp-action="Diagnosis" method="post" class="form">
     <center><h3>Add Diagnosis</h3></center>
 
@@ -31,7 +33,7 @@
     <br />
 
     <center>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="submit">Submit</button>
         <button type="button" class="submit" onclick="history.back();">Cancel</button>
     </center>
     
