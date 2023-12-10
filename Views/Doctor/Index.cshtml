@@ -1,4 +1,7 @@
 ﻿@model MediSynthFinals.ViewModel.DoctorSchedViewModel;
+
+
+
 <table class="table">
     <link rel="stylesheet" href="~/css/List.css">
 
@@ -8,6 +11,10 @@
 
     <tr>
         <th colspan="7"><a asp-action="Schedule" asp-controller="Doctor"><button>Add Schedule</button></a></th>
+    </tr>
+
+    <tr>
+        <th colspan="7"><a asp-action="AddDiagnosis" asp-controller="Doctor"><button>Add Diagnosis</button></a></th>
     </tr>
 
      @{

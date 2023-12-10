@@ -5,7 +5,9 @@ using MediSynthFinals.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System.Dynamic;
+using System.Runtime.Versioning;
 
 namespace MediSynthFinals.Controllers
 {
@@ -19,10 +21,12 @@ namespace MediSynthFinals.Controllers
         public DoctorController(
             MediDbContext dbContext,
             UserManager<UserCredentials> userManager
+
             )
         {
             _dbContext = dbContext;
             _userManager = userManager;
+
         }
 
         public ActionResult Index()
@@ -61,7 +65,7 @@ namespace MediSynthFinals.Controllers
             {
                 foreach (var item in doctors)
                 {
-                    if(item.username == username)
+                    if (item.username == username)
                     {
                         var docId = item.userId;
                         UserSchedule? docsched = _dbContext.UserSchedules.FirstOrDefault(UserSchedule => UserSchedule.scheduleId == docId);
@@ -70,7 +74,7 @@ namespace MediSynthFinals.Controllers
                     }
                 }
 
-                
+
             }
             return NotFound();
 
@@ -165,7 +169,28 @@ namespace MediSynthFinals.Controllers
 
         }
 
+        [HttpPost]
+        public IActionResult AddDiagnosis(string searchString)
+        {
+            UserInformation users = _dbContext.UserInformation.FirstOrDefault(p => p.lName != null && p.lName.Contains(searchString));
+
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                return View(users);
+            }
+
+            return NotFound();
+        }
+
+        [HttpGet]
+        public async Task <IActionResult> AddDiagnosis()
+        {
+            UserInformation user = _dbContext.UserInformation.FirstOrDefault(p => p.lName != null);
+            return View();
+        }
+
+
     }
-
-
 }
+
