@@ -1,0 +1,26 @@
+﻿@model IEnumerable<RecordDiagnosis>;
+
+<table class="table">
+
+    <tr>
+        <th colspan="7">Doctor</th>
+    </tr>
+
+    <tr>
+        <td>Attending Doctor</td>
+        <td>Diagnosis</td>
+        <td>Additional Note</td>
+        <td>Visit Date</td>
+    </tr>
+
+    @foreach (RecordDiagnosis user in Model)
+    {
+        <tr>
+            <td>@user.attendingDoctor</td>
+            <td>@user.diagnosisText</td>
+            <td>@user.additionalNote</td>
+            <td>@user.visitDate.ToShortDateString()</td>
+
+        </tr>
+    }
+</table>

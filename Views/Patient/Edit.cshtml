@@ -6,13 +6,13 @@
 <body>
     <form method="post" asp-action="Edit" class="form">
         <p class="form-title"><img alt="MediSynth" src="../imgs/logo.png" width="120" height="40"></p>
-        <p class="patient-info">Patient No.</p>
+        <p class="patient-info">Patient Reference No.</p>
         <div class="center">
-            <p class="patient-ID">3312983</p>
+            <p class="patient-ID">@Model.patientRef.Substring(0,7)</p>
         </div>
         <p class="patient-info">Patient Name</p>
         <div class="center">
-            <p class="patient-ID">Juan De la Cruz</p>
+            <p class="patient-ID">@Model.fName @Model.lName</p>
         </div>
         <p class="form-title">Medical History</p>
         @*      <div class="input-container">

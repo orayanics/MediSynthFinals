@@ -41,8 +41,12 @@ namespace MediSynthFinals.Controllers
         {
             var viewModel = new DoctorSchedViewModel
             {
-                UserInformation = _dbContext.UserInformation.Where(x => x.userId == id).ToList(),
-                UserSchedule = _dbContext.UserSchedules.Where(x => x.userId == id).ToList(),
+                UserInformation = _dbContext.UserInformation.Where(x => x.userId == id)
+                .OrderBy(x => x.department)
+                .ToList(),
+                UserSchedule = _dbContext.UserSchedules.Where(x => x.userId == id)
+                .OrderBy(x => x.scheduleDate)
+                .ToList(),
             };
 
             if (viewModel != null)

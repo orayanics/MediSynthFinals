@@ -6,7 +6,8 @@
 <body>
     <form method="post" asp-action="AddHistory" class="form">
         <p class="form-title"><img alt="MediSynth" src="../imgs/logo.png" width="120" height="40"></p>
-        <p class="patient-info">Patient No.</p>
+        <h1>Medical History Form</h1>
+@*         <p class="patient-info">Patient No.</p>
         <div class="center">
             <p class="patient-ID">3312983</p>
         </div>
@@ -15,11 +16,7 @@
             <p class="patient-ID">Juan De la Cruz</p>
         </div>
         <p class="form-title">Medical History</p>
-        @*     <div class="mb-3">
-        <label asp-for="Id" class="form-label">Id</label>
-        <input asp-for="Id" class="form-control" value="@ViewBag.increment" placeholder="@ViewBag.increment">
-        </div> *@
-
+ *@
         <div class="input-container">
             <label asp-for="pastMedHistory" class="form-label"></label>
             <input asp-for="pastMedHistory" class="form-control">

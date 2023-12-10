@@ -22,8 +22,10 @@
                 <tr>
                 <td>@user.patientRef.Substring(0,7)</td>
                 <td>@user.fName @user.lName</td>
-                <td><a asp-action="Diagnosis" asp-route-id="@user.patientRef" class="btn btn-primary">Add Diagnosis</a></td>
-                <td><a asp-action="AddHistory" asp-route-id="@user.patientRef" class="btn btn-primary">Add Medical History</a></td>
+                <td><a asp-action="Diagnosis" asp-route-id="@user.patientRef" class="btn btn-primary">Add</a>
+                    <a asp-action="ViewDiagnosis" asp-route-id="@user.patientRef" class="btn btn-primary">View</a>
+                </td>
+                <td><a asp-action="AddHistory" asp-route-id="@user.patientRef" class="btn btn-primary">Add</a></td>
                 </tr>
         }
 </table>

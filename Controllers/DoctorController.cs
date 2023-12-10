@@ -287,6 +287,20 @@ namespace MediSynthFinals.Controllers
             return NotFound();
         }
 
+        // VIEW PATIENT DIAGNOSIS LIST
+        [HttpGet]
+        public ActionResult ViewDiagnosis()
+        {
+            List<RecordDiagnosis> patients = _dbContext.RecordDiagnosis.ToList();
+            if (patients != null)
+            {
+                return View(patients);
+
+            }
+            return NotFound();
+
+        }
+
 
 
     }
