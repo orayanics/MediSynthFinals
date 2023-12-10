@@ -72,6 +72,21 @@
     .rounded-containercopy:hover {
         cursor: pointer;
     }
+    .rounded-containercopy:hover {
+        cursor: pointer;
+    }
+
+        .rounded-containercopy:hover::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.2); /* Adjust the opacity or color as needed */
+            border-radius: 40px;
+            pointer-events: none; /* Allow interactions with the underlying elements */
+        }
 
 .patient-info {
     text-align: center;

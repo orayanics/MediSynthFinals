@@ -72,28 +72,17 @@ th {
     background-color: #f2f2f2;
 }
 
-    th:nth-child(2),
-    td:nth-child(2) {
-        width: 20%; /* Adjust the width as needed */
-    }
-/* Add styling for the first row */
+th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    padding-left: 20px;
+    background-color: #f2f2f2; /* Default background color for headers */
+}
+
+/* Styling for the first row headers */
 table tr:first-child th {
     background-color: #FEC000; /* Background color for the first row */
-}
-
-/* Color every other row and add border radius to cells */
-table tr:nth-child(odd) td {
-    
-}
-
-table tr:nth-child(even) td {
-    background-color: #FEC000; /* Background color for even rows */
-   
-}
-
-/* Set the second row to white */
-table tr:nth-child(2) td {
-    background-color: white;
 }
 
 table a {

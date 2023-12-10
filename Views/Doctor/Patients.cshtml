@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<PatientCredentials>;
 
+<link rel="stylesheet" href="~/css/List.css" />
+
 <form asp-action="Patients" method="post" class="searchForm">
     <input type="text" name="searchString" />
     <input type="submit" value="Search" />

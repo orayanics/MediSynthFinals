@@ -48,8 +48,15 @@
                 <div class="rounded-text">Edit Schedule</div>
             </div>
             </a>
-            
         </div>
+            <div class="side-by-side-container">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Doctor" asp-action="Patients">
+                    <div class="rounded-containercopy">
+                        <img src="~/imgs/search-heart.png" alt="Medisynth Logo" width="120px" height="120px">
+                        <div class="rounded-text">Profile</div>
+                    </div>
+                </a>
+            </div>
     }
     @if (User.IsInRole("PATIENT"))
     {
@@ -67,6 +74,15 @@
             </div>
              </a>
         </div>
+            <div class="side-by-side-container">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Patient" asp-action="Doctors">
+                    <div class="rounded-containercopy">
+                        <img src="~/imgs/stethoscope.png" alt="Medisynth Logo" width="120px" height="120px">
+                        <div class="rounded-text">Doctors</div>
+                    </div>
+                </a>
+
+            </div>
     }
     @if (User.IsInRole("ADMIN"))
     {
