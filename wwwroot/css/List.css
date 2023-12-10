@@ -20,8 +20,10 @@
 .search-container {
     display: flex;
     align-items: center;
+    justify-content: center; /* Horizontally center */
     margin-bottom: 20px; /* Adjust spacing */
 }
+
 
 .level {
     display: flex;
@@ -72,31 +74,47 @@ th {
     background-color: #f2f2f2;
 }
 
-    th:nth-child(2),
-    td:nth-child(2) {
-        width: 20%; /* Adjust the width as needed */
-    }
-/* Add styling for the first row */
+th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    padding-left: 20px;
+    background-color: #f2f2f2; /* Default background color for headers */
+}
+
+/* Styling for the first row headers */
 table tr:first-child th {
     background-color: #FEC000; /* Background color for the first row */
-}
-
-/* Color every other row and add border radius to cells */
-table tr:nth-child(odd) td {
-    
-}
-
-table tr:nth-child(even) td {
-    background-color: #FEC000; /* Background color for even rows */
-   
-}
-
-/* Set the second row to white */
-table tr:nth-child(2) td {
-    background-color: white;
 }
 
 table a {
     text-decoration: none; /* Remove underline */
     color: inherit; /* Use the default text color */
 }
+
+.submit {
+    margin-top: 8px;
+    display: block;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    background-color: #04A1E3;
+    color: #ffffff;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    width: 30%;
+    border-radius: 150px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adding shadow */
+    border: none; /* Remove outline */
+    text-decoration: none; /* Remove text decoration */
+    outline: none; /* Remove outline on focus */
+}
+
+    .submit .button-link {
+        color: inherit; /* Inherit parent button color */
+        text-decoration: none; /* Remove default link underline */
+    }
+

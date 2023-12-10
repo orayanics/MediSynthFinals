@@ -25,12 +25,6 @@ namespace MediSynthFinals.Controllers
             _userManager = userManager;
         }
 
-        public IActionResult Index()
-        {
-            return View(_dbContext.PatientCredentials);
-        }
-
-
         public IActionResult Doctors()
         {
             return View(_dbContext.UserInformation.Where(x => x.department != "PATIENT"));
@@ -41,8 +35,12 @@ namespace MediSynthFinals.Controllers
         {
             var viewModel = new DoctorSchedViewModel
             {
-                UserInformation = _dbContext.UserInformation.Where(x => x.userId == id).ToList(),
-                UserSchedule = _dbContext.UserSchedules.Where(x => x.userId == id).ToList(),
+                UserInformation = _dbContext.UserInformation.Where(x => x.userId == id)
+                .OrderBy(x => x.department)
+                .ToList(),
+                UserSchedule = _dbContext.UserSchedules.Where(x => x.userId == id)
+                .OrderBy(x => x.scheduleDate)
+                .ToList(),
             };
 
             if (viewModel != null)
@@ -76,7 +74,7 @@ namespace MediSynthFinals.Controllers
             return NotFound();
         }
 
-        public IActionResult Profile()
+        public IActionResult Index()
         {
             var identityID = _userManager.GetUserId(User); // get user Id
             Console.WriteLine("USER ID" + identityID);
@@ -177,42 +175,6 @@ namespace MediSynthFinals.Controllers
                 patient.patientId = identityID.ToString();
 
                 _dbContext.RecordMedHistory.Add(patient);
-                _dbContext.SaveChanges();
-                return RedirectToAction("Profile", "Patient");
-
-            }
-
-            return NotFound();
-        }
-
-        // Add Diagnosis
-        // TO DO: Transfer to doctor controller
-        [HttpGet]
-        public IActionResult Diagnosis()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult Diagnosis(RecordDiagnosis edit)
-        {
-            var identityID = _userManager.GetUserId(User); // get user Id
-            Console.WriteLine("USER ID" + identityID);
-
-            PatientCredentials refNum = _dbContext.PatientCredentials.FirstOrDefault(r => r.patientRef == identityID);
-
-            if (refNum != null)
-            {
-                // For DATABASE
-                RecordDiagnosis patient = new RecordDiagnosis();
-                patient.diagnosisText = edit.diagnosisText;
-                patient.additionalNote = edit.additionalNote;
-                patient.attendingDoctor = edit.attendingDoctor;
-                patient.visitDate = edit.visitDate;
-                patient.rtypeId = "Diagnosis";
-                patient.patientId = identityID.ToString();
-
-                _dbContext.RecordDiagnosis.Add(patient);
                 _dbContext.SaveChanges();
                 return RedirectToAction("Profile", "Patient");
 

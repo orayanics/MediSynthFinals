@@ -1,0 +1,38 @@
+﻿@model IEnumerable<PatientCredentials>;
+
+<link rel="stylesheet" href="~/css/List.css" />
+
+<form asp-action="Patients" method="post" class="searchForm">
+    <div class="search-container">
+        <center>
+            <input type="text" name="searchString" placeholder="Search Patient Database" class="input">
+            <input type="submit" value="Search" />
+           
+        </center>
+    </div>
+</form>
+<table class="table">
+
+    <tr>
+        <th colspan="7">Doctor</th>
+    </tr>
+
+    <tr>
+        <td>Reference</td>
+        <td>Full Name</td>
+        <td>Diagnosis</td>
+        <td>Medical History</td>
+    </tr>
+
+        @foreach (PatientCredentials user in Model)
+        {
+                <tr>
+                <td>@user.patientRef.Substring(0,7)</td>
+                <td>@user.fName @user.lName</td>
+                <td><a asp-action="Diagnosis" asp-route-id="@user.patientRef" class="btn btn-primary">Add</a>
+                    <a asp-action="ViewDiagnosis" asp-route-id="@user.patientRef" class="btn btn-primary">View</a>
+                </td>
+                <td><a asp-action="AddHistory" asp-route-id="@user.patientRef" class="btn btn-primary">Add</a></td>
+                </tr>
+        }
+</table>

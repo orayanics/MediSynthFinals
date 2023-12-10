@@ -6,8 +6,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.IdentityModel.Tokens;
 using System.Dynamic;
 using System.Runtime.Versioning;
+using System.Web.Helpers;
 
 namespace MediSynthFinals.Controllers
 {
@@ -43,7 +45,9 @@ namespace MediSynthFinals.Controllers
                         var viewModel = new DoctorSchedViewModel
                         {
                             UserInformation = _dbContext.UserInformation.Where(x => x.username == username).ToList(),
-                            UserSchedule = _dbContext.UserSchedules.Where(x => x.userId == docId).ToList(),
+                            UserSchedule = _dbContext.UserSchedules.Where(x => x.userId == docId)
+                            .OrderBy(x => x.scheduleDate)
+                            .ToList(),
                         };
                         return View(viewModel);
                     }
@@ -53,6 +57,7 @@ namespace MediSynthFinals.Controllers
             return NotFound();
 
         }
+
 
         [HttpGet]
         public IActionResult Schedule()
@@ -88,11 +93,11 @@ namespace MediSynthFinals.Controllers
             sched.scheduleInfo = input.scheduleInfo;
             sched.userId = input.userId;
 
-            if (sched != null)
+            if (ModelState.IsValid)
             {
                 _dbContext.UserSchedules.Add(sched);
                 _dbContext.SaveChanges();
-                return RedirectToAction("Profile", "Doctor");
+                return RedirectToAction("Index", "Doctor");
             }
             return NotFound();
 
@@ -169,26 +174,133 @@ namespace MediSynthFinals.Controllers
 
         }
 
-        [HttpPost]
-        public IActionResult AddDiagnosis(string searchString)
+
+        [HttpGet]
+        public IActionResult Diagnosis(string id)
         {
-            UserInformation users = _dbContext.UserInformation.FirstOrDefault(p => p.lName != null && p.lName.Contains(searchString));
-
-
-            if (!string.IsNullOrEmpty(searchString))
+            var patient = _dbContext.PatientCredentials.FirstOrDefault(p => p.patientRef == id);
+            var date = DateTime.Now;
+            if (patient != null)
             {
-                return View(users);
+                // Create a view model for the diagnosis form
+                var diagnosisViewModel = new DoctorDiagnosisViewModel
+                {
+                    patientId = patient.patientRef,
+                    visitDate = date
+                    // Add other properties as needed
+                };
+
+                return View(diagnosisViewModel);
+            }
+            return NotFound();
+
+        }
+
+        // FOR DIAGNOSIS SUBMISSION
+        [HttpPost]
+        public IActionResult Diagnosis(RecordDiagnosis form)
+        {
+
+            if (ModelState.IsValid)
+            {
+                Console.WriteLine("Patient ID: " + form.patientId);
+               
+                _dbContext.RecordDiagnosis.Add(form);
+                _dbContext.SaveChanges();
+                return RedirectToAction("Index", "Doctor");
+            }
+            Console.WriteLine("NOTFOUND Patient ID: " + form.patientId);
+
+            return NotFound();
+        }
+
+        // Add Medical History
+        [HttpGet]
+        public IActionResult AddHistory(string id)
+        {
+            var patient = _dbContext.PatientCredentials.FirstOrDefault(p => p.patientRef == id);
+            var date = DateTime.Now;
+            if (patient != null)
+            {
+                // Create a view model for the diagnosis form
+                var diagnosisViewModel = new DoctorMedHisViewModel
+                {
+                    patientId = patient.patientRef,
+                    visitDate = date
+                    // Add other properties as needed
+                };
+
+                return View(diagnosisViewModel);
+            }
+            return NotFound();
+        }
+
+        [HttpPost]
+        public IActionResult AddHistory(RecordMedHistory edit)
+        {
+            if (ModelState.IsValid)
+            {
+                Console.WriteLine("Patient ID: " + edit.patientId);
+
+                _dbContext.RecordMedHistory.Add(edit);
+                _dbContext.SaveChanges();
+                return RedirectToAction("Index", "Doctor");
+            }
+            Console.WriteLine("NOTFOUND Patient ID: " + edit.patientId);
+
+            return NotFound();
+        }
+
+        // PATIENT LIST
+        [HttpGet]
+        public ActionResult Patients()
+        {
+            List<PatientCredentials> patients = _dbContext.PatientCredentials.ToList();
+            if (patients != null)
+            {
+                return View(patients);
+
+            }
+            return NotFound();
+
+        }
+
+
+        //// FOR SEARCH
+        [HttpPost]
+        public IActionResult Patients(string searchString)
+        {
+            List<PatientCredentials> users = _dbContext.PatientCredentials.Where(r => r.lName == searchString || r.fName == searchString || r.patientRef.Contains(searchString)).ToList();
+            List<PatientCredentials> patients = _dbContext.PatientCredentials.ToList();
+
+            if (users != null)
+            {
+                if (searchString.IsNullOrEmpty())
+                {
+                    return View(patients);
+                }
+                else {
+                    return View(users);
+                }
             }
 
             return NotFound();
         }
 
+        // VIEW PATIENT DIAGNOSIS LIST
         [HttpGet]
-        public async Task <IActionResult> AddDiagnosis()
+        public ActionResult ViewDiagnosis()
         {
-            UserInformation user = _dbContext.UserInformation.FirstOrDefault(p => p.lName != null);
-            return View();
+            List<RecordDiagnosis> patients = _dbContext.RecordDiagnosis.ToList();
+            if (patients != null)
+            {
+                return View(patients);
+
+            }
+            return NotFound();
+
         }
+
 
 
     }

@@ -1,21 +1,17 @@
 ﻿@model MediSynthFinals.ViewModel.DoctorSchedViewModel;
+<link rel="stylesheet" href="~/css/List.css">
+<center>
 
-
+    <button class="submit"><a class="button-link" asp-action="Patients" asp-controller="Doctor">Search Patient</a></button>
+</center>
 
 <table class="table">
-    <link rel="stylesheet" href="~/css/List.css">
+    
 
     <tr>
         <th colspan="7">Doctor Details</th>
     </tr>
 
-    <tr>
-        <th colspan="7"><a asp-action="Schedule" asp-controller="Doctor"><button>Add Schedule</button></a></th>
-    </tr>
-
-    <tr>
-        <th colspan="7"><a asp-action="AddDiagnosis" asp-controller="Doctor"><button>Add Diagnosis</button></a></th>
-    </tr>
 
      @{
         string[] department = {
@@ -68,6 +64,11 @@
         
 </table>
 
+<center>
+    <button class="submit"><a class="button-link" asp-action="Schedule" asp-controller="Doctor">Add Schedule</a></button>
+
+</center>
+
 <table class="table">
 
     <tr>
@@ -83,10 +84,11 @@
 
         @foreach (UserSchedule sched in Model.UserSchedule)
         {
-            <tr>
-                <td>@sched.scheduleDate</td>
-                <td>@sched.scheduleInfo</td>
-                <td><a asp-controller="Doctor" asp-action="DeleteSched" asp-route-id="@sched.scheduleId" type="submit" class="btn btn-primary">Delete</a></td>
-            </tr>        
+           
+                <tr>
+                    <td>@sched.scheduleDate</td>
+                    <td>@sched.scheduleInfo</td>
+                    <td><a asp-controller="Doctor" asp-action="DeleteSched" asp-route-id="@sched.scheduleId" type="submit" class="btn btn-primary">Delete</a></td>
+                </tr>
         }
 </table>
