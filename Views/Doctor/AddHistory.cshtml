@@ -61,9 +61,9 @@
         </center>
     </form>
     <script>
-     
+
         function showValidationMessage(input) {
-            hideValidationMessage(input); 
+            hideValidationMessage(input);
             const validationMessage = "This field is required.";
             const div = document.createElement("div");
             div.className = "alert alert-danger";
@@ -72,16 +72,16 @@
             input.dataset.validationMessage = div;
         }
 
-    
+
         function hideValidationMessage(input) {
             const existingDiv = input.dataset.validationMessage;
             if (existingDiv) {
-                existingDiv.remove(); 
+                existingDiv.remove();
                 input.dataset.validationMessage = null;
             }
         }
 
-        
+
         function validateForm(event) {
             const form = document.querySelector(".form");
             const inputs = form.querySelectorAll(".form-control");
@@ -98,7 +98,7 @@
             });
 
             if (!isValid) {
-                event.preventDefault(); 
+                event.preventDefault();
             }
 
             return isValid;
