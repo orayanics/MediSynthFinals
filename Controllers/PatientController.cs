@@ -156,7 +156,7 @@ namespace MediSynthFinals.Controllers
         public IActionResult AddHistory(RecordMedHistory edit)
         {
 
-            if(ModelState.IsValid)
+            if(edit != null)
             {
                 var identityID = _userManager.GetUserId(User); // get user Id
 
@@ -178,7 +178,7 @@ namespace MediSynthFinals.Controllers
 
                     _dbContext.RecordMedHistory.Add(patient);
                     _dbContext.SaveChanges();
-                    return RedirectToAction("Profile", "Patient");
+                    return RedirectToAction("Profile", "Index");
                 }
             }
             return View(edit);
