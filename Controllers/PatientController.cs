@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.Differencing;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.IdentityModel.Tokens;
 using System.Dynamic;
 
@@ -154,33 +155,33 @@ namespace MediSynthFinals.Controllers
         [HttpPost]
         public IActionResult AddHistory(RecordMedHistory edit)
         {
-            var identityID = _userManager.GetUserId(User); // get user Id
-            Console.WriteLine("USER ID" + identityID);
 
-            PatientCredentials refNum = _dbContext.PatientCredentials.FirstOrDefault(r => r.patientRef == identityID);
-
-            if (refNum != null)
+            if(ModelState.IsValid)
             {
-                // For DATABASE
-                RecordMedHistory patient = new RecordMedHistory();
-                patient.pastHospitalization = edit.pastHospitalization;
-                patient.pastMedHistory = edit.pastMedHistory;
-                patient.pastSurgicalOperation = edit.pastSurgicalOperation;
-                patient.medConcern = edit.medConcern;
-                patient.drugAllergy = edit.drugAllergy;
-                patient.foodAllergy = edit.foodAllergy;
-                patient.attendingDoctor = edit.attendingDoctor;
-                patient.visitDate = edit.visitDate;
-                patient.rtypeId = "MedicalHistory";
-                patient.patientId = identityID.ToString();
+                var identityID = _userManager.GetUserId(User); // get user Id
 
-                _dbContext.RecordMedHistory.Add(patient);
-                _dbContext.SaveChanges();
-                return RedirectToAction("Profile", "Patient");
+                PatientCredentials refNum = _dbContext.PatientCredentials.FirstOrDefault(r => r.patientRef == identityID);
+                if (refNum != null)
+                {
+                    // For DATABASE
+                    RecordMedHistory patient = new RecordMedHistory();
+                    patient.pastHospitalization = edit.pastHospitalization;
+                    patient.pastMedHistory = edit.pastMedHistory;
+                    patient.pastSurgicalOperation = edit.pastSurgicalOperation;
+                    patient.medConcern = edit.medConcern;
+                    patient.drugAllergy = edit.drugAllergy;
+                    patient.foodAllergy = edit.foodAllergy;
+                    patient.attendingDoctor = edit.attendingDoctor;
+                    patient.visitDate = edit.visitDate;
+                    patient.rtypeId = "MedicalHistory";
+                    patient.patientId = identityID.ToString();
 
+                    _dbContext.RecordMedHistory.Add(patient);
+                    _dbContext.SaveChanges();
+                    return RedirectToAction("Profile", "Patient");
+                }
             }
-
-            return NotFound();
+            return View(edit);
         }
 
     }

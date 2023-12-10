@@ -118,7 +118,6 @@ namespace MediSynthFinals.Controllers
                 {
                     await _userManager.DeleteAsync(find);
                     await _userManager.RemoveFromRoleAsync(find, "PATIENT");
-
                     return RedirectToAction("Patients", "Admin");
                 }
                 else
