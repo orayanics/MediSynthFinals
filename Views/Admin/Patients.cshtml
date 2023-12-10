@@ -1,48 +1,58 @@
 ﻿@model IEnumerable<PatientCredentials>;
 
-<p>INSERT SEARCH BAR HERE</p>
-<table class="table">
+<link rel="stylesheet" href="~/css/List.css" />
 
-
-    <tr>
-        <th colspan="8">Patient</th>
-    </tr>
-
-    <tr>
-        <td>Name</td>
-        <td>Address</td>
-        <td>Region</td>
-        <td>City</td>
-        <td>Gender</td>
-        <td>Birthdate</td>
-        <td>Contact Number</td>
-        <td>Delete</td>
-
-    </tr>
-    @foreach (PatientCredentials pa in Model)
-    {
-        <tr>
-            @{
-                var uppercase = pa.patientRef.ToUpper();
+<div class="table-container">
+  
+    <div class="search-container">
+        <center>
+            <input type="text" name="text" placeholder="Search Patient Database" class="input">
+            <img src="../imgs/search.png" alt="Search Icon" height="19px" width="19px">
+        </center>
+        
+    </div>
+    <table class="custom-table">
+        <thead>
+            <tr>
+                <th colspan="8">Patient</th>
+            </tr>
+            <tr>
+                <th>Patient Code</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Region</th>
+                <th>City</th>
+                <th>Gender</th>
+                <th>Birthdate</th>
+                <th>Contact Number</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (PatientCredentials pa in Model)
+            {
+                <tr>
+                    @{
+                        var uppercase = pa.patientRef.ToUpper();
+                    }
+                    <td>
+                        <a class="nav-link" asp-area="" asp-route-id="@pa.patientId" asp-controller="Patient" asp-action="Details">@pa.patientRef</a>
+                    </td>
+                    <td>@pa.fName @pa.lName</td>
+                    <td>@pa.address</td>
+                    <td>@pa.region</td>
+                    <td>@pa.city</td>
+                    <td>@pa.gender</td>
+                    <td>@pa.birthdate</td>
+                    <td>@pa.contactNum</td>
+                    <td>
+                        <a asp-controller="Admin"
+                           asp-action="ConfirmPatient" asp-route-id="@pa.patientId" class="btn btn-primary">
+                            Remove
+                        </a>
+                    </td>
+                </tr>
             }
-            <td>
-                <a class="nav-link" asp-area="" asp-route-id="@pa.patientId" asp-controller="Patient" asp-action="Details">@pa.patientRef</a>
-            </td>
-            <td>@pa.fName @pa.lName</td>
-            <td>@pa.address</td>
-            <td>@pa.region</td>
-            <td>@pa.city</td>
-            <td>@pa.gender</td>
-            <td>@pa.birthdate</td>
-            <td>@pa.contactNum</td>
-            <td>
-                    <a asp-controller="Admin"
-                   asp-action="ConfirmPatient" asp-route-id="@pa.patientId" class="btn btn-primary">
-                        Remove
-                    </a>
-            </td>
-
-
-        </tr>
-    }
-</table>
+        </tbody>
+    </table>
+</div>

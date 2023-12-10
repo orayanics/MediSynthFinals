@@ -1,20 +1,16 @@
-﻿@model IEnumerable<UserInformation>;
-
+﻿@model MediSynthFinals.ViewModel.DoctorSchedViewModel;
 <table class="table">
+    <link rel="stylesheet" href="~/css/List.css">
 
     <tr>
-        <th colspan="7">Doctor</th>
+        <th colspan="7">Doctor Details</th>
     </tr>
 
     <tr>
-        <td>Full Name</td>
-        <td>Email</td>
-        <td>Contact Number</td>
-        <td>Department</td>
-        <td>Schedule</td>
-
+        <th colspan="7"><a asp-action="Schedule" asp-controller="Doctor"><button>Add Schedule</button></a></th>
     </tr>
-    @{
+
+     @{
         string[] department = {
     "Anesthesiology",
     "Cardiology",
@@ -39,29 +35,51 @@
     "Rheumatology",
     "Surgery",
     "Urology"
-        };
-   
-    foreach (UserInformation doc in Model)
-    {
-        // Filters to show only doctors no admins
-        if(!(doc.department.ToString() == "PATIENT"))
+    };
+    }
+    <tr>
+        <td>Full Name</td>
+        <td>Email</td>
+        <td>Contact Number</td>
+        <td>Department</td>
+    </tr>
+        <tr>
+        @foreach (UserInformation doc in Model.UserInformation)
         {
-            <tr>
                 <td>@doc.fName @doc.lName</td>
                 <td>@doc.email</td>
                 <td>@doc.contactNum</td>
                 <td>
-                        @{
-                            var index = doc.department;
-                            var fromArray = department.ElementAt(int.Parse(index));
-                            @fromArray
-                        }
-                    
+                    @{
+                        var index = doc.department;
+                        var fromArray = department.ElementAt(int.Parse(index));
+                        @fromArray
+                    }
                 </td>
-                <td><a asp-action="Details" asp-route-id="@doc.userId" class="btn btn-primary">View Schedule</a></td>
-            </tr>
         }
+    </tr>
+        
+</table>
 
-    }
-}
+<table class="table">
+
+    <tr>
+        <th colspan="3">Schedule</th>
+    </tr>
+
+    <tr>
+        <td>Day</td>
+        <td>Time</td>
+        <td>Delete</td>
+
+    </tr>
+
+        @foreach (UserSchedule sched in Model.UserSchedule)
+        {
+            <tr>
+                <td>@sched.scheduleDate</td>
+                <td>@sched.scheduleInfo</td>
+                <td><a asp-controller="Doctor" asp-action="DeleteSched" asp-route-id="@sched.scheduleId" type="submit" class="btn btn-primary">Delete</a></td>
+            </tr>        
+        }
 </table>

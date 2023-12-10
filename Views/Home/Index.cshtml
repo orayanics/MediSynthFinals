@@ -1,8 +1,92 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@using MediSynthFinals.Models;
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<UserCredentials> SignInManager
+@inject UserManager<UserCredentials> UserManager
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/landing.css">
+    <link rel="stylesheet" href="~/css/portal.css" />
+</head>
+<body>
+    <div class="welcome-text">
+        <h1>Welcome to <img src="../imgs/outlined_logo.png" alt="Medisynth Logo" width="18%" height="18%"></h1>
+
+    </div>
+    <div class="level">
+    @if (!SignInManager.IsSignedIn(User))
+    {
+
+        <div class="level">
+            <div class="container-button">
+                <p class="text">Already have an account?</p>
+                <a asp-controller="User" asp-action="Login" class="login">Login</a>
+                <p class="text">New to MediSynth?</p>
+                <a asp-controller="User" asp-action="Patient" class="register">Register</a>
+            </div>
+        </div>
+
+    }
+    @if (User.IsInRole("DOCTOR"))
+    {
+        <div class="side-by-side-container">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Doctor" asp-action="Index">
+            <div class="rounded-containercopy">
+                <img src="~/imgs/user-pen.png" alt="Medisynth Logo" width="120px" height="120px">
+                <div class="rounded-text">Profile</div>
+            </div>
+            </a>
+           <a class="nav-link text-dark" asp-area="" asp-controller="Doctor" asp-action="Edit">
+            <div class="rounded-containercopy">
+                <img src="~/imgs/calendar-lines-pen.png" alt="Medisynth Logo" width="120px" height="120px">
+                <div class="rounded-text">Edit Schedule</div>
+            </div>
+            </a>
+            
+        </div>
+    }
+    @if (User.IsInRole("PATIENT"))
+    {
+        <div class="side-by-side-container">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Patient" asp-action="Profile">
+            <div class="rounded-containercopy">
+                <img src="~/imgs/search-heart.png" alt="Medisynth Logo" width="120px" height="120px">
+                <div class="rounded-text">History</div>
+            </div>
+            </a>
+             <a class="nav-link text-dark" asp-area="" asp-controller="Patient" asp-action="AddHistory">
+            <div class="rounded-containercopy">
+                        <img src="~/imgs/calendar-lines-pen.png" alt="Medisynth Logo" width="120px" height="120px">
+                <div class="rounded-text">Edit</div>
+            </div>
+             </a>
+        </div>
+    }
+    @if (User.IsInRole("ADMIN"))
+    {
+        <div class="side-by-side-container">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Doctors">
+            <div class="rounded-containercopy">
+                <img src="~/imgs/stethoscope.png" alt="Medisynth Logo" width="120px" height="120px">
+                <div class="rounded-text">Doctors</div>
+            </div>
+            </a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Patients">
+            <div class="rounded-containercopy">
+                <img src="~/imgs/search-heart.png" alt="Medisynth Logo" width="120px" height="120px">
+                <div class="rounded-text">Patients</div>
+            </div>
+            </a>
+        </div>
+    }
+    </div>
+
+</body>
+</html>
+

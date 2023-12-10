@@ -3,6 +3,7 @@
     flex-direction: column;
     min-height: 100vh;
     margin: 0;
+    background-color: #FAF9F6;
 }
 
 main {
@@ -13,8 +14,11 @@ main {
 
 footer {
     margin-top: auto; /* Pushes the footer to the bottom */
-    background-color: black;
+    background-color: #272727;
     color: white;
     text-align: center;
-    padding: 30px;
+    padding: 20px;
+    line-height: .5; /* Adjust line spacing */
+    font-size: 14px; /* Set a smaller font size */
 }
+

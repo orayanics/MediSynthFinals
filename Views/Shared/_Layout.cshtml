@@ -18,69 +18,121 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-black">
+        @*        <nav class="navbar navbar-expand-lg navbar-dark bg-black">
+        <div class="container-fluid">
+        <a href="#" style="width: 95px;margin-left: 5%;"><img src="../imgs/outlined_logo.png" alt="logo" height="100%" width="100%"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+
+        <!-- Using mx-auto to center align content -->
+        <!-- Profile Picture -->
+        @if (SignInManager.IsSignedIn(User))
+        {
+        <div class="navbar-nav mx-auto">
+        <img src="../imgs/pfp.jpg" alt="Profile Picture" class="nav-item rounded-circle" style="width: 40px; height: 40px;">
+        <li class="nav-item">
+        <a asp-controller="User" asp-action="Logout">
+        <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+        </a>
+        </li>
+        @if (User.IsInRole("DOCTOR"))
+        {
+        <!-- Name Provision -->
+        <a class="nav-link" href="#" style="font-weight: bold; font-size: 20px;">Hello @UserManager.GetUserName(User)</a>
+
+        <!-- My Patients Dropdown -->
+        <div class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-weight: bold; font-size: 20px;">
+        My Patients
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <li><a class="dropdown-item" href="#">Patient 1</a></li>
+        <li><a class="dropdown-item" href="#">Patient 2</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#">All Patients</a></li>
+        </ul>
+
+        </div>
+        }
+
+        </div>
+        }
+        else
+        {
+        <ul class="navbar-nav" style="padding-right: 5%;">
+        <!-- Adjusting right padding -->
+        <li class="nav-item">
+        <a class="nav-link" style="font-weight: bold; font-size: 20px;" asp-controller="User" asp-action="Login">LOGIN</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" style="font-weight: bold; font-size: 20px;" asp-controller="User" asp-action="Patient">REGISTER</a>
+        </li>
+        </ul>
+        }
+
+
+        </div>
+        </div>
+        </nav>
+        *@
+
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #272727;">
             <div class="container-fluid">
                 <a href="#" style="width: 95px;margin-left: 5%;"><img src="../imgs/outlined_logo.png" alt="logo" height="100%" width="100%"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                   
-                        <!-- Using mx-auto to center align content -->
-                        <!-- Profile Picture -->
+                <div class="collapse navbar-collapse" id="navbarNav" style="padding-right: 50px">
+                    <ul class="navbar-nav ms-auto">
+                        <!-- Push content to the right -->
                         @if (SignInManager.IsSignedIn(User))
                         {
-                    <div class="navbar-nav mx-auto">
-                        <img src="../imgs/pfp.jpg" alt="Profile Picture" class="nav-item rounded-circle" style="width: 40px; height: 40px;">
-                                            <li class="nav-item">
-                        <a asp-controller="User" asp-action="Logout">
-                            <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-                           </a> 
-                    </li>
-                            @if(User.IsInRole("DOCTOR"))
-                            {
-                                                            <!-- Name Provision -->
-                        <a class="nav-link" href="#" style="font-weight: bold; font-size: 20px;">Hello @UserManager.GetUserName(User)</a>
+                            <li class="nav-item">
+                                <a id="manage" class="nav-link" title="Manage" style="font-weight: bold; font-size: 12px;">Hello @UserManager.GetUserName(User)!</a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-area="" asp-controller="Home" asp-action="Index">
+                                    <button id="logout" type="submit" class="nav-link" style="font-weight: bold; font-size: 12px;  text-decoration: none;">PORTAL
 
-                        <!-- My Patients Dropdown -->
-                        <div class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-weight: bold; font-size: 20px;">
-                                My Patients
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Patient 1</a></li>
-                                <li><a class="dropdown-item" href="#">Patient 2</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">All Patients</a></li>
-                            </ul>
-
-                        </div>
-                            }
-
-                    </div>
-                        } else
+                                    </button>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="User" asp-action="Logout">
+                                    <button id="logout" type="submit" class="nav-link" style="font-weight: bold; font-size: 12px;  text-decoration: none;">LOGOUT</button>
+                                </a>
+                            </li>
+                        }
+                        else
                         {
-                    <ul class="navbar-nav" style="padding-right: 5%;">
-                        <!-- Adjusting right padding -->
-                        <li class="nav-item">
-                            <a class="nav-link" style="font-weight: bold; font-size: 20px;" asp-controller="User" asp-action="Login">LOGIN</a>
-                        </li>
-                                                <li class="nav-item">
-                            <a class="nav-link" style="font-weight: bold; font-size: 20px;" asp-controller="User" asp-action="Patient">REGISTER</a>
-                        </li>
-                    </ul>
+
+                            <!-- Adjusting right padding -->
+                            <li class="nav-item">
+                                <a class="nav-link" style="font-weight: bold; font-size: 12px;" asp-controller="User" asp-action="Login"></a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="User" asp-action="Login" class="nav-link" class="nav-link" style="font-weight: bold; font-size: 12px;">
+                                    LOGIN
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" style="font-weight: bold; font-size: 12px;" asp-controller="User" asp-action="Patient">REGISTER</a>
+                            </li>
+
                         }
 
-
+                    </ul>
                 </div>
             </div>
         </nav>
 
-        <partial name="_LoginPartial" />
+  @*       <partial name="_LoginPartial" />
+ *@
 
 
 
-        
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -89,7 +141,8 @@
     </div>
 
     <footer>
-        <img src="../imgs/outlined_logo.png" alt="logo" height="10%" width="10%">
+        <img src="../imgs/outlined_logo.png" alt="logo" height="40" width="150" style="margin-bottom: 48px">
+        
         <p class="text1">Hospital Name</p>
         <p class="text1">Contact Support</p>
         <p class="text1">&copy;Group5-3ITE</p>
