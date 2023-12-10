@@ -25,12 +25,6 @@ namespace MediSynthFinals.Controllers
             _userManager = userManager;
         }
 
-        public IActionResult Index()
-        {
-            return View(_dbContext.PatientCredentials);
-        }
-
-
         public IActionResult Doctors()
         {
             return View(_dbContext.UserInformation.Where(x => x.department != "PATIENT"));
@@ -80,7 +74,7 @@ namespace MediSynthFinals.Controllers
             return NotFound();
         }
 
-        public IActionResult Profile()
+        public IActionResult Index()
         {
             var identityID = _userManager.GetUserId(User); // get user Id
             Console.WriteLine("USER ID" + identityID);
