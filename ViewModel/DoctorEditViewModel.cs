@@ -5,11 +5,9 @@ namespace MediSynthFinals.ViewModel
 {
     public class DoctorEditViewModel
     {
-        [Required(ErrorMessage = "User ID is required")]
         [Display(Name = "User ID")]
         public int userId { get; set; }
 
-        [Required(ErrorMessage = "Username is required")]
         [Display(Name = "Username")]
         public string? username { get; set; }
 

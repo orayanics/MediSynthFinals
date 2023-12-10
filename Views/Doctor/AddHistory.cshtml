@@ -1,6 +1,8 @@
 ﻿@model MediSynthFinals.ViewModel.DoctorMedHisViewModel
 <link rel="stylesheet" href="~/css/form.css">
 <body>
+    <div class="form-group" asp-validation-summary="All"></div>
+
     <form method="post" asp-action="AddHistory" class="form">
         <p class="form-title"><img alt="MediSynth" src="../imgs/logo.png" width="120" height="40"></p>
         <p class="patient-info">Patient No.</p>

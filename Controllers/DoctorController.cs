@@ -149,6 +149,11 @@ namespace MediSynthFinals.Controllers
             var email = user.email.ToUpper();
             UserInformation info = _dbContext.UserInformation.FirstOrDefault(x => x.userId == user.userId);
 
+            if ((user.currentpass == null && user.newpass == null) || (user.currentpass ==null || user.newpass ==null))
+            {
+                return View(user);
+            }
+
             if (info != null)
             {
                 // For Database user.information
