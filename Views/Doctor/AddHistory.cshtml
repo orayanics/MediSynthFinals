@@ -1,15 +1,15 @@
 ﻿@model MediSynthFinals.ViewModel.DoctorMedHisViewModel
 <link rel="stylesheet" href="~/css/form.css">
 <body>
-    <form method="post" asp-action="AddHistory" class="form">
+    <form method="post" asp-action="AddHistory" class="form" onsubmit="return validateForm(event)">
         <p class="form-title"><img alt="MediSynth" src="../imgs/logo.png" width="120" height="40"></p>
         <p class="patient-info">Patient No.</p>
         <div class="center">
             <p class="patient-ID">@Model.patientId.Substring(0,7)</p>
         </div>
-@*         <p class="patient-info">Patient Name</p>
+        @*         <p class="patient-info">Patient Name</p>
         <div class="center">
-            <p class="patient-ID">@Model.</p>
+        <p class="patient-ID">@Model.</p>
         </div> *@
         <p class="form-title">Medical History</p>
 
@@ -57,8 +57,51 @@
         </div>
         <br />
         <center>
-        <button type="submit" class="submit">Submit</button>
+            <button type="submit" class="submit">Submit</button>
         </center>
     </form>
+    <script>
+     
+        function showValidationMessage(input) {
+            hideValidationMessage(input); 
+            const validationMessage = "This field is required.";
+            const div = document.createElement("div");
+            div.className = "alert alert-danger";
+            div.innerHTML = validationMessage;
+            input.insertAdjacentElement("afterend", div);
+            input.dataset.validationMessage = div;
+        }
 
+    
+        function hideValidationMessage(input) {
+            const existingDiv = input.dataset.validationMessage;
+            if (existingDiv) {
+                existingDiv.remove(); 
+                input.dataset.validationMessage = null;
+            }
+        }
+
+        
+        function validateForm(event) {
+            const form = document.querySelector(".form");
+            const inputs = form.querySelectorAll(".form-control");
+
+            let isValid = true;
+
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    showValidationMessage(input);
+                    isValid = false;
+                } else {
+                    hideValidationMessage(input);
+                }
+            });
+
+            if (!isValid) {
+                event.preventDefault(); 
+            }
+
+            return isValid;
+        }
+    </script>
 </body>
