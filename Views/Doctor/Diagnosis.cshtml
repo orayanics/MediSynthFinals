@@ -1,4 +1,4 @@
-﻿@model MediSynthFinals.Models.RecordDiagnosis
+﻿@model MediSynthFinals.ViewModel.DoctorDiagnosisViewModel
 
 <form asp-action="Diagnosis" method="post" class="form">
     <center><h3>Add Diagnosis</h3></center>
@@ -29,11 +29,8 @@
             <option value="">-- Select Patient --</option>
         </select> *@
 @*     </div> *@
-
-    <div hidden class="form-group">
-        <label asp-for="diagnosisId"></label>
-        <input asp-for="diagnosisId" class="form-control" />
-    </div>
+<input hidden asp-for="patientId" value="@Model.patientId"/>
+    <input hidden asp-for="rtypeId" value="Diagnosis" />
 
      <div class="input-container">
         <label asp-for="diagnosisText">Diagnosis</label>

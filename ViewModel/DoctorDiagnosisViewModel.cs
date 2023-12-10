@@ -4,7 +4,6 @@ namespace MediSynthFinals.ViewModel
 {
     public class DoctorDiagnosisViewModel
     {
-        public List<PatientCredentials> PatientCredentials { get; set; }
         public int diagnosisId { get; set; }
         public string diagnosisText { get; set; }
         public string additionalNote { get; set; }

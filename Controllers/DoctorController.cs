@@ -190,10 +190,23 @@ namespace MediSynthFinals.Controllers
         //}
 
         [HttpGet]
-        public IActionResult Diagnosis()
+        public IActionResult Diagnosis(string id)
         {
+            var patient = _dbContext.PatientCredentials.FirstOrDefault(p => p.patientRef == id);
+            var date = DateTime.Now;
+            if (patient != null)
+            {
+                // Create a view model for the diagnosis form
+                var diagnosisViewModel = new DoctorDiagnosisViewModel
+                {
+                    patientId = patient.patientRef,
+                    visitDate = date
+                    // Add other properties as needed
+                };
 
-               return View();
+                return View(diagnosisViewModel);
+            }
+            return NotFound();
 
         }
 
@@ -201,22 +214,17 @@ namespace MediSynthFinals.Controllers
         [HttpPost]
         public IActionResult Diagnosis(RecordDiagnosis form)
         {
-            RecordDiagnosis info = _dbContext.RecordDiagnosis.FirstOrDefault(x => x.patientId == form.patientId);
-            if (info != null)
+
+            if (ModelState.IsValid)
             {
                 Console.WriteLine("Patient ID: " + form.patientId);
-                // For Database user.information
-                info.diagnosisText = form.diagnosisText;
-                info.additionalNote = form.additionalNote;
-                info.attendingDoctor = form.attendingDoctor;
-                info.visitDate = form.visitDate;
-                info.rtypeId = "Diagnosis";
-                info.patientId = form.patientId;
-                
-                _dbContext.RecordDiagnosis.Add(info);
+               
+                _dbContext.RecordDiagnosis.Add(form);
                 _dbContext.SaveChanges();
                 return RedirectToAction("Index", "Doctor");
             }
+            Console.WriteLine("NOTFOUND Patient ID: " + form.patientId);
+
             return NotFound();
         }
 
@@ -227,7 +235,6 @@ namespace MediSynthFinals.Controllers
             if (patients != null)
             {
              return View(patients);
-
 
             }
             return NotFound();
