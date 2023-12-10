@@ -1,0 +1,70 @@
+﻿@model MediSynthFinals.ViewModel.DoctorMedHisViewModel
+<head>
+    <link rel="stylesheet" type="text/css" href="../css/form.css">
+</head>
+
+<body>
+    <form method="post" asp-action="AddHistory" class="form">
+        <p class="form-title"><img alt="MediSynth" src="../imgs/logo.png" width="120" height="40"></p>
+        <p class="patient-info">Patient No.</p>
+        <div class="center">
+            <p class="patient-ID">3312983</p>
+        </div>
+        <p class="patient-info">Patient Name</p>
+        <div class="center">
+            <p class="patient-ID">Juan De la Cruz</p>
+        </div>
+        <p class="form-title">Medical History</p>
+        @*     <div class="mb-3">
+        <label asp-for="Id" class="form-label">Id</label>
+        <input asp-for="Id" class="form-control" value="@ViewBag.increment" placeholder="@ViewBag.increment">
+        </div> *@
+        <input hidden asp-for="patientId" value="@Model.patientId" />
+        <input hidden asp-for="rtypeId" value="MedicalHistory" />
+
+        <div class="input-container">
+            <label asp-for="pastMedHistory" class="form-label"></label>
+            <input asp-for="pastMedHistory" class="form-control">
+        </div>
+
+        <div class="input-container">
+            <label asp-for="pastHospitalization" class="form-label"></label>
+            <input asp-for="pastHospitalization" class="form-control">
+        </div>
+
+        <div class="input-container">
+            <label asp-for="pastSurgicalOperation" class="form-label"></label>
+            <input asp-for="pastSurgicalOperation" class="form-control">
+        </div>
+
+        <div class="input-container">
+            <label asp-for="medConcern" class="form-label"></label>
+            <input asp-for="medConcern" class="form-control">
+        </div>
+
+        <div class="input-container">
+            <label asp-for="foodAllergy" class="form-label"></label>
+            <input asp-for="foodAllergy" class="form-control">
+        </div>
+
+        <div class="input-container">
+            <label asp-for="drugAllergy" class="form-label"></label>
+            <input asp-for="drugAllergy" class="form-control">
+        </div>
+
+        <div class="input-container">
+            <label asp-for="visitDate" class="form-label"></label>
+            <input asp-for="visitDate" type="date" class="form-control">
+        </div>
+
+        <div class="input-container">
+            <label asp-for="attendingDoctor" class="form-label"></label>
+            <input asp-for="attendingDoctor" class="form-control">
+        </div>
+        <br />
+        <center>
+        <button type="submit" class="submit">Submit</button>
+        </center>
+    </form>
+
+</body>

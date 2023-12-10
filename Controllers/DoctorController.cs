@@ -241,6 +241,43 @@ namespace MediSynthFinals.Controllers
 
         }
 
+        // Add Medical History
+        [HttpGet]
+        public IActionResult AddHistory(string id)
+        {
+            var patient = _dbContext.PatientCredentials.FirstOrDefault(p => p.patientRef == id);
+            var date = DateTime.Now;
+            if (patient != null)
+            {
+                // Create a view model for the diagnosis form
+                var diagnosisViewModel = new DoctorMedHisViewModel
+                {
+                    patientId = patient.patientRef,
+                    visitDate = date
+                    // Add other properties as needed
+                };
+
+                return View(diagnosisViewModel);
+            }
+            return NotFound();
+        }
+
+        [HttpPost]
+        public IActionResult AddHistory(RecordMedHistory edit)
+        {
+            if (ModelState.IsValid)
+            {
+                Console.WriteLine("Patient ID: " + edit.patientId);
+
+                _dbContext.RecordMedHistory.Add(edit);
+                _dbContext.SaveChanges();
+                return RedirectToAction("Index", "Doctor");
+            }
+            Console.WriteLine("NOTFOUND Patient ID: " + edit.patientId);
+
+            return NotFound();
+        }
+
 
 
     }
