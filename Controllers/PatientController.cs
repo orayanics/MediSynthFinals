@@ -178,7 +178,7 @@ namespace MediSynthFinals.Controllers
 
                     _dbContext.RecordMedHistory.Add(patient);
                     _dbContext.SaveChanges();
-                    return RedirectToAction("Profile", "Index");
+                    return RedirectToAction("Index", "Patient");
                 }
             }
             return View(edit);

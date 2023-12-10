@@ -10,24 +10,31 @@ namespace MediSynthFinals.Models
         public int medhistoryId { get; set; }
 
         [Display(Name = "Past Medical History")]
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string pastMedHistory { get; set; }
 
         [Display(Name = "Past Hospitalization")]
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string pastHospitalization { get; set; }
 
         [Display(Name = "Past Surgical Operaiton")]
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string pastSurgicalOperation { get; set; }
 
         [Display(Name = "Medical Concern")]
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string medConcern { get; set; }
 
         [Display(Name = "Food Allergies")]
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string foodAllergy { get; set; }
 
         [Display(Name = "Drug Allergies")]
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string drugAllergy { get; set; }
 
         [Display(Name = "Attending Doctor")]
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string attendingDoctor { get; set; }
 
         [Display(Name = "Visit Date")]
