@@ -216,7 +216,7 @@ namespace MediSynthFinals.Controllers
             }
             Console.WriteLine("NOTFOUND Patient ID: " + form.patientId);
 
-            return NotFound();
+            return RedirectToAction("Patients", "Doctor");
         }
 
         // Add Medical History
