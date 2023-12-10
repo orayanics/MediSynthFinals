@@ -61,7 +61,12 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px; /* Space between search bar and table */
+    border-radius: 10px; /* Round off table corners */
+    overflow: hidden; /* Hide content that exceeds the rounded corners */
 }
+
+/* Other existing styles... */
+
 
 th, td {
     border: 1px solid #ddd;
