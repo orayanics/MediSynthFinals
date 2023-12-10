@@ -216,6 +216,10 @@ namespace MediSynthFinals.Controllers
             }
             Console.WriteLine("NOTFOUND Patient ID: " + form.patientId);
             var user = new DoctorDiagnosisViewModel();
+            user.visitDate = form.visitDate;
+            user.attendingDoctor = form.attendingDoctor;
+            user.diagnosisText = form.diagnosisText;
+            user.additionalNote = form.additionalNote; 
             return View(user);
         }
 
