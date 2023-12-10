@@ -35,14 +35,14 @@
                         var uppercase = pa.patientRef.ToUpper();
                     }
                     <td>
-                        <a class="nav-link" asp-area="" asp-route-id="@pa.patientId" asp-controller="Patient" asp-action="Details">@pa.patientRef</a>
+                        <a class="nav-link" asp-area="" asp-route-id="@pa.patientId" asp-controller="Patient" asp-action="Details">@pa.patientRef.Substring(0,7)</a>
                     </td>
                     <td>@pa.fName @pa.lName</td>
                     <td>@pa.address</td>
                     <td>@pa.region</td>
                     <td>@pa.city</td>
                     <td>@pa.gender</td>
-                    <td>@pa.birthdate</td>
+                    <td>@pa.birthdate.ToShortDateString()</td>
                     <td>@pa.contactNum</td>
                     <td>
                         <a asp-controller="Admin"
