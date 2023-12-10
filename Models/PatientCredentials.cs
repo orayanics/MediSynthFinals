@@ -80,6 +80,7 @@ namespace MediSynthFinals.Models
 
         [Display(Name = "Contact Number")]
         [DisplayFormat(ConvertEmptyStringToNull = false)]
+        [RegularExpression(@"^\d+$", ErrorMessage = "Please enter only numeric values.")]
         public string contactNum { get; set; }
 
         [Display(Name = "Email Address")]
@@ -100,6 +101,7 @@ namespace MediSynthFinals.Models
 
         [Display(Name = "Emergency Contact Number")]
         [DisplayFormat(ConvertEmptyStringToNull = false)]
+        [RegularExpression(@"^\d+$", ErrorMessage = "Please enter only numeric values.")]
         public string? emergencyNum { get; set; }
     }
 }
