@@ -28,6 +28,7 @@ namespace MediSynthFinals.ViewModel
 
         [Required(ErrorMessage = "Contact Number is required")]
         [Display(Name = "Contact Number")]
+        [RegularExpression("[0-9]{2}-[0-9]{3}-[0-9]{4}", ErrorMessage = "Please enter only numeric values.")]
         public string? contactNum { get; set; }
 
         [Required(ErrorMessage = "Department is required")]
