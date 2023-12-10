@@ -1,7 +1,6 @@
 ﻿@model MediSynthFinals.ViewModel.DoctorEditViewModel;
 <link rel="stylesheet" href="~/css/form.css" />
 
-<div class="form-group" asp-validation-summary="All"></div>
 
 <form asp-action="Edit" method="post" class="form">
     <p class="form-title"><img alt="MediSynth" src="../imgs/logo.png" width="180" height="60"></p>
@@ -11,39 +10,46 @@
     <div hidden class="form-group">
         <label asp-for="userId"></label>
         <input asp-for="userId" class="form-control" />
+        <span asp-validation-for="userId" class="text-danger"></span>
     </div>
 
-     <div class="input-container">
+    <div class="input-container">
         <label asp-for="currentpass">Current Password</label>
         <input asp-for="currentpass" class="form-control" />
+        <span asp-validation-for="currentpass" class="text-danger"></span>
     </div>
 
-     <div class="input-container">
+    <div class="input-container">
         <label asp-for="newpass">New Password</label>
         <input asp-for="newpass" class="form-control" />
+        <span asp-validation-for="newpass" class="text-danger"></span>
     </div>
 
-     <div class="input-container">
+    <div class="input-container">
         <label asp-for="fName">First Name</label>
         <input asp-for="fName" class="form-control" />
+        <span asp-validation-for="fName" class="text-danger"></span>
     </div>
 
-     <div class="input-container">
+    <div class="input-container">
         <label asp-for="lName"></label>
         <input asp-for="lName" class="form-control" />
+        <span asp-validation-for="lName" class="text-danger"></span>
     </div>
 
-     <div class="input-container">
+    <div class="input-container">
         <label asp-for="email"></label>
         <input asp-for="email" class="form-control" />
+        <span asp-validation-for="email" class="text-danger"></span>
     </div>
 
-     <div class="input-container">
+    <div class="input-container">
         <label asp-for="contactNum"></label>
         <input asp-for="contactNum" class="form-control" />
+        <span asp-validation-for="contactNum" class="text-danger"></span>
     </div>
 
-     <div class="input-container">
+    <div class="input-container">
         <label asp-for="department"></label>
         <select class="form-select-sm" asp-for="department" asp-items="Html.GetEnumSelectList(typeof(Department))"></select>
     </div>
@@ -53,6 +59,7 @@
         <button asp-route-id="@Model.userId" type="submit" class="submit">Submit</button>
         <button type="button" class="submit" onclick="history.back();">Cancel</button>
     </center>
-    
+
 </form>
+
 

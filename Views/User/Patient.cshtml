@@ -8,7 +8,7 @@
         Already Registered?
         <a asp-controller ="User" asp-action="Login" class="login">Click here</a>
     </p>
-    <div class="form-group" asp-validation-summary="All"></div>
+   
 
     <form class="form" asp-action="Patient">
         <p class="form-title"><img alt="MediSynth" src="../imgs/logo.png" width="180" height="60"></p>
@@ -17,6 +17,7 @@
         <label>Username</label>
         <div class="input-container">
             <input asp-for="username" type="text" placeholder="Enter username">
+            <span asp-validation-for="username" class="text-danger validation-margin-left"></span>
             <span>
             </span>
         </div>
@@ -24,6 +25,7 @@
         <label>Password</label>
         <div class="input-container">
             <input asp-for="password" type="password" placeholder="Enter password">
+            <span asp-validation-for="password" class="text-danger"></span>
             <span>
             </span>
         </div>
@@ -31,6 +33,7 @@
         <label>First Name</label>
         <div class="input-container">
             <input asp-for="fName" type="text" placeholder="Enter First Name">
+            <span asp-validation-for="fName" class="text-danger"></span>
             <span>
             </span>
         </div>
@@ -38,13 +41,15 @@
         <label>Last Name</label>
         <div class="input-container">
             <input asp-for="lName" type="text" placeholder="Enter Last Name">
+            <span asp-validation-for="lName" class="text-danger"></span>
             <span>
             </span>
         </div>
 
         <label>Email</label>
         <div class="input-container">
-            <input asp-for="email" type="email" placeholder="Enter Email">
+            <input asp-for="email" type="email" placeholder="Enter Email"><br />
+            <span asp-validation-for="email" class="text-danger"></span>
             <span>
             </span>
         </div>
@@ -52,15 +57,16 @@
         <label>Contact Number</label>
         <div class="input-container">
             <input asp-for="contactNum" type="text" placeholder="Enter Valid Phone Number">
+            <span asp-validation-for="contactNum" class="text-danger"></span>
             <span>
             </span>
         </div>
 
-         <div hidden class="input-container">
+        <div hidden class="input-container">
             <select asp-for="department">
-                <option  value="PATIENT" selected>PATIENT</option>
-        </select>
-        </div> 
+                <option value="PATIENT" selected>PATIENT</option>
+            </select>
+        </div>
 
         <center>
             <button type="submit" class="submit">
