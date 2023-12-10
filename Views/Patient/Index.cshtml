@@ -5,14 +5,17 @@
 
 <link rel="stylesheet" href="~/css/List.css">
 
+<center>
+
+    <button class="submit"><a class="button-link" asp-action="Edit" asp-controller="Patient">Search Patient</a></button>
+</center>
+
+<div class="table-container">
+
 <table>
 
     <tr>
         <th colspan="12">Patient Details</th>
-    </tr>
-
-    <tr>
-        <th colspan="12"><a asp-action="Edit" asp-controller="Patient"><button>Edit Information</button></a></th>
     </tr>
 
     <tr>
@@ -55,6 +58,7 @@
     </tr>
 
 </table>
+</div>
 
 <table class="table">
     <tr>

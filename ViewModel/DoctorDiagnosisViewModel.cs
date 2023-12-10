@@ -1,4 +1,5 @@
 ﻿using MediSynthFinals.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace MediSynthFinals.ViewModel
 {
@@ -8,6 +9,9 @@ namespace MediSynthFinals.ViewModel
         public string diagnosisText { get; set; }
         public string additionalNote { get; set; }
         public string attendingDoctor { get; set; }
+
+
+        [Display(Name = "Visit Date")]
         public DateTime visitDate { get; set; }
 
         // FOREIGN KEYS

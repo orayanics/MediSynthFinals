@@ -91,34 +91,31 @@ namespace MediSynthFinals.Controllers
         }
 
         // REMOVE PATIENT CONFIRMATION
-        [HttpGet]
-        public IActionResult ConfirmPatient(int id)
+        public IActionResult ConfirmPatient(string email)
         {
-            var patient = _dbContext.UserInformation.ToList().FirstOrDefault(x => x.userId == id);
+            var patient = _dbContext.UserInformation.ToList().FirstOrDefault(x => x.email == email);
             return View(patient);
         }
 
         // REMOVE PATENT
-        [HttpPost]
-        public async Task<IActionResult> RemovePatient(int id, string refId)
+        public async Task<IActionResult> RemovePatient(string email)
         {
-            refId = refId.ToUpper();
-            Console.WriteLine("REF ID: " + refId);
-            UserInformation patient = _dbContext.UserInformation.FirstOrDefault(x => x.userId == id);
-            PatientCredentials pa = _dbContext.PatientCredentials.FirstOrDefault(x => x.patientId == id);
+            Console.WriteLine("EMAIL: " + email);
+            UserInformation patient = _dbContext.UserInformation.FirstOrDefault(x => x.email == email);
+            PatientCredentials pa = _dbContext.PatientCredentials.FirstOrDefault(x => x.email == email);
+            email = email.ToUpper();
             if (patient != null)
             {
                 _dbContext.PatientCredentials.Remove(pa);
                 _dbContext.UserInformation.Remove(patient);
                 _dbContext.SaveChanges();
 
-                var find = await _userManager.FindByEmailAsync(refId);
+                var find = await _userManager.FindByEmailAsync(email);
 
                 if (find != null)
                 {
                     await _userManager.DeleteAsync(find);
                     await _userManager.RemoveFromRoleAsync(find, "PATIENT");
-
                     return RedirectToAction("Patients", "Admin");
                 }
                 else

@@ -80,6 +80,7 @@ namespace MediSynthFinals.Models
 
         [Display(Name = "Contact Number")]
         [DisplayFormat(ConvertEmptyStringToNull = false)]
+       
         public string contactNum { get; set; }
 
         [Display(Name = "Email Address")]

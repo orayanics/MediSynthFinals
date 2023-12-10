@@ -4,33 +4,33 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
+    <form asp-action="RemovePatient" asp-controller="Admin" method="post">
     <h4>Patient</h4>
     <hr />
     <div class="mb-3">
-        @Html.DisplayNameFor(model => model.fName)
+        <label asp-for="fName" class="form-label"></label>
         <input asp-for="fName" class="form-control" disabled>
     </div>
 
     <div class="mb-3">
-        @Html.DisplayNameFor(model => model.lName)
+        <label asp-for="lName" class="form-label"></label>
+
         <input asp-for="lName" class="form-control" disabled>
 
     </div>
 
         <div class="mb-3">
-        @Html.DisplayNameFor(model => model.department)
+        <label asp-for="department" class="form-label"></label>
         <input asp-for="department" class="form-control" disabled>
         </div>
 
     <div class="mb-3">
-        @Html.DisplayNameFor(model => model.email)
+        <label asp-for="email" class="form-label"></label>
         <input asp-for="email" class="form-control" disabled>
     </div>
-    @{
-        
-    }
-    <form asp-action="RemovePatient" asp-controller="Admin" asp-route-refId="@Model.email" asp-route-id="@Model.userId">
 
-        <button type="submit" value="Delete" class="btn btn-danger">Delete</button>
+            <a asp-route-email="@Model.email" asp-action="RemovePatient">
+                Delete
+            </a>
     </form>
 </div>

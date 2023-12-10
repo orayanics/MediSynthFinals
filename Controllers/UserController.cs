@@ -39,6 +39,12 @@ namespace MediSynthFinals.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel logInfo)
         {
+            if (logInfo.Username == null)
+            {
+                ModelState.AddModelError("", "Username cannot be null.");
+                return View(logInfo);
+            }
+
             var result = await _signInManager.PasswordSignInAsync(logInfo.Username, logInfo.password, logInfo.RememberMe, false);
             if (result.Succeeded)
             {
@@ -126,7 +132,9 @@ namespace MediSynthFinals.Controllers
                 user.userRole = "PATIENT";
 
                 // For DATABASE
+                // UserInformation
                 _dbContext.UserInformation.Add(userInfo);
+                _dbContext.SaveChanges();
 
                 PatientCredentials patient = new PatientCredentials();
 
@@ -147,6 +155,7 @@ namespace MediSynthFinals.Controllers
                 patient.emergencyNum = "";
 
                 _dbContext.PatientCredentials.Add(patient);
+                _dbContext.SaveChanges();
 
                 var result = await _userManager.CreateAsync(user, userEnteredData.password);
 
