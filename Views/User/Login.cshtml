@@ -12,12 +12,14 @@
         <label>Username</label>
         <div class="input-container">
             <input asp-for="Username" class="form-control">
+            <span asp-validation-for="Username" class="text-danger"></span>
             <span>
             </span>
         </div>
         <label>Password</label>
         <div class="input-container">
             <input asp-for="password" type="password" class="form-control">
+            <span asp-validation-for="password" class="text-danger"></span>
         </div>
         <br />
         <div class="form-group">
