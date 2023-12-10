@@ -149,7 +149,9 @@ namespace MediSynthFinals.Controllers
         [HttpGet]
         public IActionResult AddHistory()
         {
-            return View();
+            var view = new RecordMedHistory();
+            view.visitDate = DateTime.Now;
+            return View(view);
         }
 
         [HttpPost]
@@ -175,10 +177,13 @@ namespace MediSynthFinals.Controllers
                     patient.visitDate = edit.visitDate;
                     patient.rtypeId = "MedicalHistory";
                     patient.patientId = identityID.ToString();
-
                     _dbContext.RecordMedHistory.Add(patient);
                     _dbContext.SaveChanges();
                     return RedirectToAction("Index", "Patient");
+                }
+                else
+                {
+                    return View(edit);
                 }
             }
             return View(edit);

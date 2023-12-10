@@ -79,7 +79,7 @@
             <tr>
                 <td>@item.attendingDoctor</td>
                 <td>@item.medConcern</td>
-                <td>@item.visitDate</td>
+                <td>@item.visitDate.ToShortDateString()</td>
             </tr>
         }
     }
@@ -103,7 +103,7 @@
             <tr>
                 <td>@item.attendingDoctor</td>
                 <td>@item.diagnosisText</td>
-                <td>@item.visitDate</td>
+                <td>@item.visitDate.ToShortDateString()</td>
             </tr>
         }
     }
