@@ -1,28 +1,34 @@
-﻿@using Microsoft.AspNetCore.Identity;
-@model MediSynthFinals.ViewModel.DoctorDiagnosisViewModel
-@inject UserManager<UserCredentials> UserManager;
+﻿@model MediSynthFinals.Models.RecordDiagnosis
 
-<form asp-action="AddDiagnosis" method="post" class="form">
+<form asp-action="Diagnosis" method="post" class="form">
     <center><h3>Add Diagnosis</h3></center>
 
     <p class="form-title"><img alt="MediSynth" src="../imgs/logo.png" width="180" height="60"></p>
 
 @*     PATIENT SEARCH*@    
 
-    <form asp-action="Diagnosis" method="post" class="searchForm">
+   @*  <form asp-action="Diagnosis" method="post" class="searchForm">
         <input type="text" name="searchString" />
         <input type="submit" value="Search" />
     </form>
 
     <div class="search-container">
         <select class="form-control">
-            @foreach (var user in Model.PatientCredentials)
-            {
-                <option value="@user.lName">@user.patientRef.Substring(0,7) @user.lName @user.fName </option>
+            <option>Select Patient</option>
+            @{
+                var num = "";
+                foreach (var user in Model.PatientCredentials)
+                {
+                    num = user.patientId.ToString();
+                    <option value="@user.lName">@user.lName @user.fName @user.patientRef.Substring(0,7)</option>
+                }
             }
-        </select>
-    </div>
-
+            
+        </select> *@
+@*         <select asp-for="patientId" asp-items="new SelectList(Model.PatientCredentials, nameof(PatientCredentials.patientId), nameof(PatientCredentials.fName))">
+            <option value="">-- Select Patient --</option>
+        </select> *@
+@*     </div> *@
 
     <div hidden class="form-group">
         <label asp-for="diagnosisId"></label>
@@ -51,19 +57,8 @@
 
     <br />
     <center>
-        @foreach (var user in Model.PatientCredentials)
-        {
-            if(user.lName == "")
-            {
-                <button type="submit" class="submit" asp-route-id="@user.patientId">Submit</button>
-
-            }
-            else
-            {
-                <button type="submit" class="submit" asp-route-id="@user.patientId">@user.patientId Submit</button>
-
-            }
-        }
+@*         <a asp-controller="Doctor" asp-action="Diagnosis" type="submit" class="btn btn-primary">Submit</a> *@
+        <button type="submit" class="btn btn-primary">Submit</button>
         <button type="button" class="submit" onclick="history.back();">Cancel</button>
     </center>
     

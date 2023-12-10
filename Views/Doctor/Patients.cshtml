@@ -1,0 +1,27 @@
+﻿@model IEnumerable<PatientCredentials>;
+
+<table class="table">
+
+    <tr>
+        <th colspan="7">Doctor</th>
+    </tr>
+
+    <tr>
+        <td>Reference</td>
+        <td>Full Name</td>
+        <td>Diagnosis</td>
+        <td>Medical History</td>
+
+    </tr>
+
+        @foreach (PatientCredentials user in Model)
+        {
+                <tr>
+                <td>@user.patientRef.Substring(0,7)</td>
+                <td>@user.fName @user.lName</td>
+            <td><a asp-action="Diagnosis" asp-route-id="@user.patientId" class="btn btn-primary">Add Diagnosis</a></td>
+            <td><a asp-action="MedicalHistory" asp-route-id="@user.patientId" class="btn btn-primary">Add Medical History</a></td>
+                </tr>
+        
+    }
+</table>

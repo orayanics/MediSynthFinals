@@ -55,6 +55,7 @@ namespace MediSynthFinals.Controllers
 
         }
 
+
         [HttpGet]
         public IActionResult Schedule()
         {
@@ -170,32 +171,40 @@ namespace MediSynthFinals.Controllers
 
         }
 
-        // FOR SEARCH
-        [HttpPost]
-        public IActionResult Diagnosis(string searchString)
+        //// FOR SEARCH
+        //[HttpPost]
+        //public IActionResult Diagnosis(string searchString)
+        //{
+        //    var users = _dbContext.PatientCredentials.Where(r => r.lName == searchString).ToList();
+
+        //    if (users != null)
+        //    {
+        //        var viewModel = new DoctorDiagnosisViewModel
+        //        {
+        //            PatientCredentials =  users
+        //        };
+        //        return View(viewModel);
+        //    }
+
+        //    return NotFound();
+        //}
+
+        [HttpGet]
+        public IActionResult Diagnosis()
         {
-            var users = _dbContext.PatientCredentials.Where(r => r.lName == searchString).ToList();
 
-            if (users != null)
-            {
-                var viewModel = new DoctorDiagnosisViewModel
-                {
-                    PatientCredentials =  users
-                };
-                return View(viewModel);
-            }
+               return View();
 
-            return NotFound();
         }
 
         // FOR DIAGNOSIS SUBMISSION
         [HttpPost]
-        public IActionResult AddDiagnosis(DoctorDiagnosisViewModel form)
+        public IActionResult Diagnosis(RecordDiagnosis form)
         {
             RecordDiagnosis info = _dbContext.RecordDiagnosis.FirstOrDefault(x => x.patientId == form.patientId);
-
             if (info != null)
             {
+                Console.WriteLine("Patient ID: " + form.patientId);
                 // For Database user.information
                 info.diagnosisText = form.diagnosisText;
                 info.additionalNote = form.additionalNote;
@@ -203,28 +212,28 @@ namespace MediSynthFinals.Controllers
                 info.visitDate = form.visitDate;
                 info.rtypeId = "Diagnosis";
                 info.patientId = form.patientId;
+                
                 _dbContext.RecordDiagnosis.Add(info);
                 _dbContext.SaveChanges();
-
-                return RedirectToAction("Profile", "Doctor");
+                return RedirectToAction("Index", "Doctor");
             }
             return NotFound();
         }
 
-        [HttpGet]
-        public IActionResult Diagnosis()
+        // PATIENT LIST
+        public ActionResult Patients()
         {
-
-            var viewModel = new DoctorDiagnosisViewModel();
-            viewModel.PatientCredentials = _dbContext.PatientCredentials.ToList();
-            viewModel.visitDate = DateTime.Now;
-            if (viewModel.PatientCredentials != null)
+            List<PatientCredentials> patients = _dbContext.PatientCredentials.ToList();
+            if (patients != null)
             {
-                return View(viewModel);
-            }
+             return View(patients);
 
+
+            }
             return NotFound();
+
         }
+
 
 
     }
